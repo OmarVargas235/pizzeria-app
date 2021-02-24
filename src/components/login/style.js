@@ -14,18 +14,12 @@ export const LoginContainer = styled.section `
 			box-shadow: none;
 		}
 	}
-	
-	.input-group {
-		border: 1px solid #909090;
-		border-radius: .25rem;
-	}
 
 	.welcome {
 		font-size: 2rem;
 	}
 
 	.welcome+p {
-		color: #909090;
 		font-size: 1.1rem;
 	}
 

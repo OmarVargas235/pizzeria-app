@@ -5,6 +5,7 @@ export const Background = styled.section `
 	
 	background: url(${img_background});
 	min-height: 100vh;
+	overflow: hidden;
 `;
 
 export const Img = styled.img `
