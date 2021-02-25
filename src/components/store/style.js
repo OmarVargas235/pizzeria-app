@@ -37,4 +37,16 @@ export const ContainerStore = styled.section `
 			cursor: pointer;
 		}
 	}
+
+	@media (max-width: 768px) {
+		.container-search {
+			margin-top: 0rem;
+		}
+
+		.card-pizzeria {
+			img {
+				width: 55%;
+			}
+		}
+	}
 `;

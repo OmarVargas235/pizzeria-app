@@ -3,7 +3,7 @@ import {ReactComponent as UserIcon} from '../../assets/icons/user.svg';
 import {ReactComponent as SeacrhIcon} from '../../assets/icons/search.svg';
 import { ContainerStore } from './style';
 import Spinner from '../../layaut/Spinner';
-import CardPizzeriaPage from './CardPizzeriaPage';
+import CardsPizzeriaPage from './CardsPizzeriaPage';
 
 const StorePage = ({ data, dataPizzas, setFindPizzeria }) => (
 	<ContainerStore className="px-5">
@@ -14,9 +14,9 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria }) => (
 		</div>
 
 		<div className="container-search mb-4">
-			<p className="text-center w-25">Pizzerías</p>
+			<p className="text-center w-25 mb-1 mb-md-4">Pizzerías</p>
 			<h2>Tiendas</h2>
-			<p>Escoge tu pizzería favorita</p>
+			<p className="mb-1 mb-md-4">Escoge tu pizzería favorita</p>
 			
 			<div className="input-group mb-3 w-75">
 			    <input 
@@ -33,7 +33,16 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria }) => (
 		</div>
 
 		<div className="container-stores">
-			{ data.loading ? <Spinner /> : <CardPizzeriaPage data={dataPizzas} /> }
+			{ 
+				data.loading ? <Spinner />
+				: <React.Fragment>
+					{
+						data.error ? <div className="alert alert-danger">{data.error}</div>
+						: <CardsPizzeriaPage data={dataPizzas} />
+					}
+				</React.Fragment>
+			
+			}
 		</div>
 
 	</ContainerStore>

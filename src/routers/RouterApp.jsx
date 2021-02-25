@@ -6,6 +6,8 @@ import Store from '../components/store/';
 
 const Container = styled.div`
 	box-shadow: 0 -20px 60px rgba(0,0,0,1);
+	max-height: 100vh;
+	overflow: hidden;
 
 	@media (max-width: 767px) {
 		position: absolute;

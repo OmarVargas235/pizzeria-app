@@ -24,8 +24,8 @@ export const useFetch = (url="") => {
 				
 			} catch(err) {
 
-				err = (/Failed to fetch/gi).test(err) ? 'server failure' : err;
-				setData({ data: null, loading: true, error: err });
+				err = (/Failed to fetch/gi).test(err) ? 'server failure' : err.message;
+				setData({ data: null, loading: false, error: err });
 			}
 		}
 
