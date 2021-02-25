@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import StorePage from './StorePage';
+import StorePage from './components/StorePage';
 import { useFetch } from '../../customHooks/useFetch';
 
 const Store = () => {
@@ -8,6 +8,7 @@ const Store = () => {
 
 	const [findPizzeria, setFindPizzeria] = useState('');
 	const [dataPizzas, setDataPizzas] = useState([]);
+	const [isActiveMenu, setIsActiveMenu] = useState(false);
 
 	useEffect(() => {
 
@@ -26,6 +27,8 @@ const Store = () => {
 			data={data}
 			dataPizzas={dataPizzas}
 			setFindPizzeria={setFindPizzeria}
+			isActiveMenu={isActiveMenu}
+			setIsActiveMenu={setIsActiveMenu}
 		/>
 	)
 }

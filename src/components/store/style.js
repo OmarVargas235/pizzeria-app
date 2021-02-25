@@ -7,7 +7,6 @@ export const ContainerStore = styled.section `
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		cursor: pointer;
 	}
 
 	input {
@@ -47,6 +46,32 @@ export const ContainerStore = styled.section `
 			img {
 				width: 55%;
 			}
+		}
+	}
+`;
+
+export const Menu = styled.aside`
+	position: absolute;
+	top: 0;
+	width: 110%;
+
+	.col-left {
+		min-height: 100vh;
+		background-color: rgba(0, 0, 0, .5);
+		position: absolute;
+	}
+
+	.col-right {
+		background-color: white;
+		display: none;
+	}
+
+	.option {
+		cursor: pointer;
+		transition: .1s ease-in-out;
+
+		&:hover {
+			background-color: #ffd970;
 		}
 	}
 `;
