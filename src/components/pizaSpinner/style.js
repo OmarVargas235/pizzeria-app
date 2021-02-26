@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-import img_background from '../../assets/img/imagebkg.png';
 
 export const Background = styled.section `
-	
-	background: url(${img_background});
 	min-height: 100vh;
 	overflow: hidden;
 `;

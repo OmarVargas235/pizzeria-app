@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useFetch = (url="") => {
 	
@@ -13,25 +13,24 @@ export const useFetch = (url="") => {
 				const resp = await fetch(`http://localhost:5000/${url}`);
 				const result = await resp.json();
 
-				if (resp.status !== 200) {
+				if (resp.status !== 200) throw new Error(result.error);
+				else {
 
-					throw new Error(result.error);
-					return;
+					const { data } = result;
+					setData({ data, loading: false, error: null });
 				}
-
-				const { data, ok } = result;
-				setData({ data, loading: false, error: null });
 				
 			} catch(err) {
-
-				err = (/Failed to fetch/gi).test(err) ? 'server failure' : err.message;
-				setData({ data: null, loading: false, error: err });
+				
+				const regex = (/Failed to fetch/gi).test(err);
+				const messageErr = regex ? 'server failure' : err.message;
+				setData({ data: null, loading: false, error: messageErr });
 			}
 		}
 
 		consumeAPI();
 
-	}, []);
+	}, [url]);
 
 	return data;
 }

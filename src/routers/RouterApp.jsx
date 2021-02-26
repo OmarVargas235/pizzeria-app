@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Login from '../components/login/';
 import Store from '../components/store/';
+import AccountSettings from '../components/account-settings/';
 
 const Container = styled.div`
 	box-shadow: 0 -20px 60px rgba(0,0,0,1);
@@ -11,7 +12,6 @@ const Container = styled.div`
 
 	@media (max-width: 767px) {
 		position: absolute;
-		background: rgba(255,255,255,.95);
 		top: 15%;
 		border-top-right-radius: 30px;
 		border-top-left-radius: 30px;
@@ -22,11 +22,12 @@ const Container = styled.div`
 const RouterApp = () => {
 	
 	return (
-		<Container className="col-12 col-md-6 pt-4">
+		<Container className="col-12 col-md-6">
 			<Router>
 				<Switch>
 					<Route exact path="/home" component={Login} />
 					<Route exact path="/store" component={Store} />
+					<Route exact path="/account-settings" component={AccountSettings} />
 					
 					<Redirect from="/" to="/home" />
 				</Switch>

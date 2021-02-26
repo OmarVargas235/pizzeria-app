@@ -6,7 +6,7 @@ import { LoginContainer } from './style';
 
 const LoginPage = () => (
 	
-	<LoginContainer className="px-5 d-flex flex-column justify-content-center align-items-center h-100">
+	<LoginContainer className="background-white px-5 d-flex flex-column justify-content-center align-items-center h-100">
 		<img src={logo} alt="logo" />
 		<h3 className="welcome font-weight-bold mb-2">Bienvenido</h3>
 		<p className="mb-2 mb-md-4">A las mejores pizzas del pais</p>

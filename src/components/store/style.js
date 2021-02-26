@@ -55,15 +55,25 @@ export const Menu = styled.aside`
 	top: 0;
 	width: 110%;
 
-	.col-left {
-		min-height: 100vh;
+	.background-dark {
 		background-color: rgba(0, 0, 0, .5);
+		width: 100%;
+		min-height: 100vh;
 		position: absolute;
+		${props => ( props.activeAnimation 
+			? animationMenu(0, 1, .5, 'opacity', 'opacityStart')
+			: animationMenu(1, 0, .8, 'opacity', 'opacityEnd')
+		)}
 	}
 
 	.col-right {
 		background-color: white;
-		display: none;
+		min-height: 100vh;
+
+		${props => ( props.activeAnimation 
+			? animationMenu('-100%', 0, .5, 'right', 'rightStart')
+			: animationMenu(0, '-100%', .8, 'right', 'rightEnd')
+		)}
 	}
 
 	.option {
@@ -75,3 +85,17 @@ export const Menu = styled.aside`
 		}
 	}
 `;
+
+const animationMenu = (start, end, time, property, typeAnimation) => (`
+	animation: ${typeAnimation} ${time}s;
+
+	@keyframes ${typeAnimation} {
+		from {
+			${property}: ${start};
+		}
+
+		to {
+			${property}: ${end};
+		}
+	}
+`);

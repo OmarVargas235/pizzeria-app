@@ -4,10 +4,10 @@ import {ReactComponent as SeacrhIcon} from '../../../assets/icons/search.svg';
 import { ContainerStore } from '../style';
 import Spinner from '../../../layaut/Spinner';
 import CardsPizzeriaPage from './CardsPizzeriaPage';
-import MenuPage from './MenuPage';
+import Menu from '../container/Menu';
 
 const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, setIsActiveMenu }) => (
-	<ContainerStore>
+	<ContainerStore className="background-white">
 		<aside className="px-5">
 			<div className="d-flex justify-content-end">
 				<div 
@@ -52,9 +52,7 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, setIsActiv
 			</div>
 		</aside>
 
-		{
-			isActiveMenu ? <MenuPage setIsActiveMenu={setIsActiveMenu} /> : null
-		}
+			{ isActiveMenu ? <Menu setIsActiveMenu={setIsActiveMenu} /> : null }
 
 	</ContainerStore>
 );
