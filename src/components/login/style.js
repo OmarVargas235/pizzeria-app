@@ -6,15 +6,6 @@ export const LoginContainer = styled.section `
 		width: 300px;
 	}
 
-	input {
-		height: 53px;
-		border: none;
-
-		&:focus {
-			box-shadow: none;
-		}
-	}
-
 	.welcome {
 		font-size: 2rem;
 	}
@@ -26,24 +17,6 @@ export const LoginContainer = styled.section `
 	.icon {
 		width: 25px;
 		height: 25px;
-	}
-
-	.btn-login {
-		width: 300px;
-		padding: 10px 0;
-		box-sizing: border-box;
-		box-shadow: 0 4px 4px rgba(0,0,0,.15);
-	}
-
-	.btn-warning {
-		background: #ffd970;
-		border-color: #ffd970;
-
-		&:active {
-			background: #ffd970 !important;
-			border-color: #ffd970 !important;
-			box-shadow: 0 4px 4px rgba(0,0,0,.15) !important;
-		}
 	}
 
 	img {
