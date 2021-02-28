@@ -4,6 +4,7 @@ import './assets/bootstrap.min.css';
 import PizzaSpinner from './components/pizaSpinner/';
 import RouterApp from './routers/RouterApp';
 import img_background from './assets/img/imagebkg.png';
+import ContextAuthProvider from './auth/ContextAuth';
 
 const Body = createGlobalStyle`
 	body {
@@ -25,6 +26,37 @@ const Body = createGlobalStyle`
 		padding-top: 24px;
 		min-height: 100vh;
 	}
+
+	.container__iconUser {
+		border: 2px solid black;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
+	.form-control {
+		height: 53px;
+		border: none;
+
+		&:focus {
+			box-shadow: none;
+		}
+	}
+
+	.btn-warning {
+		width: 300px;
+		padding: 10px 0;
+		box-sizing: border-box;
+		box-shadow: 0 4px 4px rgba(0,0,0,.15);
+		background: #ffd970;
+		border-color: #ffd970;
+
+		&:active, &:focus, &:hover {
+			background: #ffd970 !important;
+			border-color: #ffd970 !important;
+			box-shadow: 0 4px 4px rgba(0,0,0,.15) !important;
+		}
+	}
 `;
 
 const App = () => {
@@ -38,7 +70,9 @@ const App = () => {
 					<PizzaSpinner/>
 				</div>
 				
-				<RouterApp />
+				<ContextAuthProvider>
+					<RouterApp />
+				</ContextAuthProvider>
 			</div>
 		</React.Fragment>
 	)
