@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
 export const ContainerStore = styled.section `
-
-	.container__iconUser {
-		border: 2px solid black;
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-	}
-
 	input {
 		border: none;
 
 		&:focus {
 			box-shadow: none;
 		}
+	}
+
+	.btn-hamburger {
+		background-color: #323232;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
 	}
 
 	.container-search {

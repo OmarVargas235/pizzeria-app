@@ -1,21 +1,22 @@
 import React from 'react';
 import {ReactComponent as UserIcon} from '../../../assets/icons/user.svg';
+import {ReactComponent as BtnHamburger} from '../../../assets/icons/btnHamburger.svg';
 import {ReactComponent as SeacrhIcon} from '../../../assets/icons/search.svg';
 import { ContainerStore } from '../style';
 import Spinner from '../../../layaut/Spinner';
 import CardsPizzeriaPage from './CardsPizzeriaPage';
 import Menu from '../container/Menu';
 
-const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, setIsActiveMenu }) => (
+const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, setIsActiveMenu, maxWidth }) => (
 	<ContainerStore className="background-white">
 		<aside className="px-5">
 			<div className="d-flex justify-content-end">
 				<div 
-					className="container__iconUser d-flex justify-content-center align-items-center" 
+					className={`${maxWidth ? 'btn-hamburger' : 'container__iconUser'} d-flex justify-content-center align-items-center`} 
 					style={{cursor: 'pointer'}}
 					onClick={() => setIsActiveMenu(true)}
 				>
-					<UserIcon />
+					{ maxWidth ? <BtnHamburger /> : <UserIcon /> }
 				</div>
 			</div>
 			

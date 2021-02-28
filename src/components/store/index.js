@@ -9,6 +9,7 @@ const Store = () => {
 	const [findPizzeria, setFindPizzeria] = useState('');
 	const [dataPizzas, setDataPizzas] = useState([]);
 	const [isActiveMenu, setIsActiveMenu] = useState(false);
+	const [maxWidth, setMaxWidth] = useState(window.matchMedia('(max-width: 767px)').matches);
 
 	useEffect(() => {
 
@@ -21,6 +22,19 @@ const Store = () => {
 		}
 
 	}, [findPizzeria, data]);
+
+	useEffect(() => {
+		
+		function resizeMedia() {
+			
+			setMaxWidth(window.matchMedia('(max-width: 767px)').matches);
+		}
+		
+		window.addEventListener('resize', resizeMedia);
+
+		return () => window.removeEventListener('resize', resizeMedia);
+
+	}, [maxWidth]);
 	
 	return (
 		<StorePage 
@@ -29,6 +43,7 @@ const Store = () => {
 			setFindPizzeria={setFindPizzeria}
 			isActiveMenu={isActiveMenu}
 			setIsActiveMenu={setIsActiveMenu}
+			maxWidth={maxWidth}
 		/>
 	)
 }
