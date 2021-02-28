@@ -1,19 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ContextAuth } from '../auth/ContextAuth';
+import { logout } from '../types/types';
+import { alert } from '../layaut/alert';
 
 export const useFetch = (url="") => {
-	
+
+	const { auth, dispatch } = useContext( ContextAuth );
+
 	const [data, setData] = useState({ data: null, loading: true, error: null });
+	const [isMounted, setIsMounted] = useState( true );
 
 	useEffect(() => {
-		
+
 		async function consumeAPI() {
 			
 			try {
 
-				const resp = await fetch(`http://localhost:5000/${url}`);
+				const resp = await fetch(`http://localhost:5000/${url}`, {
+					headers: {
+						'token': `${auth.token}`
+					}
+				});
 				const result = await resp.json();
-
-				if (resp.status !== 200) throw new Error(result.error);
+				
+				if (resp.status === 401) {
+					
+					alert('success', 'Su seccion ha expirado');
+					dispatch({ type: logout });
+				}
+				else if (resp.status !== 200) throw new Error(result.error);
 				else {
 
 					const { data } = result;
@@ -27,12 +42,12 @@ export const useFetch = (url="") => {
 				setData({ data: null, loading: false, error: messageErr });
 			}
 		}
+		
+		isMounted && consumeAPI();
 
-		consumeAPI();
+		return () => setIsMounted(false);
 
-	}, [url]);
+	}, [url, auth, dispatch, isMounted]);
 
 	return data;
 }
-
-export default useFetch;
