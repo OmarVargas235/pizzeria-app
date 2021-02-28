@@ -6,6 +6,10 @@ export const LoginContainer = styled.section `
 		width: 300px;
 	}
 
+	img {
+		width: 40%;
+	}
+
 	.welcome {
 		font-size: 2rem;
 	}
@@ -19,8 +23,8 @@ export const LoginContainer = styled.section `
 		height: 25px;
 	}
 
-	img {
-		width: 40%;
+	.input-group {
+		background-color: white;
 	}
 
 	@media (min-width: 450px) {		

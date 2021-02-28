@@ -1,44 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RegisterUserPage from './RegisterUserPage';
 import { alert } from '../../layaut/alert';
+import { useForm } from '../../customHooks/useForm';
+import { sendDataServer } from '../../utilities/helper';
 
 const RegisterUser = ({ history }) => {
 
-	const [dataUsers, setDataUsers] = useState({
+	const [ dataUsers, handleChange, desactiveBtn, setDesactiveBtn ] = useForm({
 		name: '',
 		lastName: '',
 		email: '',
 		password: '',
 		repeatPassword: '',
 	});
-	const [desactiveBtn, setDesactiveBtn] = useState(false);
-
-	const handleChange = e => {
-
-		setDataUsers({
-			...dataUsers,
-			[e.target.name]: e.target.value,
-		});
-	}
 
 	const handleSubmit = async e => {
 
 		e.preventDefault();
 		
-		const resp = await fetch('http://localhost:5000/register-user', {
-			method: 'POST',
-			headers: {
-		      'Content-Type': 'application/json'
-    		},
-			body: JSON.stringify(dataUsers),
-		});
-		const result = await resp.json();
+		const { resp, result } = await sendDataServer('register-user', dataUsers);
 
 		if (resp.status !== 200) {
 
 			alert('error', result.message);
 			setDesactiveBtn(true);
-			setTimeout(() => setDesactiveBtn(false), 3000);
+			setTimeout(() => setDesactiveBtn(false), 2000);
 		
 		} else if (resp.status === 200) {
 			
@@ -52,6 +38,7 @@ const RegisterUser = ({ history }) => {
 			handleChange={handleChange}
 			handleSubmit={handleSubmit}
 			desactiveBtn={desactiveBtn}
+			history={history}
 		/>
 	)
 }

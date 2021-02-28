@@ -8,7 +8,7 @@ const DashboardRoutesPublic = () => {
 	return (		
 		<Switch>
 			<Route exact path="/iniciar-sesion" component={Login} />
-			<Route exact path="/register-user" component={RegisterUser} />
+			<Route exact path="/registrar-usuario" component={RegisterUser} />
 
 			<Redirect from="/" to="/iniciar-sesion" />
 		</Switch>

@@ -6,7 +6,7 @@ export const alert = (iconError, message) => {
 		toast: true,
 		position: 'top',
 		showConfirmButton: false,
-		timer: 3000,
+		timer: 2000,
 	})
 
 	Toast.fire({

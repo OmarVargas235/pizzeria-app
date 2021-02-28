@@ -1,50 +1,39 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import LoginPage from './LoginPage';
+import { useForm } from '../../customHooks/useForm';
 import { ContextAuth } from '../../auth/ContextAuth';
 import { login } from '../../types/types';
 import { alert } from '../../layaut/alert';
+import { sendDataServer } from '../../utilities/helper';
 
 const Login = ({ history }) => {
 	
 	const { dispatch } = useContext( ContextAuth );
+	
+	const [ loginUser, handleChange, desactiveBtn, setDesactiveBtn ] = useForm({
+        email: '',
+        password: '',
+    });
 
-	const [loginUser, setLoginUser] = useState({
-		email: '',
-		password: '',
-	});
+	const handleClick = async () => {
 
-	const handleChange = e => {
-
-		setLoginUser({
-			...loginUser,
-			[e.target.name]: e.target.value,
-		});
-	}
-
-	const handleClick = async e => {
-
-		e.preventDefault();
-
-		const resp = await fetch('http://localhost:5000/login', {
-			method: 'POST',
-			headers: {
-		      'Content-Type': 'application/json'
-    		},
-			body: JSON.stringify(loginUser),
-		});
-		const result = await resp.json();
+		const { resp, result } = await sendDataServer('login', loginUser);
 		
-		if (resp.status !== 200) return alert('error', result.message);
+		if (resp.status !== 200) {
+			
+			setDesactiveBtn(true);
+			setTimeout(() => setDesactiveBtn(false), 2000);
+			
+			return alert('error', result.message);
+		}
 		
 		const action = {
 			type: login,
-			payload: {
-				isAuthenticated: true,
-				token: result.token,
-			}
+			payload: result.token,
 		}
 
 		dispatch(action);
+		alert('success', 'Ha iniciado seccion con exito');
 	}
 	
 	return (
@@ -52,6 +41,7 @@ const Login = ({ history }) => {
 			history={history}
 			handleChange={handleChange}
 			handleClick={handleClick}
+			desactiveBtn={desactiveBtn}
 		/>
 	)
 }

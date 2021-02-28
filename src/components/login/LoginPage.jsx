@@ -4,7 +4,7 @@ import user from '../../assets/img/ic_usuario.png';
 import password from '../../assets/img/ic_password.png';
 import { LoginContainer } from './style';
 
-const LoginPage = ({ history, handleChange, handleClick }) => (
+const LoginPage = ({ history, handleChange, handleClick, desactiveBtn }) => (
 	
 	<LoginContainer className="background-white px-5 d-flex flex-column justify-content-center align-items-center h-100">
 		<img src={logo} alt="logo" />
@@ -39,13 +39,14 @@ const LoginPage = ({ history, handleChange, handleClick }) => (
 
 		<p 
 			className="font-weight-bold btn border-0 p-0 mb-2 text-dark"
-			onClick={() => history.push('/register-user')}
+			onClick={() => history.push('/registrar-usuario')}
 		>Crear Cuenta</p>
 		<p className="font-weight-bold btn border-0 p-0 text-dark">¿Olvidaste tu contraseña?</p>
 
 		<button 
 			onClick={handleClick}
 			className="btn btn-warning"
+			disabled={desactiveBtn}
 		>Iniciar Sesion</button>
 	</LoginContainer>	
 )

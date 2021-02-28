@@ -1,9 +1,18 @@
 import React from 'react';
 import { RegisterStyle } from './style';
+import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 
-const RegisterUserPage = ({ handleChange, handleSubmit, desactiveBtn }) => (
-	<RegisterStyle className="background-white d-flex justify-content-center align-items-center flex-column">
-		
+const RegisterUserPage = ({ handleChange, handleSubmit, desactiveBtn, history }) => (
+	<RegisterStyle className="background-white d-flex justify-content-center align-items-center flex-column pt-0 pt-md-4">
+		<div 
+			className="w-100 pr-5 mb-sm-2 mb-md-4 d-flex justify-content-end align-items-center"
+			onClick={() => !desactiveBtn && history.push('/iniciar-sesion')}
+			style={{cursor: !desactiveBtn ? 'pointer' : 'context-menu'}}
+		>
+			<Arrow />
+			<span className="goBack">Volver</span>
+		</div>
+
 		<h3 className="mb-4">Formulario de Registro</h3>
 
 		<form className="p-4" onSubmit={handleSubmit}>
