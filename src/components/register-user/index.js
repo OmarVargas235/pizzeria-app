@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterUserPage from './RegisterUserPage';
-import { alert } from '../../layaut/alert';
+import { alert, alertNotTime } from '../../layaut/alert';
 import { useForm } from '../../customHooks/useForm';
 import { sendDataServer } from '../../utilities/helper';
 
@@ -17,13 +17,15 @@ const RegisterUser = ({ history }) => {
 	const handleSubmit = async e => {
 
 		e.preventDefault();
+
+		alertNotTime('info', 'Espera un momento');
+    	setDesactiveBtn(true);
 		
 		const { resp, result } = await sendDataServer('register-user', dataUsers);
 
 		if (resp.status !== 200) {
 
 			alert('error', result.message);
-			setDesactiveBtn(true);
 			setTimeout(() => setDesactiveBtn(false), 2000);
 		
 		} else if (resp.status === 200) {

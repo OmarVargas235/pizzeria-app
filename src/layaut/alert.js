@@ -14,3 +14,17 @@ export const alert = (iconError, message) => {
 		title: message,
 	});
 }
+
+export const alertNotTime = (iconError, message) => {
+
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top',
+		showConfirmButton: false,
+	})
+
+	Toast.fire({
+		icon: iconError,
+		title: message,
+	});
+}

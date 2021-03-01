@@ -10,7 +10,7 @@ const stateInitial = {
 
 const init = () => {
 
-	const user = JSON.parse( window.localStorage.getItem('user') );
+	const user = JSON.parse( window.localStorage.getItem('userPizza') );
 
 	return user || stateInitial;
 }
@@ -19,7 +19,7 @@ const ContextAuthProvider = ({ children }) => {
 	
 	const [ auth, dispatch ] = useReducer(authReducer, stateInitial, init);
 
-	useEffect(() => window.localStorage.setItem('user', JSON.stringify(auth)), [auth]);
+	useEffect(() => window.localStorage.setItem('userPizza', JSON.stringify(auth)), [auth]);
 
 	return (
 		<ContextAuth.Provider value={{

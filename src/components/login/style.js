@@ -27,21 +27,31 @@ export const LoginContainer = styled.section `
 		background-color: white;
 	}
 
-	@media (min-width: 450px) {		
+	@media (max-width: 767px) {
+		button {
+			margin-bottom: 6rem;
+		}
+
+		img {
+			width: 20%;
+		}
+	}
+	
+	@media (max-width: 650px) {		
 		img {
 			width: 30%;
 		}
 	}
 
-	@media (min-width: 576px) {		
+	@media (max-width: 550px) {		
 		img {
-			width: 20%;
+			width: 35%;
 		}
 	}
 
-	@media (min-width: 768px) {		
+	@media (max-width: 400px) {		
 		img {
-			width: 40%;
+			width: 50%;
 		}
 	}
 `;

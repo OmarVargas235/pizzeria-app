@@ -3,11 +3,11 @@ import LoginPage from './LoginPage';
 import { useForm } from '../../customHooks/useForm';
 import { ContextAuth } from '../../auth/ContextAuth';
 import { login } from '../../types/types';
-import { alert } from '../../layaut/alert';
+import { alert, alertNotTime } from '../../layaut/alert';
 import { sendDataServer } from '../../utilities/helper';
 
 const Login = ({ history }) => {
-	
+
 	const { dispatch } = useContext( ContextAuth );
 	
 	const [ loginUser, handleChange, desactiveBtn, setDesactiveBtn ] = useForm({
@@ -17,11 +17,13 @@ const Login = ({ history }) => {
 
 	const handleClick = async () => {
 
+		alertNotTime('info', 'Espera un momento');
+    	setDesactiveBtn(true);
+
 		const { resp, result } = await sendDataServer('login', loginUser);
 		
 		if (resp.status !== 200) {
 			
-			setDesactiveBtn(true);
 			setTimeout(() => setDesactiveBtn(false), 2000);
 			
 			return alert('error', result.message);
