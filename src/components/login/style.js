@@ -55,3 +55,7 @@ export const LoginContainer = styled.section `
 		}
 	}
 `;
+
+export const DisableText = styled.p `
+	cursor: ${props => !props.desactiveBtn ? 'pointer' : 'context-menu'}
+`;

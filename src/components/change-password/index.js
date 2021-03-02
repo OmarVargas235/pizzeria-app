@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from '../../customHooks/useForm';
 import { alert, alertNotTime } from '../../layaut/alert';
 import { sendDataServer } from '../../utilities/helper';
 import ChangePasswordPage from './ChangePasswordPage';
+import { ContextTheme } from '../../context/ContextTheme';
 
 const ChangePassword = ({ history }) => {
+	
+	const { themes } = useContext( ContextTheme );
 
 	const [ changePassword, handleChange, desactiveBtn, setDesactiveBtn ] = useForm({
         email: '',
@@ -16,12 +19,19 @@ const ChangePassword = ({ history }) => {
 
     	alertNotTime('info', 'Espera un momento');
     	setDesactiveBtn(true);
-    	setTimeout(() => setDesactiveBtn(false), 2000);
 
     	const { resp, result } = await sendDataServer('change-password', changePassword);
 
-    	if (resp.status !== 200) alert('error', result.message);
-		else if (resp.status === 200) alert('success', result.message);
+    	if (resp.status !== 200) {
+
+    		alert('error', result.message);
+    		setDesactiveBtn(false);
+    	}
+		else if (resp.status === 200) {
+
+			alert('success', result.message);
+			setDesactiveBtn(false);
+		}
     }
 	
 	return (
@@ -30,6 +40,7 @@ const ChangePassword = ({ history }) => {
 			handleChange={handleChange}
 			handleSumit={handleSumit}
 			desactiveBtn={desactiveBtn}
+			themes={themes}
 		/>
 	)
 }

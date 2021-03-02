@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import RegisterUserPage from './RegisterUserPage';
 import { alert, alertNotTime } from '../../layaut/alert';
 import { useForm } from '../../customHooks/useForm';
 import { sendDataServer } from '../../utilities/helper';
+import { ContextTheme } from '../../context/ContextTheme';
 
 const RegisterUser = ({ history }) => {
+
+	const { themes } = useContext( ContextTheme );
 
 	const [ dataUsers, handleChange, desactiveBtn, setDesactiveBtn ] = useForm({
 		name: '',
@@ -40,6 +43,7 @@ const RegisterUser = ({ history }) => {
 			handleChange={handleChange}
 			handleSubmit={handleSubmit}
 			desactiveBtn={desactiveBtn}
+			themes={themes}
 			history={history}
 		/>
 	)

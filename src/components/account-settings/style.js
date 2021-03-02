@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AccountSettings = styled.section`
 	width: 380px;
 	min-height: 260px;
-	background-color: rgba(255, 255, 255);
+	background-color: ${props => props.themes['backgroundWhite']};
 	position: absolute;
 	top: calc(50% - 130px);
 	
@@ -11,6 +11,8 @@ export const AccountSettings = styled.section`
 		width: 30px;
 		height: 30px;
 		cursor: pointer;
+
+		fill: ${props => props.themes['containerIconUser']};
 	}
 
 	.container__iconUser {
@@ -24,7 +26,6 @@ export const AccountSettings = styled.section`
 	}
 
 	@media (max-width: 767px) {
-		background-color: rgba(255, 255, 255, .85);
 		top: 50px;
 		left: calc(50% - 190px);
 	}

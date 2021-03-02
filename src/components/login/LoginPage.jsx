@@ -2,9 +2,9 @@ import React from 'react';
 import logo from '../../assets/img/logo.png';
 import user from '../../assets/img/ic_usuario.png';
 import password from '../../assets/img/ic_password.png';
-import { LoginContainer } from './style';
+import { LoginContainer, DisableText } from './style';
 
-const LoginPage = ({ history, handleChange, handleClick, desactiveBtn }) => (
+const LoginPage = ({ history, handleChange, handleClick, desactiveBtn, isDark }) => (
 	
 	<LoginContainer className="background-white px-5 d-flex flex-column justify-content-center align-items-center">
 		<img src={logo} alt="logo" />
@@ -36,17 +36,17 @@ const LoginPage = ({ history, handleChange, handleClick, desactiveBtn }) => (
 			    <img src={password} alt="password" className="img-fluid icon mr-4" />
 			</div>
 		</form>
-
-		<p 
-			className="font-weight-bold border-0 p-0 mb-2 text-dark"
+	
+		<DisableText
+			className={`font-weight-bold border-0 p-0 mb-2 ${isDark ? 'text-light' : 'text-dark'}`}
+			desactiveBtn={desactiveBtn}
 			onClick={() => !desactiveBtn && history.push('/registrar-usuario')}
-			style={{cursor: !desactiveBtn ? 'pointer' : 'context-menu'}}
-		>Crear Cuenta</p>
-		<p 
-			className="font-weight-bold border-0 p-0 text-dark"
+		>Crear Cuenta</DisableText>
+		<DisableText
+			className={`font-weight-bold border-0 p-0 mb-2 ${isDark ? 'text-light' : 'text-dark'}`}
+			desactiveBtn={desactiveBtn}
 			onClick={() => !desactiveBtn && history.push('/cambiar-contraseña')}
-			style={{cursor: !desactiveBtn ? 'pointer' : 'context-menu'}}
-		>¿Olvidaste tu contraseña?</p>
+		>¿Olvidaste tu contraseña?</DisableText>
 
 		<button 
 			onClick={handleClick}

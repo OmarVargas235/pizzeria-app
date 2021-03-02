@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import StorePage from './components/StorePage';
 import { useFetch } from '../../customHooks/useFetch';
+import { ContextTheme } from '../../context/ContextTheme';
 
 const Store = () => {
 	
 	const data = useFetch('data-pizzerias');
+
+	const { themes } = useContext( ContextTheme );
 
 	const [findPizzeria, setFindPizzeria] = useState('');
 	const [dataPizzas, setDataPizzas] = useState([]);
@@ -44,6 +47,7 @@ const Store = () => {
 			isActiveMenu={isActiveMenu}
 			setIsActiveMenu={setIsActiveMenu}
 			maxWidth={maxWidth}
+			themes={themes}
 		/>
 	)
 }

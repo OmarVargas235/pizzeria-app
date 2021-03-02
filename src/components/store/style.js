@@ -9,6 +9,18 @@ export const ContainerStore = styled.section `
 		}
 	}
 
+	svg {
+		fill: ${props => props.themes['containerIconUser']};
+	}
+
+	.btnHamburger {
+		fill: rgb(255, 217, 112);
+	}
+
+	.form-control {
+		background-color: ${props => props.themes['formControl']};
+	}
+
 	.btn-hamburger {
 		background-color: #323232;
 		border-radius: 50%;
@@ -64,10 +76,14 @@ export const Menu = styled.aside`
 			: animationMenu(1, 0, .8, 'opacity', 'opacityEnd')
 		)}
 	}
-
+	
 	.col-right {
-		background-color: white;
+		background-color: ${props => props.themes['backgroundWhite']};
 		min-height: 100vh;
+
+		span {
+			color: ${props => props.themes['h3_span_svg']};;
+		}
 
 		${props => ( props.activeAnimation 
 			? animationMenu('-100%', 0, .5, 'right', 'rightStart')
@@ -77,10 +93,18 @@ export const Menu = styled.aside`
 
 	.option {
 		cursor: pointer;
-		transition: .1s ease-in-out;
+		transition: background-color .5s ease-in-out, color .5s ease-in-out;
 
 		&:hover {
 			background-color: #ffd970;
+
+			span {
+				color: #222222;
+			}
+
+			svg {
+				fill: #222222;
+			}
 		}
 	}
 `;

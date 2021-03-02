@@ -4,8 +4,8 @@ import { ReactComponent as User } from '../../assets/icons/user.svg';
 import { ReactComponent as Edit } from '../../assets/icons/edit.svg';
 import { AccountSettings } from './style';
 
-const AccountSettingsPage = () => (
-	<AccountSettings>
+const AccountSettingsPage = ({ themes }) => (
+	<AccountSettings themes={themes}>
 		<header className="pt-2 pl-4 mb-4">
 			<Arrow style={{cursor: 'pointer'}}/> 
 		</header>
@@ -19,7 +19,7 @@ const AccountSettingsPage = () => (
 		</main>
 
 		<footer className="text-center">
-			<h4>Pepito Perez</h4>
+			<h3>Pepito Perez</h3>
 			<p>pperez@perez.com</p>
 		</footer>
 	</AccountSettings>

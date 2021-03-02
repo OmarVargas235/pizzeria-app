@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import './assets/bootstrap.min.css';
 import PizzaSpinner from './components/pizaSpinner/';
 import RouterApp from './routers/RouterApp';
 import img_background from './assets/img/imagebkg.png';
 import ContextAuthProvider from './auth/ContextAuth';
+import { ContextTheme } from './context/ContextTheme';
 
 const Body = createGlobalStyle`
 	body {
@@ -12,8 +13,12 @@ const Body = createGlobalStyle`
 		background: url(${img_background});
 	}
 
-	p {
-		color: #909090;
+	p, h2 {
+		color: ${props => props.themes['p_h2']};
+	}
+
+	h3 {
+		color: ${props => props.themes['h3_span_svg']};
 	}
 
 	.input-group {
@@ -22,13 +27,13 @@ const Body = createGlobalStyle`
 	}
 
 	.background-white {
-		background-color: rgba(255,255,255,.95);
+		background-color: ${props => props.themes['backgroundWhite']};
 		padding-top: 24px;
 		min-height: 100vh;
 	}
 
 	.container__iconUser {
-		border: 2px solid black;
+		border: 2px solid ${props => props.themes['containerIconUser']};
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
@@ -61,9 +66,11 @@ const Body = createGlobalStyle`
 
 const App = () => {
 	
+	const { themes } = useContext( ContextTheme );
+
 	return (
 		<React.Fragment>
-			<Body /> {/* Estilos globales */}
+			<Body themes={themes} /> {/* Estilos globales */}
 		
 			<div className="row no-gutters">
 				<div className="col-12 col-md-6">

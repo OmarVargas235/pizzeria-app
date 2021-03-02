@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import LoginPage from './LoginPage';
 import { useForm } from '../../customHooks/useForm';
 import { ContextAuth } from '../../auth/ContextAuth';
+import { ContextTheme } from '../../context/ContextTheme';
 import { login } from '../../types/types';
 import { alert, alertNotTime } from '../../layaut/alert';
 import { sendDataServer } from '../../utilities/helper';
@@ -9,6 +10,7 @@ import { sendDataServer } from '../../utilities/helper';
 const Login = ({ history }) => {
 
 	const { dispatch } = useContext( ContextAuth );
+	const { isDark } = useContext( ContextTheme );
 	
 	const [ loginUser, handleChange, desactiveBtn, setDesactiveBtn ] = useForm({
         email: '',
@@ -44,6 +46,7 @@ const Login = ({ history }) => {
 			handleChange={handleChange}
 			handleClick={handleClick}
 			desactiveBtn={desactiveBtn}
+			isDark={isDark}
 		/>
 	)
 }

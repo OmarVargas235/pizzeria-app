@@ -5,9 +5,9 @@ import {ReactComponent as UserIcon} from '../../../assets/icons/user.svg';
 import {ReactComponent as CloseSesion} from '../../../assets/icons/closeSesion.svg';
 import {ReactComponent as Config} from '../../../assets/icons/config.svg';
 
-const MenuPage = ({ desactiveMenuAndAnimation, activeAnimation, history }) => (
+const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout, themes, changeTheme }) => (
 
-	<Menu className="row" activeAnimation={activeAnimation}>
+	<Menu className="row" activeAnimation={activeAnimation} themes={themes}>
 		
 		<div className='background-dark'></div>
 		
@@ -26,7 +26,10 @@ const MenuPage = ({ desactiveMenuAndAnimation, activeAnimation, history }) => (
 		
 			<p className="px-3">Bienvenido Pepito Perez</p>
 		
-			<div className="option p-3 d-flex align-items-center">
+			<div 
+				className="option p-3 d-flex align-items-center"
+				onClick={ logout }
+			>
 				<CloseSesion />
 				<span className="ml-2 font-weight-bold">Cerrar Sesion</span>
 			</div>
@@ -37,6 +40,13 @@ const MenuPage = ({ desactiveMenuAndAnimation, activeAnimation, history }) => (
 			>
 				<Config />
 				<span className="ml-2 font-weight-bold">Cuenta</span>
+			</div>
+
+			<div 
+				className="option p-3 d-flex align-items-center"
+				onClick={changeTheme}
+			>
+				<span className="ml-2 font-weight-bold">Thema</span>
 			</div>
 		</div>
 	</Menu>

@@ -2,18 +2,21 @@ import React from 'react';
 import logo from '../../assets/img/logo.png';
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 import { ChangePasswordContainer } from './style';
+import { GoBack } from '../register-user/style';
 
-const ChangePasswordPage = ({ history, handleChange, handleSumit, desactiveBtn }) => {
+const ChangePasswordPage = ({ history, handleChange, handleSumit, desactiveBtn, themes }) => {
 	
 	return (
 		<ChangePasswordContainer className="background-white d-flex flex-column justify-content-center align-items-center">
-			<div 
-				className="w-100 pr-5 mb-5 mb-sm-2 mb-md-4 d-flex justify-content-end align-items-center"
-				onClick={() => !desactiveBtn && history.push('/iniciar-sesion')}
-				style={{cursor: !desactiveBtn ? 'pointer' : 'context-menu'}}
-			>
-				<Arrow />
-				<span className="goBack">Volver</span>
+			<div className="w-100 pr-5 mb-5 mb-sm-2 mb-md-4 d-flex justify-content-end align-items-center">
+				<GoBack
+					onClick={() => !desactiveBtn && history.push('/iniciar-sesion')}
+					desactiveBtn={desactiveBtn}
+					themes={themes}
+				>
+					<Arrow />
+					<span className="goBack">Volver</span>
+				</GoBack>
 			</div>
 
 			<img src={logo} alt="logo" className="img-fluid mb-4" />
