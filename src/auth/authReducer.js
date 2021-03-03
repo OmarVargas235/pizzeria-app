@@ -1,4 +1,4 @@
-import { login, logout } from '../types/types';
+import { login, logoutAuth } from '../types/types';
 
 export const authReducer = (state, { type, payload }) => {
 
@@ -10,7 +10,7 @@ export const authReducer = (state, { type, payload }) => {
 				token: payload,
 			}
 
-		case logout:
+		case logoutAuth:
 			return {
 				isAuthenticated: false,
 				token: '',

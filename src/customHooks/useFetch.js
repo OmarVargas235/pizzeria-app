@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { ContextAuth } from '../auth/ContextAuth';
-import { logout } from '../types/types';
+import { logoutAuth } from '../types/types';
 import { alert } from '../layaut/alert';
 
 export const useFetch = (url="") => {
@@ -26,7 +26,7 @@ export const useFetch = (url="") => {
 				if (resp.status === 401) {
 					
 					alert('success', 'Su seccion ha expirado');
-					dispatch({ type: logout });
+					dispatch({ type: logoutAuth });
 				}
 				else if (resp.status !== 200) throw new Error(result.error);
 				else {

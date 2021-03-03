@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 import MenuPage from '../components/MenuPage';
-// import { logout } from '../../../types/types';
-// import { ContextAuth } from '../../../auth/ContextAuth';
+import { alert } from '../../../layaut/alert';
+import { logoutAuth } from '../../../types/types';
+import { ContextAuth } from '../../../auth/ContextAuth';
 import { sendDataServer } from '../../../utilities/helper';
 import { ContextTheme } from '../../../context/ContextTheme';
 
 const Menu = ({ setIsActiveMenu }) => {
 	
-	// const { dispatch } = useContext( ContextAuth );
+	const { dispatch } = useContext( ContextAuth );
 	const { themes, isDark, setIsDark } = useContext( ContextTheme );
 
 	const [activeAnimation, setActiveAnimation] = useState(true);
@@ -25,11 +26,16 @@ const Menu = ({ setIsActiveMenu }) => {
 	}
 
 	const logout = async () => {
+		
+		dispatch({ type: logoutAuth });
+		const getToken = JSON.parse(window.localStorage.getItem('userPizza')) || null;
+		
+		if (!getToken) return;
+		
+		const { resp, result } = await sendDataServer('logout', {}, getToken.token);
 
-		// dispatch({ type: logout });
-		const { resp, result } = await sendDataServer('logout');
-		console.log(resp)
-		console.log(result)
+		if (resp.status !== 200) alert('error', result.message);
+		else if (resp.status === 200) alert('success', result.message);
 	}
 	
 	return (
