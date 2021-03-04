@@ -61,6 +61,10 @@ export const ContainerStore = styled.section `
 	}
 `;
 
+// =====================================
+// Estilos del menu
+// =====================================
+
 export const Menu = styled.aside`
 	position: absolute;
 	top: 0;
@@ -85,10 +89,18 @@ export const Menu = styled.aside`
 			color: ${props => props.themes['h3_span_svg']};;
 		}
 
-		${props => ( props.activeAnimation 
-			? animationMenu('-100%', 0, .5, 'right', 'rightStart')
-			: animationMenu(0, '-100%', .8, 'right', 'rightEnd')
-		)}
+		${props => {
+			
+			if (props.activeAnimation !== null) {
+
+				return ( props.activeAnimation 
+					? animationMenu('-100%', 0, .5, 'right', 'rightStart')
+					: animationMenu(0, '-100%', .8, 'right', 'rightEnd')
+				)
+			}
+			
+			return (`right: 0;`);
+		}}
 	}
 
 	.option {
@@ -122,3 +134,70 @@ const animationMenu = (start, end, time, property, typeAnimation) => (`
 		}
 	}
 `);
+
+// =====================================
+// Estilos del boton toggle "dark" o "light"
+// =====================================
+
+const stylesGlobals = (w, h, p, background="", border="", t="") => (`
+	width: ${w};
+	height: ${h};
+	position: ${p};
+	background-color: ${background !== '' ? background : ''};
+	border-radius: ${border !== '' ? border : ''};
+	transition: ${t !== '' ? t : ''};
+`);
+
+export const BtnToggleStyles = styled.div`
+	.button-toggle {
+		${() => stylesGlobals('60px', '30px', 'relative')}
+	}
+
+	.checkbox {
+		display: none;
+	}
+
+	.checkbox:checked+ .label::after {
+		left: 30px;
+	}
+
+	.label {
+		${() => stylesGlobals('100%', '100%', 'absolute', '#CCCCCC', '25% / 50%', 'background-color .3s')}
+		cursor: pointer;
+	}
+
+	.label::after {
+		content: '';
+		display: block;
+		${() => stylesGlobals('30px', '30px', 'absolute', 'white', '50%', 'left .3s')}
+		left: 0px;
+	}
+
+	.moon {
+		${() => stylesGlobals('20px', '30px', 'absolute', '', '', 'opacity .3s, left .3s')};
+		left: 5px;
+		opacity: 0;
+	}
+
+	.sun {
+		${() => stylesGlobals('30px', '30px', 'absolute', '', '', 'opacity .3s, left .3s')};
+		left: 0;
+		z-index: 1;
+	}
+
+	.checkbox:checked + .label .moon {
+		left: 35px;
+		z-index: 1;
+		opacity: 1;
+		fill: black;
+	}
+
+	.checkbox:checked + .label {
+		background-color: #3A3C3E;
+	}
+
+	.checkbox:checked + .label .sun {
+		left: 30px;
+		opacity: 0;
+	}
+`;

@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import StorePage from './components/StorePage';
-import { useFetch } from '../../customHooks/useFetch';
 import { ContextTheme } from '../../context/ContextTheme';
+import { ContextActiveMenu } from '../../context/ContextActiveMenu';
+import { ContextuseFetch } from '../../context/ContextuseFetch';
 
 const Store = () => {
 	
-	const data = useFetch('data-pizzerias');
-
+	const { dataFetch:data } = useContext( ContextuseFetch );
 	const { themes } = useContext( ContextTheme );
+	const { 
+		isActiveMenu, 
+		setIsActiveMenu, 
+		setActiveAnimation 
+	} = useContext( ContextActiveMenu );
 
 	const [findPizzeria, setFindPizzeria] = useState('');
 	const [dataPizzas, setDataPizzas] = useState([]);
-	const [isActiveMenu, setIsActiveMenu] = useState(false);
 	const [maxWidth, setMaxWidth] = useState(window.matchMedia('(max-width: 767px)').matches);
 
 	useEffect(() => {
@@ -38,6 +42,12 @@ const Store = () => {
 		return () => window.removeEventListener('resize', resizeMedia);
 
 	}, [maxWidth]);
+
+	const activeMenu = () => {
+
+		setIsActiveMenu(true);
+		setActiveAnimation(true);
+	}
 	
 	return (
 		<StorePage 
@@ -45,7 +55,7 @@ const Store = () => {
 			dataPizzas={dataPizzas}
 			setFindPizzeria={setFindPizzeria}
 			isActiveMenu={isActiveMenu}
-			setIsActiveMenu={setIsActiveMenu}
+			activeMenu={activeMenu}
 			maxWidth={maxWidth}
 			themes={themes}
 		/>

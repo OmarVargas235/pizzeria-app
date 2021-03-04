@@ -1,16 +1,21 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Menu } from '../style';
-import {ReactComponent as UserIcon} from '../../../assets/icons/user.svg';
-import {ReactComponent as CloseSesion} from '../../../assets/icons/closeSesion.svg';
-import {ReactComponent as Config} from '../../../assets/icons/config.svg';
+import { Menu, BtnToggleStyles } from '../style';
+import BtnToggle from '../../../layaut/BtnToggle';
+import { ReactComponent as UserIcon } from '../../../assets/icons/user.svg';
+import { ReactComponent as CloseSesion } from '../../../assets/icons/closeSesion.svg';
+import { ReactComponent as Config } from '../../../assets/icons/config.svg';
 
-const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout, themes, changeTheme }) => (
+const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout, themes, isDark, changeTheme }) => (
 
-	<Menu className="row" activeAnimation={activeAnimation} themes={themes}>
-		
+	<Menu 
+		className="row" 
+		activeAnimation={activeAnimation} 
+		themes={themes}
+	>
+
 		<div className='background-dark'></div>
-		
+
 		<div 
 			className='col-5 col-sm-8 col-md-6 col-lg-7'
 			onClick={ desactiveMenuAndAnimation }
@@ -42,12 +47,14 @@ const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout,
 				<span className="ml-2 font-weight-bold">Cuenta</span>
 			</div>
 
-			<div 
-				className="option p-3 d-flex align-items-center"
+			<BtnToggleStyles 
+				className="p-3"
 				onClick={changeTheme}
 			>
-				<span className="ml-2 font-weight-bold">Thema</span>
-			</div>
+				<BtnToggle
+					isDark={isDark}
+				/>
+			</BtnToggleStyles>
 		</div>
 	</Menu>
 )

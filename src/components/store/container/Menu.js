@@ -1,28 +1,32 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import MenuPage from '../components/MenuPage';
 import { alert } from '../../../layaut/alert';
 import { logoutAuth } from '../../../types/types';
-import { ContextAuth } from '../../../auth/ContextAuth';
 import { sendDataServer } from '../../../utilities/helper';
+import { ContextAuth } from '../../../auth/ContextAuth';
 import { ContextTheme } from '../../../context/ContextTheme';
+import { ContextActiveMenu } from '../../../context/ContextActiveMenu';
 
-const Menu = ({ setIsActiveMenu }) => {
+const Menu = () => {
 	
 	const { dispatch } = useContext( ContextAuth );
 	const { themes, isDark, setIsDark } = useContext( ContextTheme );
-
-	const [activeAnimation, setActiveAnimation] = useState(true);
+	const {
+		activeAnimation,
+		setIsActiveMenu, 
+		setActiveAnimation 
+	} = useContext( ContextActiveMenu );
 
 	const desactiveMenuAndAnimation = () => {
 		
-		setTimeout(() => setIsActiveMenu(false), 800);
+		setTimeout(() => setIsActiveMenu(false), 700);
 		setActiveAnimation(false);
 	}
 
 	const changeTheme = () => {
 		
-		setIsActiveMenu(true);
-		setIsDark(!isDark);
+		setActiveAnimation(null);
+		setTimeout(() => setIsDark(!isDark), 310);
 	}
 
 	const logout = async () => {

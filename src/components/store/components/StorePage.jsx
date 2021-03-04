@@ -7,14 +7,14 @@ import Spinner from '../../../layaut/Spinner';
 import CardsPizzeriaPage from './CardsPizzeriaPage';
 import Menu from '../container/Menu';
 
-const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, setIsActiveMenu, maxWidth, themes }) => (
+const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu, maxWidth, themes }) => (
 	<ContainerStore className="background-white" themes={themes}>
 		<aside className="px-5">
 			<div className="d-flex justify-content-end">
 				<div 
 					className={`${maxWidth ? 'btn-hamburger' : 'container__iconUser'} d-flex justify-content-center align-items-center`} 
 					style={{cursor: 'pointer'}}
-					onClick={() => setIsActiveMenu(true)}
+					onClick={activeMenu}
 				>
 					{ maxWidth ? <BtnHamburger className="btnHamburger" /> : <UserIcon /> }
 				</div>
@@ -52,8 +52,8 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, setIsActiv
 				}
 			</div>
 		</aside>
-
-		{ isActiveMenu ? <Menu setIsActiveMenu={setIsActiveMenu} /> : null }
+		
+		{ isActiveMenu ? <Menu /> : null }
 
 	</ContainerStore>
 );
