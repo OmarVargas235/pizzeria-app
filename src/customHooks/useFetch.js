@@ -11,7 +11,7 @@ export const useFetch = (url="") => {
 	const [isMounted, setIsMounted] = useState( true );
 
 	useEffect(() => {
-
+		console.log('llamado')
 		async function consumeAPI() {
 			
 			try {

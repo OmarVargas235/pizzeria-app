@@ -5,6 +5,8 @@ import DashboardRoutesPrivate from './DashboardRoutesPrivate';
 import DashboardRoutesPublic from './DashboardRoutesPublic';
 import PrivateRoute from './PrivateRouter';
 import PublicRoute from './PublicRoute';
+import ContextActiveMenuProvider from '../context/ContextActiveMenu';
+import ContextuseFetchProvider from '../context/ContextuseFetch';
 import { ContextAuth } from '../auth/ContextAuth';
 
 const Container = styled.div`
@@ -36,12 +38,17 @@ const RouterApp = () => {
 				<Switch>
 					{
 						auth.isAuthenticated
-						? <PrivateRoute
-							component={ DashboardRoutesPrivate }
-							isAuthenticated={ auth.isAuthenticated }
-							setPath={setPath}
-						/>
-						: <PublicRoute 
+						? <ContextActiveMenuProvider> 
+							<ContextuseFetchProvider> 
+								<PrivateRoute
+									component={ DashboardRoutesPrivate }
+									isAuthenticated={ auth.isAuthenticated }
+									setPath={setPath}
+								/>
+							</ContextuseFetchProvider>
+						</ContextActiveMenuProvider>
+						: 
+						<PublicRoute 
 							exact
 							component={ DashboardRoutesPublic }
 							isAuthenticated={ auth.isAuthenticated }
