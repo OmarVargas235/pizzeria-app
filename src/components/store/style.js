@@ -48,14 +48,25 @@ export const ContainerStore = styled.section `
 		}
 	}
 
-	@media (max-width: 768px) {
-		.container-search {
-			margin-top: 0rem;
-		}
+	@media (max-width: 894px) {
 
 		.card-pizzeria {
 			img {
 				width: 55%;
+			}
+		}
+	}
+
+	@media (max-width: 809px) {
+		.container-search {
+			margin-top: 0rem;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.container-stores { 
+			.row {
+				max-height: 250px;
 			}
 		}
 	}
@@ -65,7 +76,7 @@ export const ContainerStore = styled.section `
 // Estilos del menu
 // =====================================
 
-export const Menu = styled.aside`
+export const MenuStyles = styled.aside`
 	position: absolute;
 	top: 0;
 	width: 110%;

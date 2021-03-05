@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Menu, BtnToggleStyles } from '../style';
+import { MenuStyles, BtnToggleStyles } from '../style';
 import BtnToggle from '../../../layaut/BtnToggle';
 import { ReactComponent as UserIcon } from '../../../assets/icons/user.svg';
 import { ReactComponent as CloseSesion } from '../../../assets/icons/closeSesion.svg';
@@ -8,7 +8,7 @@ import { ReactComponent as Config } from '../../../assets/icons/config.svg';
 
 const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout, themes, isDark, changeTheme, dataUser, img }) => (
 
-	<Menu 
+	<MenuStyles 
 		className="row" 
 		activeAnimation={activeAnimation} 
 		themes={themes}
@@ -67,7 +67,7 @@ const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout,
 				/>
 			</BtnToggleStyles>
 		</div>
-	</Menu>
+	</MenuStyles>
 )
 
 export default withRouter(MenuPage);

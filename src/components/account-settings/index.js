@@ -6,7 +6,7 @@ import { ContextEditUser } from '../../context/ContextEditUser';
 import { alert } from '../../layaut/alert';
 import { ContextAuth } from '../../auth/ContextAuth';
 import { logoutAuth } from '../../types/types';
-// import { sendDataServer } from '../../utilities/helper';
+import { sendDataServerEditUser } from '../../utilities/helper';
 
 const AccountSettings = ({ match:{path}, setPath }) => {
 	
@@ -21,37 +21,39 @@ const AccountSettings = ({ match:{path}, setPath }) => {
 
 	useEffect(() => setPath(path), [path, setPath]);
 
+	const controllerRespAPI = (resp, result, set, type="") => {
+		
+		if (resp.status === 200) {
+
+			set(type === 'img' ? result.img : result.data);
+			alert('success', result.message);
+		
+		} else if (resp.status === 401) {
+
+			alert('error', result.message);
+			dispatch({ type: logoutAuth });
+
+		} else alert('error', result.message);
+	}
+
 	const changeImage = async e => {
 		
 		const formData = new FormData();
 		const file = e.target.files['0'];
-		const idUser = dataUser.id;
 
 		formData.append('img-user', file);
 
-		const resp = await fetch(`http://localhost:5000/edit-user-image/${idUser}`, {
-			method: 'POST',
-			headers: {
-				'token': `${auth.token}`
-			},
-		    body: formData,
-		});
-		const result = await resp.json();
-
-		if (resp.status === 200) {
-
-			setImg(result.img);
-			alert('success', result.message);
+		const { 
+			resp, 
+			result 
+		} = await sendDataServerEditUser('edit-user-image', dataUser.id, formData, auth.token);
 		
-		} else {
-
-			dispatch({ type: logoutAuth });
-			alert('error', result.message);
-		}
+		controllerRespAPI(resp, result, setImg, 'img');
 	}
 
 	const editName = async () => {
-
+		
+		// Creando el modal del furmulario
 		const { value: formValues } = await Swal.fire({
 
 			title: 'Edite su nombre y apellido aqui.',
@@ -67,10 +69,11 @@ const AccountSettings = ({ match:{path}, setPath }) => {
 				]
 			}
 		});
-
+		
+		// Si se hace click fuera del modal
 		if (!formValues) return;
 
-		const [ name, lastName ] = formValues || ['empty', 'empty'];
+		const [ name, lastName ] = formValues;
 
 		if (name.trim() === '' || lastName.trim() === '') {
 
@@ -78,28 +81,14 @@ const AccountSettings = ({ match:{path}, setPath }) => {
 		
 		} else {
 			
-			const idUser = dataUser.id;
+			const data = JSON.stringify({ name, lastName });
 
-			const resp = await fetch(`http://localhost:5000/edit-user/${idUser}`, {
-				method: 'POST',
-				headers: {
-					'Content-Type':'application/json',
-					'token': `${auth.token}`,
-				},
-			    body: JSON.stringify({ name, lastName }),
-			});
-			const result = await resp.json();
-			
-			if (resp.status === 200) {
+			const { 
+				resp, 
+				result 
+			} = await sendDataServerEditUser('edit-user', dataUser.id, data, auth.token);
 
-				setDataUser(result.data);
-				alert('success', result.message);
-			
-			} else {
-
-				dispatch({ type: logoutAuth });
-				alert('error', result.message);
-			}
+			controllerRespAPI(resp, result, setDataUser);
 		}
 	}
 

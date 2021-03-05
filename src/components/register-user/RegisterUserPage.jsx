@@ -2,7 +2,7 @@ import React from 'react';
 import { RegisterStyle, GoBack } from './style';
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 
-const RegisterUserPage = ({ handleChange, handleSubmit, desactiveBtn, history, themes }) => (
+const RegisterUserPage = ({ handleChange, handleSubmit, desactiveBtn, themes, history }) => (
 	<RegisterStyle 
 		className="background-white d-flex justify-content-center align-items-center flex-column pt-0 pt-md-4"
 		themes={themes}

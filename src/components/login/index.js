@@ -27,7 +27,6 @@ const Login = ({ history }) => {
 		if (resp.status !== 200) {
 			
 			setTimeout(() => setDesactiveBtn(false), 2000);
-			
 			return alert('error', result.message);
 		}
 		

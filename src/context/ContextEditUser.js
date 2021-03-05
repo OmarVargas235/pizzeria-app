@@ -20,9 +20,6 @@ const ContextEditUserProvider = ({ children }) => {
 				}
 			});
 			const result = await resp.json();
-			
-			console.log("resp", resp)
-			console.log("result", result)
 
 			if (resp.status === 200) {
 
