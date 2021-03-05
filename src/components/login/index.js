@@ -35,7 +35,7 @@ const Login = ({ history }) => {
 			type: login,
 			payload: result.token,
 		}
-
+		
 		dispatch(action);
 		alert('success', 'Ha iniciado seccion con exito');
 	}

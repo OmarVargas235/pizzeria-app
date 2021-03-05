@@ -15,6 +15,11 @@ export const AccountSettings = styled.section`
 		fill: ${props => props.themes['containerIconUser']};
 	}
 
+	h3, p {
+		max-width: 250px;
+		overflow: hidden;
+	}
+
 	.container__iconUser {
 		width: 100px;
 		height: 100px;
@@ -22,6 +27,29 @@ export const AccountSettings = styled.section`
 		svg {
 			width: 85px;
 			height: 85px;
+		}
+	}
+
+	.changeImage {
+		position: relative;
+
+		input {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			font-size: 0px;
+			border-radius: 50%;
+			cursor: pointer;
+			opacity: 0;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		img {
+			width: 110px;
+			height: 110px;
 		}
 	}
 

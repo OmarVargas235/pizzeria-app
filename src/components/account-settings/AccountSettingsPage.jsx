@@ -1,28 +1,52 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 import { ReactComponent as User } from '../../assets/icons/user.svg';
 import { ReactComponent as Edit } from '../../assets/icons/edit.svg';
 import { AccountSettings } from './style';
 
-const AccountSettingsPage = ({ themes }) => (
+const AccountSettingsPage = ({ history, themes, dataUser, changeImage, editName, img }) => (
 	<AccountSettings themes={themes}>
 		<header className="pt-2 pl-4 mb-4">
-			<Arrow style={{cursor: 'pointer'}}/> 
+			<Arrow 
+				style={{cursor: 'pointer'}}
+				onClick={() => history.goBack()}
+			/> 
 		</header>
 
 		<main className="d-flex justify-content-center mb-4">
-			<div className="container__iconUser d-flex justify-content-center align-items-center">
-				<User />
+			<div 
+				className="container__iconUser d-flex justify-content-center align-items-center changeImage"
+			>
+				<input 
+					type="file"
+					onChange={changeImage}
+					name="img-user"
+				/>
+
+				{
+					img === '' ? <User />
+					: <img 
+			    		className="img-fluid"
+			    		src={`http://localhost:5000/${img}`}
+			    		alt={img}
+			    	/>
+				}
+				
 			</div>
 
-			<Edit />
+			<Edit
+				onClick={editName}
+			/>
 		</main>
 
-		<footer className="text-center">
-			<h3>Pepito Perez</h3>
-			<p>pperez@perez.com</p>
+		<footer className="d-flex justify-content-center align-items-center flex-column">
+			<h3>
+				<span className="text-capitalize">{dataUser.name} </span> 
+				<span className="text-capitalize">{dataUser.lastName}</span></h3>
+			<p>{dataUser.email}</p>
 		</footer>
 	</AccountSettings>
 )
 
-export default AccountSettingsPage;
+export default withRouter(AccountSettingsPage);

@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRouter';
 import PublicRoute from './PublicRoute';
 import ContextActiveMenuProvider from '../context/ContextActiveMenu';
 import ContextuseFetchProvider from '../context/ContextuseFetch';
+import ContextEditUserProvider from '../context/ContextEditUser';
 import { ContextAuth } from '../auth/ContextAuth';
 
 const Container = styled.div`
@@ -39,13 +40,15 @@ const RouterApp = () => {
 					{
 						auth.isAuthenticated
 						? <ContextActiveMenuProvider> 
-							<ContextuseFetchProvider> 
-								<PrivateRoute
-									component={ DashboardRoutesPrivate }
-									isAuthenticated={ auth.isAuthenticated }
-									setPath={setPath}
-								/>
-							</ContextuseFetchProvider>
+						 	<ContextEditUserProvider> 
+								<ContextuseFetchProvider> 
+									<PrivateRoute
+										component={ DashboardRoutesPrivate }
+										isAuthenticated={ auth.isAuthenticated }
+										setPath={setPath}
+									/>
+								</ContextuseFetchProvider>
+							</ContextEditUserProvider>
 						</ContextActiveMenuProvider>
 						: 
 						<PublicRoute 

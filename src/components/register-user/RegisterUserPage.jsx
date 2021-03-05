@@ -10,7 +10,7 @@ const RegisterUserPage = ({ handleChange, handleSubmit, desactiveBtn, history, t
 
 		<div className="w-100 pr-5 mb-sm-2 mb-md-4 d-flex justify-content-end align-items-center">
 			<GoBack
-				onClick={() => !desactiveBtn && history.push('/iniciar-sesion')}
+				onClick={() => !desactiveBtn && history.goBack()}
 				themes={themes}
 				desactiveBtn={desactiveBtn}
 			>

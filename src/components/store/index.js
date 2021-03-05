@@ -3,9 +3,11 @@ import StorePage from './components/StorePage';
 import { ContextTheme } from '../../context/ContextTheme';
 import { ContextActiveMenu } from '../../context/ContextActiveMenu';
 import { ContextuseFetch } from '../../context/ContextuseFetch';
+import { ContextEditUser } from '../../context/ContextEditUser';
 
 const Store = () => {
 	
+	const { img } = useContext( ContextEditUser );
 	const { dataFetch:data } = useContext( ContextuseFetch );
 	const { themes } = useContext( ContextTheme );
 	const { 
@@ -58,6 +60,7 @@ const Store = () => {
 			activeMenu={activeMenu}
 			maxWidth={maxWidth}
 			themes={themes}
+			img={img}
 		/>
 	)
 }

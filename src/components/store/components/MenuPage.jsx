@@ -6,7 +6,7 @@ import { ReactComponent as UserIcon } from '../../../assets/icons/user.svg';
 import { ReactComponent as CloseSesion } from '../../../assets/icons/closeSesion.svg';
 import { ReactComponent as Config } from '../../../assets/icons/config.svg';
 
-const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout, themes, isDark, changeTheme }) => (
+const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout, themes, isDark, changeTheme, dataUser, img }) => (
 
 	<Menu 
 		className="row" 
@@ -26,10 +26,21 @@ const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout,
 			<div 
 				className="container__iconUser d-flex justify-content-center align-items-center mb-4 mx-3"
 			>
-				<UserIcon />
+				{
+					img === '' ? <UserIcon />
+					: <img 
+			    		className="img-fluid"
+			    		src={`http://localhost:5000/${img}`}
+			    		alt={img}
+			    	/>
+				}
 			</div>
-		
-			<p className="px-3">Bienvenido Pepito Perez</p>
+
+			<p className="px-3">
+				Bienvenido 
+				<span className="text-capitalize"> {dataUser.name} </span>
+				<span className="text-capitalize">{dataUser.lastName}</span>
+			</p>
 		
 			<div 
 				className="option p-3 d-flex align-items-center"

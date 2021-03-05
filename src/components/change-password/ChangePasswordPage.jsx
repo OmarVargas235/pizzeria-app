@@ -10,7 +10,7 @@ const ChangePasswordPage = ({ history, handleChange, handleSumit, desactiveBtn, 
 		<ChangePasswordContainer className="background-white d-flex flex-column justify-content-center align-items-center">
 			<div className="w-100 pr-5 mb-5 mb-sm-2 mb-md-4 d-flex justify-content-end align-items-center">
 				<GoBack
-					onClick={() => !desactiveBtn && history.push('/iniciar-sesion')}
+					onClick={() => !desactiveBtn && history.goBack()}
 					desactiveBtn={desactiveBtn}
 					themes={themes}
 				>

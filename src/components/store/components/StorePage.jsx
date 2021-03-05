@@ -7,7 +7,7 @@ import Spinner from '../../../layaut/Spinner';
 import CardsPizzeriaPage from './CardsPizzeriaPage';
 import Menu from '../container/Menu';
 
-const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu, maxWidth, themes }) => (
+const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu, maxWidth, themes, img }) => (
 	<ContainerStore className="background-white" themes={themes}>
 		<aside className="px-5">
 			<div className="d-flex justify-content-end">
@@ -16,7 +16,18 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu
 					style={{cursor: 'pointer'}}
 					onClick={activeMenu}
 				>
-					{ maxWidth ? <BtnHamburger className="btnHamburger" /> : <UserIcon /> }
+					{ 
+						maxWidth ? <BtnHamburger className="btnHamburger" /> 
+						: 
+							img === '' 
+							? <UserIcon />  
+							: <img 
+					    		className="img-fluid"
+					    		src={`http://localhost:5000/${img}`}
+					    		alt={img}
+			    			/> 	
+			    		
+					}
 				</div>
 			</div>
 			

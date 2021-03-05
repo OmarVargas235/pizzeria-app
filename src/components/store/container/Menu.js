@@ -6,10 +6,12 @@ import { sendDataServer } from '../../../utilities/helper';
 import { ContextAuth } from '../../../auth/ContextAuth';
 import { ContextTheme } from '../../../context/ContextTheme';
 import { ContextActiveMenu } from '../../../context/ContextActiveMenu';
+import { ContextEditUser } from '../../../context/ContextEditUser';
 
 const Menu = () => {
 	
-	const { dispatch } = useContext( ContextAuth );
+	const { img, dataUser } = useContext( ContextEditUser );
+	const { auth, dispatch } = useContext( ContextAuth );
 	const { themes, isDark, setIsDark } = useContext( ContextTheme );
 	const {
 		activeAnimation,
@@ -32,12 +34,9 @@ const Menu = () => {
 	const logout = async () => {
 		
 		dispatch({ type: logoutAuth });
-		const getToken = JSON.parse(window.localStorage.getItem('userPizza')) || null;
 		
-		if (!getToken) return;
+		const { resp, result } = await sendDataServer('logout', {}, auth.token);
 		
-		const { resp, result } = await sendDataServer('logout', {}, getToken.token);
-
 		if (resp.status !== 200) alert('error', result.message);
 		else if (resp.status === 200) alert('success', result.message);
 	}
@@ -50,6 +49,8 @@ const Menu = () => {
 			themes={themes}
 			isDark={isDark}
 			changeTheme={changeTheme}
+			dataUser={dataUser}
+			img={img}
 		/>
 	)
 }
