@@ -3,7 +3,7 @@ import { ContextAuth } from '../auth/ContextAuth';
 import { logoutAuth } from '../types/types';
 import { alert } from '../layaut/alert';
 
-export const useFetch = (url="") => {
+export const useFetch = (url="", id="") => {
 
 	const { auth, dispatch } = useContext( ContextAuth );
 
@@ -15,8 +15,10 @@ export const useFetch = (url="") => {
 		async function consumeAPI() {
 			
 			try {
+				
+				const newURL = id !== '' ? url + '/' + id : url;
 
-				const resp = await fetch(`http://localhost:5000/${url}`, {
+				const resp = await fetch(`http://localhost:5000/${newURL}`, {
 					headers: {
 						'token': `${auth.token}`
 					}
@@ -47,7 +49,7 @@ export const useFetch = (url="") => {
 
 		return () => setIsMounted(false);
 
-	}, [url, auth, dispatch, isMounted]);
+	}, [url, id, auth, dispatch, isMounted]);
 
 	return data;
 }

@@ -56,7 +56,7 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu
 					: <React.Fragment>
 						{
 							data.error ? <div className="alert alert-danger">{data.error}</div>
-							: <CardsPizzeriaPage data={dataPizzas} />
+							: <CardsPizzeriaPage data={dataPizzas} dark={themes.containerIconUser} />
 						}
 					</React.Fragment>
 				
