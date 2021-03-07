@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PizzeriaPage from './PizzeriaPage';
+import PizzeriaPage from './components/PizzeriaPage';
 import { ContextTheme } from '../../context/ContextTheme';
 import { useFetch } from '../../customHooks/useFetch';
 

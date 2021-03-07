@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContextAuth } from '../auth/ContextAuth';
+import { useFetch } from '../customHooks/useFetch';
 
 export const ContextEditUser = React.createContext();
 
@@ -7,30 +8,25 @@ const ContextEditUserProvider = ({ children }) => {
 	
 	const { auth } = useContext( ContextAuth );
 
+	const data = useFetch('get-user', auth.token);
+
 	const [img, setImg] = useState('');
-	const [dataUser, setDataUser] = useState({});
+	const [dataUser, setDataUser] = useState({
+		name: '',
+		lastName: '',
+		email: '',
+		id: ''
+	});
 
 	useEffect(() => {
-		
-		async function getDataUser() {
-			
-			const resp = await fetch(`http://localhost:5000/get-user/${auth.token}`, {
-				headers: {
-					'token': `${auth.token}`
-				}
-			});
-			const result = await resp.json();
 
-			if (resp.status === 200) {
+		if (!data.loading) {
 
-				setImg(result.img);
-				setDataUser(result.data);
-			}
+			setDataUser(data.data);
+			setImg(data.img);
 		}
 
-		getDataUser();
-
-	}, [auth]);
+	}, [data]);
 
 	return (
 		<ContextEditUser.Provider value={{

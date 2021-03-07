@@ -14,10 +14,6 @@ export const RegisterStyle = styled.section`
 		height: 48px;
 	}
 
-	.goBack {
-		height: 25px;
-	}
-
 	@media (max-width: 767px) {
 		form {
 			margin-bottom: 5rem;
@@ -32,13 +28,5 @@ export const RegisterStyle = styled.section`
 		form {
 			width: 300px;
 		}
-	}
-`;
-
-export const GoBack = styled.div`
-	cursor: ${props => !props.desactiveBtn ? 'pointer' : 'context-menu'};
-
-	span, svg {
-		color: ${props => props.themes['h3_span_svg']};
 	}
 `;

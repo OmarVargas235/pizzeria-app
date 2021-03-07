@@ -15,7 +15,7 @@ export const useFetch = (url="", id="") => {
 		async function consumeAPI() {
 			
 			try {
-				
+
 				const newURL = id !== '' ? url + '/' + id : url;
 
 				const resp = await fetch(`http://localhost:5000/${newURL}`, {
@@ -32,9 +32,9 @@ export const useFetch = (url="", id="") => {
 				}
 				else if (resp.status !== 200) throw new Error(result.error);
 				else {
-
-					const { data } = result;
-					setData({ data, loading: false, error: null });
+					
+					const { data, img } = result;
+					setData({ data, img, loading: false, error: null });
 				}
 				
 			} catch(err) {

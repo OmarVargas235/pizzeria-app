@@ -39,7 +39,7 @@ export const ContainerStore = styled.section `
 	.container-stores {
 
 		.row {
-			max-height: 300px;
+			max-height: 260px;
 			overflow-y: scroll;
 		}
 
@@ -48,7 +48,7 @@ export const ContainerStore = styled.section `
 		}
 	}
 
-	@media (max-width: 894px) {
+	@media (max-width: 992px) {
 
 		.card-pizzeria {
 			img {
@@ -57,16 +57,38 @@ export const ContainerStore = styled.section `
 		}
 	}
 
-	@media (max-width: 809px) {
+	@media (max-width: 767px) {
 		.container-search {
 			margin-top: 0rem;
 		}
+
+		.container-stores {
+			.row {
+				max-height: 300px;
+			}
+		}
 	}
 
-	@media (max-width: 767px) {
-		.container-stores { 
+	@media (min-height: 760px) {
+		.container-stores {
 			.row {
-				max-height: 250px;
+				max-height: 360px;
+			}
+		}
+	}
+
+	@media (max-height: 570px) {
+		.container-stores {
+			.row {
+				max-height: 230px;
+			}
+		}
+	}
+
+	@media (max-height: 570px) and (min-width: 768px) {
+		.container-stores {
+			.row {
+				max-height: 180px;
 			}
 		}
 	}

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const CardPizzeriaPage = ({ data, dark }) => (
 	
-	<div className="row">
+	<aside className="row pt-5">
 		{
 			data.map((pizzeria, index) => (
 				<Link 
-					className="card-pizzeria col-6 col-lg-4 mb-4 text-center" 
+					className="card-pizzeria col-6 col-sm-4 col-md-6 col-lg-4 mb-4 text-center" 
 					key={pizzeria.id}
 					to={`/store/${pizzeria.id}`}
 				>
@@ -24,7 +24,7 @@ const CardPizzeriaPage = ({ data, dark }) => (
 				</Link>
 			))
 		}
-	</div>
+	</aside>
 )
 
 export default CardPizzeriaPage;

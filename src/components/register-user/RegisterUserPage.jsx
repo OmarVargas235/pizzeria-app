@@ -1,23 +1,17 @@
 import React from 'react';
-import { RegisterStyle, GoBack } from './style';
-import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
+import GoBackArrow from '../../layaut/GoBackArrow';
+import { RegisterStyle } from './style';
 
 const RegisterUserPage = ({ handleChange, handleSubmit, desactiveBtn, themes, history }) => (
 	<RegisterStyle 
 		className="background-white d-flex justify-content-center align-items-center flex-column pt-0 pt-md-4"
 		themes={themes}
 	>
-
-		<div className="w-100 pr-5 mb-sm-2 mb-md-4 d-flex justify-content-end align-items-center">
-			<GoBack
-				onClick={() => !desactiveBtn && history.goBack()}
-				themes={themes}
-				desactiveBtn={desactiveBtn}
-			>
-				<Arrow />
-				<span className="goBack">Volver</span>
-			</GoBack>
-		</div>
+		<GoBackArrow 
+			history={history}
+			desactiveBtn={desactiveBtn}
+			themes={themes}
+		/>
 
 		<h3 className="mb-4">Formulario de Registro</h3>
 
