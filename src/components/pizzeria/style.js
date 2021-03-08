@@ -1,40 +1,6 @@
 import styled from 'styled-components';
 
 export const PizzeriaStyle = styled.section `
-	.card-pizzeria {
-		box-shadow: 0 20px 20px rgba(0,0,0,.2), 0 0 50px rgba(0,0,0,.2);
-  		border-radius: 12px;
-  		min-height: 400px;
-  		width: 300px;
-
-  		&>* {
-  			z-index: 2;
-  		}
-
-  		img {
-  			width: 50%;
-  		}
-
-  		p {
-  			color: #909090;
-  		}
-		
-		svg {
-			cursor: pointer;
-		}
-
-		::before {
-			display: block;
-			content: '';
-			width: 220px;
-			height: 220px;
-			border-radius: 50%;
-			background-color: #ffd970;
-			position: absolute;
-			top: 10%;
-		}
-	}
-
 	.containerGoBack {
 		position: absolute;
 		right: 0;
@@ -70,12 +36,6 @@ export const PizzeriaStyle = styled.section `
   			padding-right: 2rem !important;
 		}
 	}
-
-	@media (max-width: 767px) {
-  		.card-pizzeria {
-  			min-height: 275px;
-  		}
-	}
 	
 	@media (min-width: 501px) and (max-width: 575px) {
 		.container-pizza {
@@ -109,5 +69,68 @@ export const PizzeriaStyle = styled.section `
 		.container-pizza {
 			max-height: 120px;
 		}
+	}
+`;
+
+export const CardPizzaStyle = styled.aside `
+	width: 500px;
+	// border: 1px solid green;
+	perspective: 1000px;
+
+	&:hover {
+		.card-pizza {
+			img, h2, p, svg {
+				transform: translateZ(60px);
+			}
+		}
+	}
+
+	.card-pizza {
+		transform-style: preserve-3d;
+		box-shadow: 0 20px 20px rgba(0,0,0,.2), 0 0 50px rgba(0,0,0,.2);
+		border-radius: 12px;
+		min-height: 400px;
+		width: 300px;
+
+		img, h2, p, svg {
+			transition: transform .5s;
+		}
+
+		svg:first-child {
+			transition: transform .5s .2s;
+		}
+
+		&>* {
+			z-index: 2;
+		}
+
+		img {
+			width: 50%;
+		}
+
+		p {
+			color: #909090;
+		}
+	
+		svg {
+			cursor: pointer;
+		}
+
+		::before {
+			display: block;
+			content: '';
+			width: 220px;
+			height: 220px;
+			border-radius: 50%;
+			background-color: #ffd970;
+			position: absolute;
+			top: 10%;
+		}	
+	}
+	
+	@media (max-width: 767px) {
+  		.card-pizza {
+  			min-height: 275px;
+  		}
 	}
 `;
