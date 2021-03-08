@@ -5,8 +5,8 @@ import Spinner from '../../../layaut/Spinner';
 import GoBackArrow from '../../../layaut/GoBackArrow';
 import { PizzeriaStyle } from '../style';
 
-const PizzeriaPage = ({ history, themes, data }) => (
-	<PizzeriaStyle className="background-white px-4">
+const PizzeriaPage = ({ history, themes, data, setInProp }) => (
+	<PizzeriaStyle className="background-white animation-enter-exit px-4">
 		<aside className="d-flex justify-content-center">
 			{
 				data.loading 
@@ -21,6 +21,8 @@ const PizzeriaPage = ({ history, themes, data }) => (
 					history={history}
 					desactiveBtn={false}
 					themes={themes}
+					isAnimation={true}
+					setInProp={setInProp}
 				/>
 			</div>
 		</aside>

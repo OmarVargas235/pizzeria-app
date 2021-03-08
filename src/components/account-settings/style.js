@@ -11,7 +11,6 @@ export const AccountSettings = styled.section`
 		width: 30px;
 		height: 30px;
 		cursor: pointer;
-
 		fill: ${props => props.themes['containerIconUser']};
 	}
 

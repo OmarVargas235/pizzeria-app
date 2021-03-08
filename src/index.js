@@ -4,10 +4,8 @@ import App from './App';
 import ContextThemeProvider from './context/ContextTheme';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<ContextThemeProvider>
-			<App />
-		</ContextThemeProvider>
-	</React.StrictMode>,
+	<ContextThemeProvider>
+		<App />
+	</ContextThemeProvider>,
 	document.getElementById('root')
 );

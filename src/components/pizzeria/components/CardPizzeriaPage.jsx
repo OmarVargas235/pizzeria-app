@@ -10,11 +10,11 @@ const CardPizzeriaPage = ({ data, isDark }) => {
 
 	const moveYX = e => {
 		
-		const y = Math.floor((e.clientY - 24) * .1);
+		const y = Math.floor((e.clientY - 24) * .1); // Coordenadas en en y
 		const coordsY = (y - 30) * -1;
 		setRotateX(coordsY);
 
-		const x = Math.floor(((e.clientX ) - 430) * .081) + 15;
+		const x = Math.floor(((e.clientX ) - 430) * .081) + 15;// Coordenadas en en x
 		setRotateY(x);
 	}
 	

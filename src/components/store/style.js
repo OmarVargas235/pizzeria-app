@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ContainerStore = styled.section `
+
 	input {
 		border: none;
 

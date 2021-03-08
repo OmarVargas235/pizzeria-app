@@ -16,7 +16,7 @@ const Menu = () => {
 	const {
 		activeAnimation,
 		setIsActiveMenu, 
-		setActiveAnimation 
+		setActiveAnimation
 	} = useContext( ContextActiveMenu );
 
 	const desactiveMenuAndAnimation = () => {

@@ -7,8 +7,12 @@ import Spinner from '../../../layaut/Spinner';
 import CardsPizzeriaPage from './CardsPizzeriaPage';
 import Menu from '../container/Menu';
 
-const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu, maxWidth, themes, img }) => (
-	<ContainerStore className="background-white" themes={themes}>
+const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu, maxWidth, themes, img, setInProp, activeAnimation }) => (
+	<ContainerStore 
+		className="background-white animation-enter-exit" 
+		themes={themes}
+		style={{left: activeAnimation === null && 0 }}
+	>
 		<aside className="px-5">
 			<div className="d-flex justify-content-end">
 				<div 
@@ -56,14 +60,18 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu
 					: <React.Fragment>
 						{
 							data.error ? <div className="alert alert-danger">{data.error}</div>
-							: <CardsPizzeriaPage data={dataPizzas} dark={themes.containerIconUser} />
+							: <CardsPizzeriaPage 
+								data={dataPizzas} 
+								dark={themes.containerIconUser} 
+								setInProp={setInProp}
+							/>
 						}
 					</React.Fragment>
 				
 				}
 			</div>
 		</aside>
-		
+
 		{ isActiveMenu ? <Menu /> : null }
 
 	</ContainerStore>

@@ -5,12 +5,15 @@ import { ReactComponent as User } from '../../assets/icons/user.svg';
 import { ReactComponent as Edit } from '../../assets/icons/edit.svg';
 import { AccountSettings } from './style';
 
-const AccountSettingsPage = ({ history, themes, dataUser, changeImage, editName, img }) => (
-	<AccountSettings themes={themes}>
+const AccountSettingsPage = ({ history, themes, dataUser, changeImage, editName, img, setInProp }) => (
+	<AccountSettings themes={themes} className="accountSettings-enter-exit">
 		<header className="pt-2 pl-4 mb-4">
 			<Arrow 
 				style={{cursor: 'pointer'}}
-				onClick={() => history.goBack()}
+				onClick={() => {
+					setInProp(false);
+					setTimeout(() => history.goBack(), 200);
+				}}
 			/> 
 		</header>
 

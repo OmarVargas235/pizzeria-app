@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import Swal from 'sweetalert2';
+import { CSSTransition } from 'react-transition-group';
 import AccountSettingsPage from './AccountSettingsPage';
 import { ContextTheme } from '../../context/ContextTheme';
 import { ContextEditUser } from '../../context/ContextEditUser';
@@ -7,8 +8,11 @@ import { alert } from '../../layaut/alert';
 import { ContextAuth } from '../../auth/ContextAuth';
 import { logoutAuth } from '../../types/types';
 import { sendDataServerEditUser } from '../../utilities/helper';
+import { useInProp } from '../../customHooks/useInProp';
 
 const AccountSettings = ({ match:{path}, setPath }) => {
+
+	const [inProp, setInProp] = useInProp();
 	
 	const { themes } = useContext( ContextTheme );
 	const { auth, dispatch } = useContext( ContextAuth );
@@ -93,13 +97,20 @@ const AccountSettings = ({ match:{path}, setPath }) => {
 	}
 
 	return (
-		<AccountSettingsPage 
-			themes={themes}
-			dataUser={dataUser}
-			changeImage={changeImage}
-			editName={editName}
-			img={img}
-		/>
+		<CSSTransition 
+			in={inProp}
+			timeout={100}
+			classNames="accountSettings"
+		>
+			<AccountSettingsPage 
+				themes={themes}
+				dataUser={dataUser}
+				changeImage={changeImage}
+				editName={editName}
+				img={img}
+				setInProp={setInProp}
+			/>
+		</CSSTransition>
 	)
 }
 

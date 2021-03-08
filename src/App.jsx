@@ -68,6 +68,33 @@ const Body = createGlobalStyle`
 			box-shadow: 0 4px 4px rgba(0,0,0,.15) !important;
 		}
 	}
+	
+	.animation-enter-exit {
+		position: relative;
+		left: 100%;
+		transition: left .5s;
+	}
+
+	.accountSettings-enter-exit {
+		transform: scale(0);
+		transition: transform .5s;
+	}
+
+	.store-enter, .store-exit-done {
+		left: 100%;
+	}
+
+	.store-enter-done, .store-exit {
+		left: 0;
+	}
+
+	.accountSettings-enter, .accountSettings-exit-done {
+		transform: scale(0);
+	}
+
+	.accountSettings-enter-done, .accountSettings-exit {
+		transform: scale(1);
+	}
 `;
 
 const App = () => {

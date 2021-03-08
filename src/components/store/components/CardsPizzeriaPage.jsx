@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-const CardPizzeriaPage = ({ data, dark }) => (
+const CardsPizzeriaPage = ({ data, dark, setInProp, history }) => (
 	
 	<aside className="row pt-5">
 		{
 			data.map((pizzeria, index) => (
-				<Link 
+				<div 
 					className="card-pizzeria col-6 col-sm-4 col-md-6 col-lg-4 mb-4 text-center" 
 					key={pizzeria.id}
-					to={`/store/${pizzeria.id}`}
+					onClick={() => {
+						setInProp(false);
+						setTimeout(() => history.push(`/store/${pizzeria.id}`), 700);
+					}}
 				>
 			    	<img 
 			    		className="img-fluid" 
@@ -21,10 +24,10 @@ const CardPizzeriaPage = ({ data, dark }) => (
 						className={`card-title mb-0 ${dark=== 'black' ? 'text-dark' : 'text-light'}`}
 					>{pizzeria.name}</h6>
 					<p className='card-text'>{pizzeria.address}</p>
-				</Link>
+				</div>
 			))
 		}
 	</aside>
 )
 
-export default CardPizzeriaPage;
+export default withRouter(CardsPizzeriaPage);
