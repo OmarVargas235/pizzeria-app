@@ -31,7 +31,7 @@ const AccountSettingsPage = ({ history, themes, dataUser, changeImage, editName,
 					img === '' ? <User />
 					: <img 
 			    		className="img-fluid"
-			    		src={`http://localhost:5000/${img}`}
+			    		src={`${process.env.REACT_APP_BACKEND_URL}/${img}`}
 			    		alt={img}
 			    	/>
 				}

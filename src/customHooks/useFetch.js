@@ -18,7 +18,7 @@ export const useFetch = (url="", id="") => {
 
 				const newURL = id !== '' ? url + '/' + id : url;
 
-				const resp = await fetch(`http://localhost:5000/${newURL}`, {
+				const resp = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${newURL}`, {
 					headers: {
 						'token': `${auth.token}`
 					}

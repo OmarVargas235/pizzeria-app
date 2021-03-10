@@ -1,12 +1,14 @@
 export const sendDataServer = async (url="", data={}, token="") => {
-	
-	const resp = await fetch(`http://localhost:5000/${url}`, {
+
+	const resp = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${url}`, {
 		method: 'POST',
 		headers: {
 	      'Content-Type':'application/json',
-	      'token': `${token}`
+	      'token': `${token}`,
+	      'Access-Control-Allow-Origin': '*',
 		},
 		body: JSON.stringify(data),
+		mode: 'cors',
 	});
 	const result = await resp.json();
 	
@@ -28,7 +30,7 @@ export const sendDataServerEditUser = async (url="", id="", data={}, token="") =
 	// Cabezera del cambio de imagen
 	myHeadersImg.append("token", token);
 
-	const resp = await fetch(`http://localhost:5000/${url}/${id}`, {
+	const resp = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${url}/${id}`, {
 		method: 'POST',
 		headers: url === 'edit-user' ? myHeadersText : myHeadersImg,
 	    body: data,

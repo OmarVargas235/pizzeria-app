@@ -30,7 +30,7 @@ const MenuPage = ({ history, desactiveMenuAndAnimation, activeAnimation, logout,
 					img === '' ? <UserIcon />
 					: <img 
 			    		className="img-fluid"
-			    		src={`http://localhost:5000/${img}`}
+			    		src={`${process.env.REACT_APP_BACKEND_URL}/${img}`}
 			    		alt={img}
 			    	/>
 				}
