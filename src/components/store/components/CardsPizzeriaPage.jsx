@@ -16,7 +16,7 @@ const CardsPizzeriaPage = ({ data, dark, setInProp, history }) => (
 				>
 			    	<img 
 			    		className="img-fluid" 
-			    		src={`http://localhost:5000/${pizzeria.img}`} 
+			    		src={`${process.env.REACT_APP_BACKEND_URL}/${pizzeria.img}`} 
 			    		alt={pizzeria.name} 
 			    	/>
 		

@@ -38,7 +38,7 @@ const CardPizzeriaPage = ({ data, isDark }) => {
 				}}
 			>
 				<img 
-					src={`http://localhost:5000/${data.img}`}
+					src={`${process.env.REACT_APP_BACKEND_URL}/${data.img}`}
 					alt={`${data.name}`}
 					className="img-fluid"
 				/>

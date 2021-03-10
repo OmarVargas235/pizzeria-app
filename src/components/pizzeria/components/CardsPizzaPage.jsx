@@ -10,7 +10,7 @@ const CardsPizzaPage = ({ products }) => (
 				>
 			    	<img 
 			    		className="img-fluid" 
-			    		src={`http://localhost:5000/${product.img}`} 
+			    		src={`${process.env.REACT_APP_BACKEND_URL}/${product.img}`} 
 			    		alt={product.description} 
 			    	/>
 		

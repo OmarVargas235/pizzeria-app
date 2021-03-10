@@ -27,7 +27,7 @@ const StorePage = ({ data, dataPizzas, setFindPizzeria, isActiveMenu, activeMenu
 							? <UserIcon />  
 							: <img 
 					    		className="img-fluid"
-					    		src={`http://localhost:5000/${img}`}
+					    		src={`${process.env.REACT_APP_BACKEND_URL}/${img}`}
 					    		alt={img}
 			    			/> 	
 			    		
