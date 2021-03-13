@@ -6,10 +6,12 @@ import { ContextActiveMenu } from '../../context/ContextActiveMenu';
 import { ContextuseFetch } from '../../context/ContextuseFetch';
 import { ContextEditUser } from '../../context/ContextEditUser';
 import { useInProp } from '../../customHooks/useInProp';
+import { useResizeMedia } from '../../customHooks/useResizeMedia';
 
 const Store = () => {
 	
 	const [inProp, setInProp] = useInProp();
+	const [maxWidth] = useResizeMedia(767);
 
 	const { img } = useContext( ContextEditUser );
 	const { dataFetch:data } = useContext( ContextuseFetch );
@@ -23,7 +25,6 @@ const Store = () => {
 
 	const [findPizzeria, setFindPizzeria] = useState('');
 	const [dataPizzas, setDataPizzas] = useState([]);
-	const [maxWidth, setMaxWidth] = useState(window.matchMedia('(max-width: 767px)').matches);
 
 	useEffect(() => {
 
@@ -36,19 +37,6 @@ const Store = () => {
 		}
 
 	}, [findPizzeria, data]);
-
-	useEffect(() => {
-		
-		function resizeMedia() {
-			
-			setMaxWidth(window.matchMedia('(max-width: 767px)').matches);
-		}
-		
-		window.addEventListener('resize', resizeMedia);
-
-		return () => window.removeEventListener('resize', resizeMedia);
-
-	}, [maxWidth]);
 
 	const activeMenu = () => {
 

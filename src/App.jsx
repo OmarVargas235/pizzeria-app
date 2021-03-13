@@ -6,6 +6,7 @@ import RouterApp from './routers/RouterApp';
 import img_background from './assets/img/imagebkg.png';
 import ContextAuthProvider from './auth/ContextAuth';
 import { ContextTheme } from './context/ContextTheme';
+import { useResizeMedia } from './customHooks/useResizeMedia';
 
 const Body = createGlobalStyle`
 	body {
@@ -68,24 +69,10 @@ const Body = createGlobalStyle`
 			box-shadow: 0 4px 4px rgba(0,0,0,.15) !important;
 		}
 	}
-	
-	.animation-enter-exit {
-		position: relative;
-		left: 100%;
-		transition: left .5s;
-	}
 
 	.accountSettings-enter-exit {
 		transform: scale(0);
 		transition: transform .5s;
-	}
-
-	.store-enter, .store-exit-done {
-		left: 100%;
-	}
-
-	.store-enter-done, .store-exit {
-		left: 0;
 	}
 
 	.accountSettings-enter, .accountSettings-exit-done {
@@ -95,15 +82,62 @@ const Body = createGlobalStyle`
 	.accountSettings-enter-done, .accountSettings-exit {
 		transform: scale(1);
 	}
+	
+
+	${props => {
+		
+		// const maxWith = window.matchMedia('(max-width: 767px').matches;
+
+		if (props.maxWidth) {
+			
+			return (`
+				
+				.animation-enter-exit {
+					position: relative;
+					top: 100%;
+					transition: top .5s;
+				}
+
+				.store-enter, .store-exit-done {
+					top: 100%;
+				}
+
+				.store-enter-done, .store-exit {
+					top: 0;
+				}
+			`);
+		
+		} else {
+
+			return (`
+				
+				.animation-enter-exit {
+					position: relative;
+					left: 100%;
+					transition: left .5s;
+				}
+
+				.store-enter, .store-exit-done {
+					left: 100%;
+				}
+
+				.store-enter-done, .store-exit {
+					left: 0;
+				}
+			`);
+		}
+	}}
 `;
 
 const App = () => {
 	
 	const { themes } = useContext( ContextTheme );
 
+	const [maxWidth] = useResizeMedia(767);
+
 	return (
 		<React.Fragment>
-			<Body themes={themes} /> {/* Estilos globales */}
+			<Body themes={themes} maxWidth={maxWidth} /> {/* Estilos globales */}
 		
 			<div className="row no-gutters">
 				<div className="col-12 col-md-6">

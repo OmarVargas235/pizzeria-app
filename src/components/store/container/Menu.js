@@ -37,8 +37,9 @@ const Menu = () => {
 		
 		const { resp, result } = await sendDataServer('logout', {}, auth.token);
 		
-		if (resp.status !== 200) alert('error', result.message);
-		else if (resp.status === 200) alert('success', result.message);
+		if (resp.status !== 200) return alert('error', result.message);
+		
+		alert('success', 'Su session, se a cerrado correctamente');
 	}
 	
 	return (
