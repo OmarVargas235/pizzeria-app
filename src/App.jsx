@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import './assets/bootstrap.min.css';
+
 import PizzaSpinner from './components/pizaSpinner/';
 import RouterApp from './routers/RouterApp';
+import FormChangePassword from './components/form-change-password/';
 import img_background from './assets/img/imagebkg.png';
 import ContextAuthProvider from './auth/ContextAuth';
 import { ContextTheme } from './context/ContextTheme';
@@ -85,8 +87,6 @@ const Body = createGlobalStyle`
 	
 
 	${props => {
-		
-		// const maxWith = window.matchMedia('(max-width: 767px').matches;
 
 		if (props.maxWidth) {
 			
@@ -135,19 +135,27 @@ const App = () => {
 
 	const [maxWidth] = useResizeMedia(767);
 
+	const { pathname } = window.location;
+	const isChangePassword = (/reset-password/gi).test(pathname);
+
 	return (
 		<React.Fragment>
-			<Body themes={themes} maxWidth={maxWidth} /> {/* Estilos globales */}
-		
-			<div className="row no-gutters">
-				<div className="col-12 col-md-6">
-					<PizzaSpinner/>
-				</div>
+			{
+				isChangePassword ? <FormChangePassword />
+				: <React.Fragment>
+					<Body themes={themes} maxWidth={maxWidth} /> {/* Estilos globales */}
 				
-				<ContextAuthProvider>
-					<RouterApp />
-				</ContextAuthProvider>
-			</div>
+					<div className="row no-gutters">
+						<div className="col-12 col-md-6">
+							<PizzaSpinner/>
+						</div>
+						
+						<ContextAuthProvider>
+							<RouterApp />
+						</ContextAuthProvider>
+					</div>
+				</React.Fragment>
+			}
 		</React.Fragment>
 	)
 }

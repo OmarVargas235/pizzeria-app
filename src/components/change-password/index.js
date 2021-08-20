@@ -13,6 +13,7 @@ const ChangePassword = ({ history }) => {
         email: '',
     });
 	
+	// Enviar un link al correo del usuario
     const handleSumit = async e => {
 
     	e.preventDefault();
@@ -20,18 +21,11 @@ const ChangePassword = ({ history }) => {
     	alertNotTime('info', 'Espera un momento');
     	setDesactiveBtn(true);
 
-    	const { resp, result } = await sendDataServer('change-password', changePassword);
+    	const { result } = await sendDataServer('change-password', changePassword);
+    	const { ok, message } = result;
 
-    	if (resp.status !== 200) {
-
-    		alert('error', result.message);
-    		setDesactiveBtn(false);
-    	}
-		else if (resp.status === 200) {
-
-			alert('success', result.message);
-			setDesactiveBtn(false);
-		}
+    	alert(ok ? 'success' : 'error', message);
+    	setDesactiveBtn(false);
     }
 	
 	return (

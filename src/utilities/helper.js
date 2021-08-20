@@ -8,7 +8,6 @@ export const sendDataServer = async (url="", data={}, token="") => {
 	      'Access-Control-Allow-Origin': '*',
 		},
 		body: JSON.stringify(data),
-		mode: 'cors',
 	});
 	const result = await resp.json();
 	

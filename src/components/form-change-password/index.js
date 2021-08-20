@@ -16,6 +16,7 @@ const FormChangePassword = () => {
 	const arrUrl = pathname.split('/');
 	const tokenURL = arrUrl[ arrUrl.length - 1 ];
 
+	// Verificar si el link ya esta vencido
 	useEffect(() => {
 		
 		async function callAPI() {

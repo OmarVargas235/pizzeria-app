@@ -17,7 +17,7 @@ const RegisterUser = ({ history }) => {
 		repeatPassword: '',
 	});
 
-	const handleSubmit = async e => {
+	const registerUser = async e => {
 
 		e.preventDefault();
 
@@ -41,7 +41,7 @@ const RegisterUser = ({ history }) => {
 	return (
 		<RegisterUserPage 
 			handleChange={handleChange}
-			handleSubmit={handleSubmit}
+			handleSubmit={registerUser}
 			desactiveBtn={desactiveBtn}
 			themes={themes}
 			history={history}
