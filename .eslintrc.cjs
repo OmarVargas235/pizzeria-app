@@ -6,8 +6,6 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'standard-with-typescript',
-    'plugin:react/recommended',
-    'standard-with-typescript',
     'plugin:react/jsx-runtime',
     'standard',
     'eslint-config-prettier'
