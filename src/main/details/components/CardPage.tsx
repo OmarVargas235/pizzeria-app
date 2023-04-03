@@ -12,7 +12,7 @@ import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 
 const CardPage = (): JSX.Element => {
 
-    return <ContainerCard className="d-flex flex-column align-items-center justify-content-center p-4 py-5">
+    return <ContainerCard className="d-flex flex-column align-items-center justify-content-center px-4 py-4  py-lg-5">
         <ContainerImg className="d-flex flex-column align-items-center justify-content-center p-3">
             <FadeImage
                 placeholder={imgLoading}

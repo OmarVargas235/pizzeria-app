@@ -10,7 +10,7 @@ import imgLoading from '../../../assets/img/no-image.jpg';
 const CardPizzaPage = (): JSX.Element => {
 
     // return <ContainerCardPizza className="d-flex align-items-center col-6 mb-2 px-0">
-    return <ContainerCardPizza className="col-6 pl-0">
+    return <ContainerCardPizza className="col-12 col-lg-6 pl-0">
         <div className="mb-3 d-flex">
             <FadeImage
                 placeholder={imgLoading}

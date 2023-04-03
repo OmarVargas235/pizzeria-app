@@ -13,10 +13,10 @@ export const Img = styled.img`
 
    &.img-static {
         opacity: 1;
-        animation: fade .6s ease-in-out forwards;
+        animation: fade-image .6s ease-in-out forwards;
     }
 
-    @keyframes fade {
+    @keyframes fade-image {
         0% { opacity: 1; }
         50% { opacity: .5; }
         100% { opacity: 0; }
@@ -27,10 +27,10 @@ export const Img = styled.img`
     }
 
     &.img-animation {
-        animation: into .6s ease-in-out forwards;
+        animation: into-image .6s ease-in-out forwards;
     }
 
-    @keyframes into {
+    @keyframes into-image {
         0% { opacity: 0; }
         50% { opacity: .5; }
         100% { opacity: 1; }

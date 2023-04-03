@@ -1,95 +1,12 @@
-import { Action } from '../context/types';
-import { DeatilProduct } from '../service/interfaces';
-
-interface Alert {
-    dispatch: (v: Action) => void;
-    isAlertSuccess: boolean;
-    message: string;
-}
-
 interface FormatDecimals {
     n: number;
     symbol?: string;
     nDecimals?: number;
 }
 
-export enum IDS_ROLES {
-    ejecutivo = 1,
-    admin = 2
-}
-
-export const validatePassword = (password: string): boolean => {
-
-    return (/^(?=(?:.*[¿?¡!|&-_]){2})(?=(?:.*\d){2})(?=(?:.*[A-Z]){2})(?=(?:.*[a-z]){2})/g).test(password);
-}
-
 export const validateEmail = (email: string): boolean => {
 
     return (/^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,63}$/i).test(email);
-}
-
-export const defaultuser = JSON.stringify({
-    apellidos: '',
-    cargo: { idCargo: -1, nombre: '' },
-    correo: '',
-    documentoidentidad: '',
-    idUsuario: -1,
-    nombres: '',
-    rol: { idRol: -1, nombre: '' },
-    telefono: '',
-    token: '',
-    validatetelefono: -1,
-});
-
-export const defaultCustomer = JSON.stringify({
-    codigo: '',
-    razonsocial: '',
-    nombrecomercial: '',
-    ruc: '',
-    direccion: '',
-    tipo: '',
-    lineacredito: 0,
-    estado: '',
-    descuento: '',
-    tipopago: '',
-    codigotipopago: '',
-});
-
-export const defaultValue: DeatilProduct = {
-	categoria: '', codigo: '', descuentos: [],
-	forma: '', idCategoria: '', idForma: '',
-	idProducto: 0, idStock: 0, nombre: '',
-	precio: 0, presentacion: '', registro: '',
-	stock: 0, uMedida: '', descuento: 0, descuentoPorcentaje: 0
-}
-
-export const defaultDetailOrder = JSON.stringify({
-    cliente_codigo: '',
-    cliente_credito: 0,
-    cliente_nombre_comercial: '',
-    cliente_ruc: '',
-    dias_mora: 0,
-    estado_comercial: '',
-    estado_comercial_abrev: '',
-    estado_roxfarma: "",
-    estado_roxfarma_abrev: "PE",
-    fecha_entrega: '',
-    fecha_pedido: '',
-    fecha_vencimiento: '',
-    n_plazo: 0,
-    numped: '',
-    observacion: '',
-    observacion_abrev: "CR",
-    pedidowap: '',
-    valor_igv: 0,
-    valor_total: 0,
-});
-
-export const alert = ({ dispatch, isAlertSuccess, message }: Alert): void => {
-
-    dispatch({ type: 'IS_ALERT', payload: true });
-    dispatch({ type: 'IS_ALERT_SUCCESS', payload: isAlertSuccess });
-    dispatch({ type: 'MESSAGE_ALERT', payload: message });
 }
 
 export const formatDecimals = ({ n, symbol="S/", nDecimals= 2 }: FormatDecimals): string => {
@@ -135,3 +52,29 @@ export const deleteMap = <T extends Record<string, unknown> | ArrayLike<unknown>
 
     return objectData;
 }
+
+export const mediaQueryListView = (): string => (`
+    @media (min-height: 700px) {
+        height: 300px;
+    }
+
+    @media (min-height: 850px) {
+        height: 450px;
+    }
+
+    @media (min-height: 950px) {
+        height: 650px;
+    }
+
+    @media (min-height: 1300px) {
+        height: 850px;
+    }
+
+    @media (min-height: 1500px) {
+        height: 1050px;
+    }
+
+    @media (min-height: 1650px) {
+        height: 1250px;
+    }
+`);

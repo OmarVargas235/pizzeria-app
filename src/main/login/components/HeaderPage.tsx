@@ -16,6 +16,7 @@ const HeaderPage = (): JSX.Element => {
             img={imgLogo}
             alt="imgLogo"
             className="img"
+            height="170px"
         />
 
         <div className="w-100 text-center">

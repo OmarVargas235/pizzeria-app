@@ -13,7 +13,7 @@ const DetailPage = (): JSX.Element => {
 
     const history = useNavigate();
 
-    return <Container className="w-100">
+    return <Container className="w-100 mt-5 mt-sm-0">
         <div className="d-flex flex-column align-items-center">
             <div className="w-100 text-right">
                 <BsArrowLeftShort 
