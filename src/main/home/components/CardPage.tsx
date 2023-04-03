@@ -1,4 +1,5 @@
 // 1.- librerias
+import { useNavigate } from 'react-router-dom';
 
 // 2.- componets
 import FadeImage from '../../../layauts/fadeImage/FadeImage';
@@ -6,13 +7,16 @@ import { Text } from '../../../layauts/Text';
 import { Card, ContainerImg, FooterCard } from '../styled';
 
 // 3.- imagenes
-
 import imgLoading from '../../../assets/img/no-image.jpg';
 
 const CardPage = (): JSX.Element => {
 
-    // return <Card className='col-6 pl-0 mb-4'>
-    return <Card className='col-10 col-md-6 col-xl-4 pl-0 mb-4 pointer'>
+    const history = useNavigate();
+
+    return <Card
+        className='col-10 col-md-6 col-xl-4 pl-0 mb-4 pointer'
+        onClick={() => history(`/detail/1`)}
+    >
         <ContainerImg>
             <FadeImage
                 placeholder={imgLoading}

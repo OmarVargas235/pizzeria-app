@@ -11,6 +11,7 @@ import imgLoading from './assets/img/no-image.jpg';
 import Spinner from "./layauts/spinner/Spinner";
 const FadeImage = lazy(async () => await import("./layauts/fadeImage/FadeImage"));
 const AppRouter = lazy(async () => await import("./routers/AppRouter"));
+const Navbar = lazy(async () => await import("./main/navbar"));
 
 const GlobalStyle = createGlobalStyle`
 	body {
@@ -86,6 +87,7 @@ function App(): JSX.Element {
             </ColumnLeft>
 
             <ColumnRight className="col-12 col-sm-6 d-flex flex-column align-items-center justify-content-center pb-3 pt-sm-3">
+                <Navbar />
                 <AppRouter />
             </ColumnRight>
         </Container>

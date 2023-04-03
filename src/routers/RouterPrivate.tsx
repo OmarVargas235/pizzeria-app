@@ -3,12 +3,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 // 2.- components
 import Home from '../main/home';
+import Detail from '../main/details';
 
 const RouterPublic = (): JSX.Element => {
 
     return <Router>
         <Routes>
             <Route path='/home' element={<Home />} />
+            <Route path='/detail/:id' element={<Detail />} />
 
             <Route
                 path="*"
