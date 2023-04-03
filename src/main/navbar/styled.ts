@@ -7,12 +7,31 @@ export const Container = styled.section`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, .4);
+	overflow: hidden;
 `;
 
-export const ContainerMenu = styled.div`
+export const ContainerMenu = styled.div<{ isOpen: boolean; }>`
+	position: relative;
+	/* right: ${props => props.isOpen ? 0 : '-100%'}; */
+	right: -100%;
     height: 100%;
     width: 50%;
     background-color: rgba(254, 254, 254, .9);
+	animation ${props => props.isOpen ? 'into' : 'out'} .6s cubic-bezier(.8,-.5,.2,1.4) forwards;
+
+	/*  */
+
+	@keyframes into {
+		0% { right: -100%; }
+		50% { right: -50%; }
+		100% { right: 0; }
+	}
+
+	@keyframes out {
+		0% { right: 0%; }
+		50% { right: -50%; }
+		100% { right: -100; }
+	}
 	
 	@media(max-width: 992px) {
 		width: 60%;

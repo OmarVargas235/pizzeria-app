@@ -3,11 +3,12 @@ import { combineReducers } from 'redux';
 // import userSlice from './reducerUser';
 // import reducerSnack from './reducerSnack';
 import reducerBlockUI from './reducerBlockUI';
+import openNavbarSlice from './reducerOpenNavbar';
 // import reducerAlertDialog from './reducerAlertDialog';
-// import openLayautAppSlice from './reducerOpenLayautApp';
 
 const rootReducer = combineReducers({
     blockUI: reducerBlockUI,
+    isOpenNavbar: openNavbarSlice,
     // user: userSlice,
     // snack: reducerSnack,
     // alertDialog: reducerAlertDialog,

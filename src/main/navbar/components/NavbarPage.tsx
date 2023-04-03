@@ -11,12 +11,33 @@ import imgLoading from '../../../assets/img/no-image.jpg';
 // 4.- iconos
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { BsGearFill } from 'react-icons/bs';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
-const NavbarPage = (): JSX.Element => {
+// 5.- utils
+import { idClose } from '../container/Navbar';
 
+interface Props {
+    isOpen: boolean;
+    handleClick: (e: React.MouseEvent<HTMLDivElement>) => void;
+    closeNavbar: () => void;
+}
 
-    return <Container className='d-flex justify-content-end'>
-        <ContainerMenu className='pt-5'>
+const NavbarPage = ({ isOpen, handleClick, closeNavbar }: Props): JSX.Element => {
+
+    return <Container
+        className='d-flex justify-content-end'
+        onClick={handleClick}
+        id={idClose}
+    >
+        <ContainerMenu isOpen={isOpen}>
+            <div className='pb-4 pr-3 pt-3 w-100 text-right'>
+                <AiFillCloseCircle
+                    size={25}
+                    className='pointer'
+                    onClick={closeNavbar}
+                />
+            </div>
+
             <ContainerImg className='d-flex justify-content-center align-items-center mx-3'>
                 <FadeImage
                     placeholder={imgLoading}

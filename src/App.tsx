@@ -75,7 +75,6 @@ function App(): JSX.Element {
 
         <GlobalStyle />
 
-
         <Container className="row">
             <ColumnLeft className="col-12 col-sm-6 d-flex align-items-center justify-content-center">
                 <FadeImage
