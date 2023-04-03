@@ -28,7 +28,7 @@ const Container = styled.div`
     }
 
     .pizza {
-        animation: pizzaRotate 6s linear infinite;
+        animation: pizzaRotate 6s linear infinite !important;
         width: 80%;
     }
 

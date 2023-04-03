@@ -26,7 +26,12 @@ const FadeImage = ({ img, alt, placeholder, className='' }: Props): JSX.Element 
         const img: HTMLImageElement = current;
         const placeholder: HTMLImageElement = currentPlaceholder;
 
-        img.addEventListener('load', () => placeholder.remove());
+        img.addEventListener('load', () => {
+
+            placeholder.classList.add('img-static');
+            window.setTimeout(() => placeholder.remove(), 300);
+            window.setTimeout(() => img.classList.add('img-animation'), 300);
+        });
 
     }, [imgRef, placeholderRef]);
 
@@ -36,7 +41,7 @@ const FadeImage = ({ img, alt, placeholder, className='' }: Props): JSX.Element 
             alt={alt}
             loading="lazy"
             ref={imgRef}
-            className={className}
+            className={`${className}`}
         />
 
         <Img

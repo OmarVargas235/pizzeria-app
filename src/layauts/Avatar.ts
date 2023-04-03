@@ -8,10 +8,10 @@ interface Props {
 }
 
 const Avatar = styled.div<Props>`
-    width: ${props => props.width ?? '40px'};
-    height: ${props => props.height ?? '40px'};
-    background-color: ${props => props.color ?? props.theme.bg.bg1};
-    color: ${props => props.colorLetter ?? props.theme.white};
+    width: ${props => props.width ?? '50px'};
+    height: ${props => props.height ?? '50px'};
+    background-color: ${props => props.color ?? '#BDBDBD'};
+    color: ${props => props.colorLetter ?? 'white'};
     border-radius: 50%;
     font-weight: bold;
     display: flex;

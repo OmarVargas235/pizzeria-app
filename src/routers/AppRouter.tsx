@@ -8,7 +8,7 @@ const AppRouter = (): JSX.Element => {
 
     return <>
         {
-            false ? <RouterPrivate /> :  <RouterPublic />
+            true ? <RouterPrivate /> :  <RouterPublic />
         }
     </>;
 }
