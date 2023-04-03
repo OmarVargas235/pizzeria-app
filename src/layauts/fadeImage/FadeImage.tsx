@@ -9,9 +9,11 @@ interface Props {
     img: string;
     alt: string;
     className?: string;
+    classNameContainer?: string;
+    height?: string;
 }
 
-const FadeImage = ({ img, alt, placeholder, className='' }: Props): JSX.Element => {
+const FadeImage = ({ img, alt, placeholder, className='', classNameContainer='', height="100%" }: Props): JSX.Element => {
 
     const imgRef = useRef(null);
     const placeholderRef = useRef(null);
@@ -35,13 +37,16 @@ const FadeImage = ({ img, alt, placeholder, className='' }: Props): JSX.Element 
 
     }, [imgRef, placeholderRef]);
 
-    return <Container className='d-flex flex-column justify-content-center align-items-center'>
+    return <Container
+        className={`d-flex flex-column justify-content-center align-items-center ${classNameContainer}`}
+        height={height}
+    >
         <Img
             src={img}
             alt={alt}
             loading="lazy"
             ref={imgRef}
-            className={`${className}`}
+            className={className}
         />
 
         <Img

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ height: string; }>`
     overflow: hidden;
     width: 100%;
-    height: 100%;
+    height: ${props => props.height};
     position: relative;
 `;
 
