@@ -13,8 +13,9 @@ export type ITypeInput = Record<string, string | boolean>;
 export interface Form<T, K> {
 	handleSubmit: HandleSubmit<T>;
 	handleChange: HandleChange<T>;
+	handleChangeFile: HandleChange<T>;
 	handleChangeTextarea: HandleChangeTextarea<T>;
-	setValuesDefault: (name: string, value: string | number | boolean) => void;
+	setValuesDefault: (name: keyof T, value: string | number | boolean | {}) => void;
 	validateFields: (model: T, fieldRequerids: K[]) => boolean;
 	errors: K[];
 	setSelect: (name: string, value: string | number | boolean, setForm: (state: T) => void, form: T) => void;

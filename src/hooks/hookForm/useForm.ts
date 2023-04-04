@@ -51,6 +51,23 @@ export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 		});
 	};
 
+	const handleChangeFile = (e: Event, setForm: (state: T) => void, form: T): void => {
+
+		const { files, name } = e.target;
+		const [file] = files ?? [];
+
+		setModel({
+			...model,
+			[name]: file,
+		});
+
+		setForm({
+			...form,
+			...model,
+			[name]: file,
+		});
+	};
+
 	const setSelect = (name: string, value: string | number | boolean, setForm: (state: T) => void, form: T): void => {
 		setModel({
 			...model,
@@ -65,7 +82,7 @@ export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 	};
 
 	const setValuesDefault = useCallback(
-		(name: string, value: number | string | boolean): void => {
+		(name: keyof T, value: number | string | boolean): void => {
 			setModel(model => ({ ...model, [name]: value }));
 		},
 		[]
@@ -88,6 +105,7 @@ export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 		handleSubmit,
 		handleChange,
 		handleChangeTextarea,
+		handleChangeFile,
 		setValuesDefault,
 		validateFields,
 		errors,

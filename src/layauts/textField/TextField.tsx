@@ -11,7 +11,7 @@ interface Props {
 	edge2?: 'start' | 'end' | null;
 	placeholder?: string;
 	label?: string;
-	type?: 'text' | 'number' | 'email' | 'password' | 'date' | 'textarea';
+	type?: 'text' | 'number' | 'email' | 'password' | 'date' | 'textarea' | 'file';
 	name: string;
 	handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	handleChangeTextarea?: (e: ChangeEvent<HTMLTextAreaElement>) => void;

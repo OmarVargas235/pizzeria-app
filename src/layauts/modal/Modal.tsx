@@ -110,7 +110,6 @@ const Modal = ({ children, open, closeModal, classess='', textBtn, isButton=true
                             {
                                 isButton ? <div className='d-flex justify-content-center mt-4'>
                                     <Button
-                                        classes='btn'
                                         dataClose="close"
                                     >{textBtn}</Button>
                                 </div> : null

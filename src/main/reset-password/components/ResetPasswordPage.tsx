@@ -6,6 +6,7 @@ import Form from "../../../layauts/form/Form";
 import TextField from "../../../layauts/textField/TextField";
 import Button from "../../../layauts/button/Button";
 import FadeImage from "../../../layauts/fadeImage/FadeImage";
+import { Container } from '../styled';
 
 // 4.- interfaces
 import { HandleSubmit, HandleChange } from "../../../hooks/hookForm/interface";
@@ -31,7 +32,9 @@ const ResetPasswordPage = ({ handleSubmit, handleChange, onSubmit, form, setForm
 
     const history = useNavigate();
 
-    return <div className="w-100 px-sm-2 px-md-4 d-flex flex-column align-items-center justify-content-center">
+    return <Container
+        className="w-100 px-sm-2 px-md-4 d-flex flex-column align-items-center justify-content-center"
+    >
         <div className="w-100 text-right">
             <BsArrowLeftShort 
                 size={40}
@@ -74,7 +77,7 @@ const ResetPasswordPage = ({ handleSubmit, handleChange, onSubmit, form, setForm
                 >Solicitar nueva contraseña</Button>
             </div>
         </Form>
-    </div>;
+    </Container>;
 }
 
 export default ResetPasswordPage;

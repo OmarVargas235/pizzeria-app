@@ -12,22 +12,19 @@ export const Container = styled.section`
 
 export const ContainerMenu = styled.div<{ isOpen: boolean; }>`
 	position: relative;
-	/* right: ${props => props.isOpen ? 0 : '-100%'}; */
 	right: -100%;
     height: 100%;
     width: 50%;
     background-color: rgba(254, 254, 254, .9);
-	animation ${props => props.isOpen ? 'into' : 'out'} .6s cubic-bezier(.8,-.5,.2,1.4) forwards;
+	animation ${props => props.isOpen ? 'intoNavbar' : 'outNavbar'} .6s cubic-bezier(.8,-.5,.2,1.4) forwards;
 
-	/*  */
-
-	@keyframes into {
+	@keyframes intoNavbar {
 		0% { right: -100%; }
 		50% { right: -50%; }
 		100% { right: 0; }
 	}
 
-	@keyframes out {
+	@keyframes outNavbar {
 		0% { right: 0%; }
 		50% { right: -50%; }
 		100% { right: -100; }

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 interface IContainerInput {
 	isFocus: boolean;
-	edge: string | null;
 	isError: boolean;
 	isFull: boolean;
 }
@@ -38,17 +37,9 @@ const styles = (): string => `
     }
 `;
 
-export const TextField = styled.input`
-	${styles()}
-`;
-
-export const TextTareaField = styled.textarea`
-	${styles()}
-`;
-
 export const ContainerTextField = styled.div`
 	span {
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 		display: block;
 		font-size: 14px;
 		font-weight: bold;
@@ -57,15 +48,6 @@ export const ContainerTextField = styled.div`
 `;
 
 export const Input = styled.input`
-	${styles()}
-	border: none;
-
-	&:focus {
-		border: none;
-	}
-`;
-
-export const Textarea = styled.textarea`
 	${styles()}
 	border: none;
 
@@ -83,8 +65,6 @@ export const ContainerInput = styled.div<IContainerInput>`
 	justify-content: space-between;
 	align-items: center;
 	width: ${({ isFull }) => (isFull ? '100%' : '25ch')};
-	${({ edge }: IContainerInput) =>
-		edge !== null && (edge === 'start' ? 'padding-left: 12px' : 'padding-right: 12px')};
 
 	border: 2px solid
 		${({ isFocus, isError }) =>

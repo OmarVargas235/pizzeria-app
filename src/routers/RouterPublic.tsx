@@ -1,5 +1,5 @@
 // 1.- librerias
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // 2.- components
 import Login from '../main/login';
@@ -8,7 +8,7 @@ import ResetPassword from '../main/reset-password/container/ResetPassword';
 
 const RouterPublic = (): JSX.Element => {
 
-    return <Router>
+    return <>
         <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
@@ -19,7 +19,7 @@ const RouterPublic = (): JSX.Element => {
                 element={<Navigate to="/login" replace />}
             />
         </Routes>
-    </Router>;
+    </>;
 }
 
 export default RouterPublic;
