@@ -1,6 +1,7 @@
 // 1.- librerias
 import { MouseEvent, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // 2.- components
 import NavbarPage from "../components/NavbarPage";
@@ -12,6 +13,8 @@ import { IInitState, setDesactiveNavbar } from '../../../redux/reducers/reducerO
 export const idClose = 'close';
 
 const Detail = (): JSX.Element => {
+
+    const history = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -37,7 +40,13 @@ const Detail = (): JSX.Element => {
         target.id === idClose && closeNavbar();
     }
 
-    const closeNavbar = (): void => { dispatch(setDesactiveNavbar()); }
+    const closeNavbar = (): void => { dispatch(setDesactiveNavbar()); };
+
+    const redirectSetting = (): void => {
+
+        history('/setting');
+        dispatch(setDesactiveNavbar());
+    }
 
     return <>
         {
@@ -46,6 +55,7 @@ const Detail = (): JSX.Element => {
                     isOpen={isOpen}
                     handleClick={handleClick}
                     closeNavbar={closeNavbar}
+                    redirectSetting={redirectSetting}
                 />
                 : null
         }

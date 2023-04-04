@@ -1,5 +1,5 @@
 // 1.- librerias
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState } from "react";
 import styled, { createGlobalStyle } from 'styled-components';
 
 // 3.- imagenes
@@ -11,12 +11,13 @@ import imgLoading from './assets/img/no-image.jpg';
 import Spinner from "./layauts/spinner/Spinner";
 const FadeImage = lazy(async () => await import("./layauts/fadeImage/FadeImage"));
 const AppRouter = lazy(async () => await import("./routers/AppRouter"));
-const Navbar = lazy(async () => await import("./main/navbar"));
 
 const GlobalStyle = createGlobalStyle`
 	body {
 		margin: 0;
 		padding: 0;
+        background-image: url("${imgBg}");
+        background-size: cover;
 	}
 `;
 
@@ -45,8 +46,6 @@ const Container = styled.div`
 `;
 
 const ColumnLeft = styled.article`
-    background-color: lightgray;
-    background-image: url("${imgBg}");
     overflow: hidden;
 
     @media (max-width: 576px) {
@@ -54,8 +53,9 @@ const ColumnLeft = styled.article`
     }
 `;
 
-const ColumnRight = styled.article`
+const ColumnRight = styled.article<{ isSetting: boolean; }>`
     width: 100%;
+    background-color: ${props => props.isSetting ? '' : 'white'};
 
     @media (max-width: 576px) {
         position: absolute;
@@ -71,6 +71,8 @@ const ColumnRight = styled.article`
 
 function App(): JSX.Element {
 
+    const [isSetting, setIsSetting] = useState<boolean>(false);
+
     return <Suspense fallback={<Spinner isLoading={true} />}>
 
         <GlobalStyle />
@@ -85,9 +87,13 @@ function App(): JSX.Element {
                 />
             </ColumnLeft>
 
-            <ColumnRight className="col-12 col-sm-6 d-flex flex-column align-items-center justify-content-center pb-3 pt-sm-3">
-                <Navbar />
-                <AppRouter />
+            <ColumnRight
+                className="col-12 col-sm-6 d-flex flex-column align-items-center justify-content-center pb-3 pt-sm-3"
+                isSetting={isSetting}
+            >
+                <AppRouter
+                    setIsSetting={setIsSetting}
+                />
             </ColumnRight>
         </Container>
     </Suspense>;

@@ -20,9 +20,10 @@ interface Props {
     isOpen: boolean;
     handleClick: (e: React.MouseEvent<HTMLDivElement>) => void;
     closeNavbar: () => void;
+    redirectSetting: () => void;
 }
 
-const NavbarPage = ({ isOpen, handleClick, closeNavbar }: Props): JSX.Element => {
+const NavbarPage = ({ isOpen, handleClick, closeNavbar, redirectSetting }: Props): JSX.Element => {
 
     return <Container
         className='d-flex justify-content-end'
@@ -53,7 +54,10 @@ const NavbarPage = ({ isOpen, handleClick, closeNavbar }: Props): JSX.Element =>
                 <Text weight='bold'>Cerrar Sesión</Text>
             </Option>
 
-            <Option className='d-flex align-items-center my-4 px-3 py-2'>
+            <Option
+                className='d-flex align-items-center my-4 px-3 py-2'
+                onClick={redirectSetting}
+            >
                 <BsGearFill size={25} className='mr-3' />
                 <Text weight='bold'>Cuneta</Text>
             </Option>
