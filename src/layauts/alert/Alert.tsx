@@ -1,5 +1,7 @@
 // 1. librerias
-import { MouseEvent, useContext, useState } from 'react';
+import { MouseEvent, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // 2.- estilos
 import { Container, ContainerModal, Body } from './styled';
@@ -11,14 +13,16 @@ import { AiFillCloseCircle, AiFillCheckCircle, AiFillWarning } from "react-icons
 // 4.- components
 import Button from '../button/Button';
 import { Text } from '../Text';
-import { GlobalContext } from '../../context/GlobalProvider';
 import Animation, { timeClose } from '../animation/Animation';
 
 // 5.- services
-import { auth } from '../../service/auth';
+import { auth } from '../../services/auth';
 
-// 6.- theme
-import { theme } from '../../theme/theme';
+// 6.- interfaces
+import { RootState } from '../../redux/store';
+
+// 7.- redux
+import { setIsActiveAlert, IInitState } from '../../redux/reducers/reducerAlert';
 
 let timeout: string | number | NodeJS.Timeout | undefined;
 
@@ -26,7 +30,11 @@ const expireSesion = 'Lo sentimos, la sesión ha expirado';
 
 const Alert = (): JSX.Element => {
 
-    const { state:{ isAlert, isAlertSuccess, messageAlert }, dispatch } = useContext(GlobalContext);
+    const history = useNavigate();
+
+    const dispath = useDispatch();
+
+    const { isActive, messageAlert, isAlertSuccess } = useSelector<RootState, IInitState>(state => state.alert);
 
     const [isClose, setIsclose] = useState(false);
 
@@ -37,7 +45,7 @@ const Alert = (): JSX.Element => {
         window.setTimeout(() => {
 
             setIsclose(false);
-            dispatch({ type: 'IS_ALERT', payload: false });
+            dispath(setIsActiveAlert(false));
 
         }, timeClose);
 
@@ -49,13 +57,13 @@ const Alert = (): JSX.Element => {
         const target: HTMLDivElement = e.target as HTMLDivElement;
         target.dataset.close === 'close' && close();
 
-        messageAlert === expireSesion && (window.location.href = '/login');
+        messageAlert === expireSesion && history('/login');
         messageAlert === expireSesion && auth.logout();
     }
 
     return <>
         {
-            isAlert ? <Container
+            isActive ? <Container
                 className='d-flex justify-content-center align-items-center'
                 onClick={closeDiv}
                 data-close="close"
@@ -74,23 +82,22 @@ const Alert = (): JSX.Element => {
                             {
                                 isAlertSuccess ? <AiFillCheckCircle
                                     size={45}
-                                    color={theme.icons.check}
+                                    color='#3FA96B'
                                 />
                                 : messageAlert === expireSesion
                                     ? <AiFillWarning
                                         size={45}
-                                        color={theme.warning}
+                                        color='#ffc107'
                                     />
                                     : <AiFillCloseCircle
                                         size={45}
-                                        color={theme.icons.error}
+                                        color='#EB5757'
                                     />
                             }
 
-                            <Text className='my-4 text-center' color={theme.text.midgray} size='18px'>{messageAlert}</Text>
+                            <Text className='my-4 text-center' color='#303030' size='18px'>{messageAlert}</Text>
 
                             <Button
-                                classes='btn'
                                 dataClose="close"
                             >Entendido</Button>
                         </Body>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     background-color: rgba(254, 254, 254, .9);
     top: 0;
+    left: 0;
     z-index: 1100;
 
     .ml-loader {

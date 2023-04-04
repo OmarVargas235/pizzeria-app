@@ -7,12 +7,13 @@ export const Container = styled.section`
     position: fixed;
     z-index: 1050;
     top: 0;
+    left: 0;
 `;
 
 export const ContainerModal = styled.div`
     border-radius: 6px;
     width: 330px;
-    background-color: ${props => props.theme.white};
+    background-color: white;
     padding: 20px;
 `;
 

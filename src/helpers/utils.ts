@@ -1,12 +1,28 @@
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { setIsActiveAlert, setIsAlertSuccess, setMessageAlert } from '../redux/reducers/reducerAlert';
+
 interface FormatDecimals {
     n: number;
     symbol?: string;
     nDecimals?: number;
 }
 
+interface Alert {
+    dispatch: Dispatch<AnyAction>;
+    isAlertSuccess: boolean;
+    message: string;
+}
+
 export const validateEmail = (email: string): boolean => {
 
     return (/^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,63}$/i).test(email);
+}
+
+export const alert = ({ dispatch, isAlertSuccess, message }: Alert): void => {
+
+    dispatch(setIsActiveAlert(true));
+    dispatch(setIsAlertSuccess(isAlertSuccess));
+    dispatch(setMessageAlert(message));
 }
 
 export const formatDecimals = ({ n, symbol="S/", nDecimals= 2 }: FormatDecimals): string => {

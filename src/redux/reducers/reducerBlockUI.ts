@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IInitState {
     isActive:boolean;
@@ -12,16 +12,14 @@ export const blockUISlice = createSlice({
     name: 'blockUI',
     initialState,
     reducers: {
-        setActive: () => ({
-            isActive: true,
+        setIsActiveLoading: (state, { payload }: PayloadAction<boolean>) => ({
+            ...state,
+            isActive: payload,
         }),
-        setDesactive: () => ({
-            isActive: false,
-        })
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setActive, setDesactive } = blockUISlice.actions
+export const { setIsActiveLoading } = blockUISlice.actions
 
 export default blockUISlice.reducer;

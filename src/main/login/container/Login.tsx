@@ -1,11 +1,21 @@
 // 1.- librerias
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useDispatch } from "react-redux";
 
 // 2.- components
 import LoginPage from "../components/LoginPage";
 
 // 3.- hooks
 import { useForm } from "../../../hooks/hookForm/useForm";
+
+// 4.- context
+import { AuthContext } from '../../../auth/AuthProvider';
+
+// 5.- utils
+import { alert, validateEmail } from '../../../helpers/utils';
+
+// 6.- redux
+import { setIsActiveLoading } from '../../../redux/reducers/reducerBlockUI';
 
 export interface Model {
     email: string;
@@ -16,6 +26,10 @@ const requeridFields = ['email', 'password'] as const;
 export type RequeridFields = typeof requeridFields[number];
 
 const Login = (): JSX.Element => {
+
+    const dispatch = useDispatch();
+
+    const { submitLogin } = useContext(AuthContext);
 
     const { handleSubmit, handleChange, validateFields, errors } = useForm<Model, RequeridFields>();
 
@@ -31,8 +45,17 @@ const Login = (): JSX.Element => {
         const isError: boolean = validateFields(newModel, [...requeridFields]);
         
         if (isError) return;
-    
-        console.log('login');
+
+        const isValidateEmail = validateEmail(newModel.email);
+        if (!isValidateEmail) return alert({ dispatch, isAlertSuccess: false, message: 'Correo invalido' });
+
+        dispatch(setIsActiveLoading(true));
+
+        const result = await submitLogin(newModel);
+
+        dispatch(setIsActiveLoading(false));
+
+        if (result.status !== 200) return alert({ dispatch, isAlertSuccess: false, message: result.message });
     }
 
     return <LoginPage

@@ -1,6 +1,7 @@
 // 1.- librerias
 import { Suspense, lazy, useState } from "react";
 import styled, { createGlobalStyle } from 'styled-components';
+import axios from "axios";
 
 // 3.- imagenes
 import imgBg from './assets/img/imagebkg.png';
@@ -11,6 +12,14 @@ import imgLoading from './assets/img/no-image.jpg';
 import Spinner from "./layauts/spinner/Spinner";
 const FadeImage = lazy(async () => await import("./layauts/fadeImage/FadeImage"));
 const AppRouter = lazy(async () => await import("./routers/AppRouter"));
+
+/**
+ * Axios HTTP Request defaults
+ */
+axios.defaults.baseURL = 'http://localhost:3000/api/1.0/';
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 const GlobalStyle = createGlobalStyle`
 	body {
