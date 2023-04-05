@@ -20,6 +20,6 @@ export const blockUISlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setIsActiveLoading } = blockUISlice.actions
+export const { setIsActiveLoading } = blockUISlice.actions;
 
 export default blockUISlice.reducer;

@@ -9,7 +9,14 @@ import { Container, ListView } from '../styled';
 // 3.- iconos
 import { BsArrowLeftShort } from "react-icons/bs";
 
-const DetailPage = (): JSX.Element => {
+// 4.- interfaces
+import { StoreDetail } from '../../../helpers/interface';
+
+interface Props {
+    detail: StoreDetail;
+}
+
+const DetailPage = ({ detail }: Props): JSX.Element => {
 
     const history = useNavigate();
 
@@ -23,13 +30,16 @@ const DetailPage = (): JSX.Element => {
                 />
             </div>
 
-            <Card />
+            <Card
+                pizzeria={detail.pizzeria}
+            />
 
             <ListView className="row mt-4 w-100">
                 {
-                    [1, 2, 3].map(v => (
+                    detail.pizzerias.map(v => (
                         <CardPizzaPage
-                            key={v}
+                            key={v.id}
+                            data={v}
                         />
                     ))
                 }

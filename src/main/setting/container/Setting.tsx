@@ -1,11 +1,16 @@
 // 1.- librerias
 import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 
 // 2.- components
 import SettingPage from "../components/SettingPage";
 
 // 3.- hooks
 import { useForm } from '../../../hooks/hookForm/useForm';
+
+// 4.- interfaces
+import { IInitState } from '../../../redux/reducers/reducerUser';
+import { RootState } from '../../../redux/store';
 
 export interface Model {
     name: string;
@@ -27,6 +32,8 @@ const defaultValue = {
 }
 
 const Setting = (): JSX.Element => {
+
+    const { user } = useSelector<RootState, IInitState>(state => state.user);
 
     const { handleSubmit, handleChange, handleChangeFile, setValuesDefault } = useForm<Model, keyof {}>();
 
@@ -61,6 +68,7 @@ const Setting = (): JSX.Element => {
         onSubmit={onSubmit}
         form={form}
         setForm={setForm}
+        user={user}
     />;
 }
 

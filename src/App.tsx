@@ -13,10 +13,12 @@ import Spinner from "./layauts/spinner/Spinner";
 const FadeImage = lazy(async () => await import("./layauts/fadeImage/FadeImage"));
 const AppRouter = lazy(async () => await import("./routers/AppRouter"));
 
+const VITE_BASE_URL: string = import.meta.env.VITE_BASE_URL;
+
 /**
  * Axios HTTP Request defaults
  */
-axios.defaults.baseURL = 'http://localhost:3000/api/1.0/';
+axios.defaults.baseURL = VITE_BASE_URL;
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers.common['Access-Control-Allow-Methods'] = '*';
 axios.defaults.headers.common['Content-Type'] = 'application/json';

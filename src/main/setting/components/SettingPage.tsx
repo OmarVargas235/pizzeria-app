@@ -10,6 +10,7 @@ import Button from '../../../layauts/button/Button';
 import TextField from '../../../layauts/textField/TextField';
 import TextFieldUpload from '../../../layauts/textFieldUpload/TextFieldUpload';
 import Form from '../../../layauts/form/Form';
+import Avatar from "../../../layauts/Avatar";
 
 // 3.- iconos
 import { BsArrowLeftShort } from "react-icons/bs";
@@ -22,6 +23,7 @@ import imgLoading from '../../../assets/img/no-image.jpg';
 // 5.- interfaces
 import { Model } from '../container/Setting';
 import { HandleChange, HandleSubmit } from '../../../hooks/hookForm/interface';
+import { User } from '../../../helpers/interface';
 
 interface Props {
     isOpenModal: boolean;
@@ -32,9 +34,10 @@ interface Props {
     onSubmit: (v: object) => Promise<void>;
     form: Model;
     setForm: (v: Model) => void;
+    user: User;
 }
 
-const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm }: Props): JSX.Element => {
+const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user }: Props): JSX.Element => {
 
     const history = useNavigate();
 
@@ -49,12 +52,22 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
             </div>
 
             <ContainerImage className='d-flex justify-content-center'>
-                <FadeImage
-                    placeholder={imgLoading}
-                    img={"https://cdn-icons-png.flaticon.com/512/3135/3135768.png"}
-                    alt="profile"
-                    classNameContainer='image-profile'
-                />
+                {
+                    user.img === null
+                    ? <Avatar
+                        height='96px'
+                        width='96px'
+                        className="pointer avatar"
+                    >
+                        {user.name.charAt(0).toUpperCase()}{user.lastName.charAt(0).toUpperCase()}
+                    </Avatar>
+                    : <FadeImage
+                        placeholder={imgLoading}
+                        img={"https://cdn-icons-png.flaticon.com/512/3135/3135768.png"}
+                        alt="profile"
+                        classNameContainer='image-profile'
+                    />
+                }
 
                 <MdModeEditOutline
                     size={25}
@@ -68,12 +81,12 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
                 size='25px'
                 weight='bold'
                 className='text-center mt-4'
-            >Omar Vargas</Text>
+            >{user.name} {user.lastName}</Text>
 
             <Text
                 color='#5A585E'
                 className='text-center'
-            >omravaja@hotmail.com</Text>
+            >{user.email}</Text>
         </Container>
 
         <Modal

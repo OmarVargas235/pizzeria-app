@@ -7,14 +7,26 @@ import { ContainerCardPizza } from '../styled';
 // 3.- imagenes
 import imgLoading from '../../../assets/img/no-image.jpg';
 
-const CardPizzaPage = (): JSX.Element => {
+// 4.- interfaces
+// import { StoreDetail } from "../../../helpers/interface";
 
-    // return <ContainerCardPizza className="d-flex align-items-center col-6 mb-2 px-0">
+interface Props {
+    data: {
+        id: number;
+        img: string;
+        description: string;
+    }
+}
+
+const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
+
+const CardPizzaPage = ({ data }: Props): JSX.Element => {
+
     return <ContainerCardPizza className="col-12 col-lg-6 pl-0">
         <div className="mb-3 d-flex">
             <FadeImage
                 placeholder={imgLoading}
-                img={"https://w7.pngwing.com/pngs/736/179/png-transparent-pizza-pizza-logo-pizza-icon-white-food-camera-icon-thumbnail.png"}
+                img={`${VITE_BACKEND_URL}/${data.img}`}
                 alt="logo-pizerria"
                 classNameContainer="container-img w-25"
                 className="img-logo"
@@ -23,7 +35,7 @@ const CardPizzaPage = (): JSX.Element => {
             <div
                 className="w-75 d-flex justify-content-center align-items-center"
             >
-                <Text>Pizza pollo</Text>
+                <Text>{data.description}</Text>
             </div>
         </div>
     </ContainerCardPizza>;

@@ -45,8 +45,8 @@ export const ContainerMenu = styled.div<{ isOpen: boolean; }>`
 `;
 
 export const ContainerImg = styled.div`
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border: 3px solid black;
     border-radius: 50%;
     overflow: hidden;

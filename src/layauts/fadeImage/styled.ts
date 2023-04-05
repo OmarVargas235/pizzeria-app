@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div<{ height: string; }>`
-    overflow: hidden;
     width: 100%;
     height: ${props => props.height};
     position: relative;
+
+    &.overflow-hidden {
+        overflow: hidden;
+    }
 `;
 
 export const Img = styled.img`

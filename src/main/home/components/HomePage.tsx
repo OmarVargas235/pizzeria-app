@@ -1,4 +1,5 @@
 // 1.- librerias
+import { ChangeEvent } from "react";
 
 // 2.- componets
 import TextField from "../../../layauts/textField/TextField";
@@ -10,8 +11,16 @@ import CardPage from "./CardPage";
 // 3.- iconos
 import { BiSearchAlt2 } from "react-icons/bi";
 
+// 4.- interface
+import { Store } from "../../../helpers/interface";
 
-const HomePage = (): JSX.Element => {
+interface Props {
+    stores: Store[];
+    search: string;
+    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const HomePage = ({ stores, search, handleChange }: Props): JSX.Element => {
     
     return <Container className="px-4 w-100">
         <Header />
@@ -29,8 +38,8 @@ const HomePage = (): JSX.Element => {
 
         <TextField
             name="pizzeira"
-            handleChange={() => {}}
-            value="value"
+            handleChange={handleChange}
+            value={search}
             classes="w-100 w-sm-75 mb-4 mb-sm-5"
             placeholder="Buscar una pizzeíra"
             icon2={<BiSearchAlt2 size={25} color='#2F2C2D' className="mr-3" />}
@@ -39,9 +48,10 @@ const HomePage = (): JSX.Element => {
 
         <ListView className="row">
             {
-                [1, 2, 3, 4].map(v => (
+                stores.map(v => (
                     <CardPage
-                        key={v}
+                        key={v.id}
+                        data={v}
                     />
                 ))
             }

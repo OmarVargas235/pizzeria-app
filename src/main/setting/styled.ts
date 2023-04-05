@@ -16,6 +16,10 @@ export const ContainerImage = styled.div`
         border: 2px solid black;
         border-radius: 50%;
     }
+
+    .avatar {
+        font-size: 40px;
+    }
 `;
 
 export const ContainerFile = styled.div`

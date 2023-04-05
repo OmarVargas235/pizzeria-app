@@ -9,18 +9,27 @@ import { Card, ContainerImg, FooterCard } from '../styled';
 // 3.- imagenes
 import imgLoading from '../../../assets/img/no-image.jpg';
 
-const CardPage = (): JSX.Element => {
+// 4.- interface
+import { Store } from "../../../helpers/interface";
+
+interface Props {
+    data: Store;
+}
+
+const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
+
+const CardPage = ({ data }: Props): JSX.Element => {
 
     const history = useNavigate();
-
+    
     return <Card
         className='col-10 col-md-6 col-xl-4 pl-0 mb-4 pointer'
-        onClick={() => history(`/detail/1`)}
+        onClick={() => history(`/detail/${data.id}`)}
     >
         <ContainerImg>
             <FadeImage
                 placeholder={imgLoading}
-                img={"https://thumbs.dreamstime.com/b/camino-vac%C3%ADo-y-paisaje-despu%C3%A9s-de-la-tormenta-pesada-55721383.jpg"}
+                img={`${VITE_BACKEND_URL ?? ''}/${data.logo}`}
                 alt="imgPizza"
                 className=""
             />
@@ -30,11 +39,11 @@ const CardPage = (): JSX.Element => {
             <Text
                 color='#827E81'
                 weight='600'
-            >Panos Pizza</Text>
+            >{data.title}</Text>
 
             <Text
                 size='15px'
-            >Calle 1 #2-3</Text>
+            >{data.direction}</Text>
         </FooterCard>
     </Card>;
 }

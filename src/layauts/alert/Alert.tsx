@@ -1,7 +1,6 @@
 // 1. librerias
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 // 2.- estilos
 import { Container, ContainerModal, Body } from './styled';
@@ -24,15 +23,18 @@ import { RootState } from '../../redux/store';
 // 7.- redux
 import { setIsActiveAlert, IInitState } from '../../redux/reducers/reducerAlert';
 
+// 8.- context
+import { AuthContext } from '../../auth/AuthProvider';
+
 let timeout: string | number | NodeJS.Timeout | undefined;
 
 const expireSesion = 'Lo sentimos, la sesión ha expirado';
 
 const Alert = (): JSX.Element => {
 
-    const history = useNavigate();
-
     const dispath = useDispatch();
+
+    const { setIsAuth } = useContext(AuthContext);
 
     const { isActive, messageAlert, isAlertSuccess } = useSelector<RootState, IInitState>(state => state.alert);
 
@@ -57,8 +59,8 @@ const Alert = (): JSX.Element => {
         const target: HTMLDivElement = e.target as HTMLDivElement;
         target.dataset.close === 'close' && close();
 
-        messageAlert === expireSesion && history('/login');
         messageAlert === expireSesion && auth.logout();
+        messageAlert === expireSesion && setIsAuth(false);
     }
 
     return <>

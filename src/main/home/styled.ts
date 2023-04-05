@@ -60,6 +60,14 @@ export const ContainerImg = styled.div`
     overflow: hidden;
 `;
 
+export const ContainerImgProfile = styled.div`
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 50%;
+    overflow: hidden;
+`;
+
 export const FooterCard = styled.div`
     width: 150px;
 `;

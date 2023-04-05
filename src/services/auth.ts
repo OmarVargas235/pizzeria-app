@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 import { Response } from './interfaces';
 import { generateError } from './utils';
-// import { User } from '../helpers/interface';
+import { User } from '../helpers/interface';
 
 interface IToken {
 	email: string;
@@ -30,7 +30,7 @@ class Auth {
 
 	public signIn = async (email: string, password: string): Promise<Response<{token: string; email: string;}>> => {
 
-		return await new Promise((resolve, reject) => {
+		return await new Promise((resolve) => {
 			axios
 				.post('/auth', {
 					email,
@@ -48,7 +48,7 @@ class Auth {
 
 					const error = response !== undefined ? generateError(response) : generateError(null);
 
-					reject(error);
+					resolve(error);
 				});
 		});
 	};
@@ -67,9 +67,25 @@ class Auth {
 		}
 	};
 
-	public signInWithToken = (): void => {
+	public signInWithToken = async (): Promise<Response<User>> => {
 
-		this.setSession(this.getAccessToken());
+		return await new Promise((resolve) => {
+			axios
+				.get('/users/session-info')
+				.then(({ data:resp }: AxiosResponse) => {
+
+					const { status, data, message } = resp as Response<User>;
+
+					this.setSession(this.getAccessToken());
+
+					resolve({ data, message, status });
+				})
+				.catch(({ response }: AxiosError) => {
+
+					const error = response !== undefined ? generateError(response) : generateError(null);
+					resolve(error);
+				});
+		});
 	};
 
 	public getAccessToken = (): string => {

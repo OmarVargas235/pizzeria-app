@@ -19,13 +19,13 @@ export const ContainerImg = styled.div`
     width: 200px;
     border-radius: 50%;
     background-color: #FFD970;
+    position: relative;
     
-
     .container-img {
-        width: 150px;
-        height: 150px;
-        position: relative;
-        top: -10px;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 0px;
     }
 `;
 

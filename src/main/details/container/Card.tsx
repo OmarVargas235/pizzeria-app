@@ -2,9 +2,16 @@
 // 2.- components
 import CardPage from "../components/CardPage";
 
-const Card = (): JSX.Element => {
+// 4.- interfaces
+import { StoreDetail } from '../../../helpers/interface';
 
-    return <CardPage />;
+type Props = Omit<StoreDetail, 'pizzerias'>;
+
+const Card = ({ pizzeria }: Props): JSX.Element => {
+
+    return <CardPage
+        pizzeria={pizzeria}
+    />;
 }
 
 export default Card;

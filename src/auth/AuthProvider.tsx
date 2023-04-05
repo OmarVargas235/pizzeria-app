@@ -1,5 +1,6 @@
 // 1.- librerias
 import { useState, useEffect, useCallback, createContext } from 'react';
+import { useDispatch } from 'react-redux';
 
 // 2.- components
 import Loader from '../layauts/spinner/Spinner';
@@ -12,9 +13,17 @@ import { User } from '../helpers/interface';
 // 4.- services
 import { auth, Event } from '../services/auth';
 
+// 5.- utils
+import { alert } from '../helpers/utils';
+
+// 6.- redux
+import { setIsActiveLoading } from '../redux/reducers/reducerBlockUI';
+import { setUser } from '../redux/reducers/reducerUser';
+
 export interface AuthContextInterface {
 	isAuth: boolean;
 	submitLogin: ({ email, password }: SubmitLogin) => Promise<Response<User>>;
+	setIsAuth: (v: boolean) => void;
 }
 
 export const AuthContext = createContext<AuthContextInterface>(
@@ -22,6 +31,8 @@ export const AuthContext = createContext<AuthContextInterface>(
 );
 
 const AuthProvider = ({ children }: Props): JSX.Element => {
+
+	const dispatch = useDispatch();
 
     const [isAuth, setIsAuth] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
@@ -44,8 +55,18 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
 
 			if (event === 'onAutoLogin') {
 
+				dispatch(setIsActiveLoading(true));
+
 				setIsAuth(true);
-				auth.signInWithToken();
+				auth.signInWithToken()
+					.then(resp => {
+
+						if (resp.data === null) return;
+						dispatch(setUser(resp.data));
+					})
+					.catch(err => alert({ dispatch, isAlertSuccess: false, message: err.message }))
+					.finally(() => dispatch(setIsActiveLoading(false)));
+
 				resolve();
 
 			} else if (event === 'onAutoLogout') {
@@ -77,10 +98,11 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
 					return err;
 				});
 		};
-
+	
     return <AuthContext.Provider value={{
         isAuth,
 		submitLogin,
+		setIsAuth,
     }}>
         { loading ? <Loader isLoading={true} /> : children }
     </AuthContext.Provider>;
