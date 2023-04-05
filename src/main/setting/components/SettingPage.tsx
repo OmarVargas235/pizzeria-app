@@ -35,9 +35,12 @@ interface Props {
     form: Model;
     setForm: (v: Model) => void;
     user: User;
+    imagePreview: string | ArrayBuffer | null;
 }
 
-const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user }: Props): JSX.Element => {
+const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
+
+const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user, imagePreview }: Props): JSX.Element => {
 
     const history = useNavigate();
 
@@ -63,7 +66,7 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
                     </Avatar>
                     : <FadeImage
                         placeholder={imgLoading}
-                        img={"https://cdn-icons-png.flaticon.com/512/3135/3135768.png"}
+                        img={`${VITE_BACKEND_URL}/${user.img}`}
                         alt="profile"
                         classNameContainer='image-profile'
                     />
@@ -96,6 +99,23 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
             isButton={false}
             classess='modal'
         >   
+            {
+                imagePreview === null || imagePreview === '' ? <></>
+                : <ContainerImage
+                    className='d-flex justify-content-center w-100 mb-3'
+                >
+                    <div
+                        style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden' }}
+                    >
+                        <FadeImage
+                            placeholder={imgLoading}
+                            img={imagePreview as string}
+                            alt="profile"
+                        />
+                    </div>
+                </ContainerImage>
+            }
+
             <Form
                 handleSubmit={handleSubmit}
                 onSubmit={onSubmit}

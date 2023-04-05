@@ -5,6 +5,7 @@ import { Submit, Event, EventTextarea, ITypeInput, Form } from './interface';
 export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 	const [model, setModel] = useState<T>({} as T);
 	const [errors, setErrors] = useState<K[]>([]);
+	const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
 
 	const handleSubmit =
 		(onSubmit: Submit<T>) =>
@@ -55,6 +56,8 @@ export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 
 		const { files, name } = e.target;
 		const [file] = files ?? [];
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
 
 		setModel({
 			...model,
@@ -66,6 +69,18 @@ export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 			...model,
 			[name]: file,
 		});
+
+		setImagePreview("");
+
+		reader.onload = function(e) {
+			setImagePreview(reader.result);
+		};
+
+		reader.onerror = function() {
+
+			console.log(reader.error);
+			setImagePreview(null);
+		};
 	};
 
 	const setSelect = (name: string, value: string | number | boolean, setForm: (state: T) => void, form: T): void => {
@@ -82,7 +97,7 @@ export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 	};
 
 	const setValuesDefault = useCallback(
-		(name: keyof T, value: number | string | boolean): void => {
+		(name: keyof T, value: number | string | boolean | {}): void => {
 			setModel(model => ({ ...model, [name]: value }));
 		},
 		[]
@@ -112,5 +127,7 @@ export const useForm = <T, K extends keyof T>(): Form<T, K> => {
 		setSelect,
 		model,
 		setModel,
+		imagePreview,
+		setImagePreview,
 	};
 };

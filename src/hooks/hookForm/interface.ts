@@ -21,4 +21,6 @@ export interface Form<T, K> {
 	setSelect: (name: string, value: string | number | boolean, setForm: (state: T) => void, form: T) => void;
 	model: T;
 	setModel: (value: T) => void;
+	imagePreview: string | ArrayBuffer | null;
+	setImagePreview: (v: string | ArrayBuffer | null) => void;
 }

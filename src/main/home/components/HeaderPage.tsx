@@ -22,16 +22,16 @@ const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
 const HeaderPage = ({ handleClick }: Props): JSX.Element => {
 
     const { user } = useSelector<RootState, IInitState>(state => state.user);
-
+    
     return <Header className="w-100 d-flex justify-content-end mb-5">
         {
             user.img !== null
-            ? <ContainerImgProfile>
+            ? <ContainerImgProfile onClick={handleClick}>
                 <FadeImage
                     placeholder={imgLoading}
                     img={`${VITE_BACKEND_URL}/${user.img}`}
                     alt="imgPizza"
-                    className=""
+                    classNameContainer="pointer"
                 />
             </ContainerImgProfile>
             : <Avatar

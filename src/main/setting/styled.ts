@@ -15,6 +15,7 @@ export const ContainerImage = styled.div`
         height: 100px;
         border: 2px solid black;
         border-radius: 50%;
+        overflow: hidden;
     }
 
     .avatar {

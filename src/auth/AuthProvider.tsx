@@ -62,7 +62,11 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
 					.then(resp => {
 
 						if (resp.data === null) return;
-						dispatch(setUser(resp.data));
+
+						dispatch(setUser({
+							...resp.data,
+							img: resp.data.img === 'null' ? null : resp.data.img
+						}));
 					})
 					.catch(err => alert({ dispatch, isAlertSuccess: false, message: err.message }))
 					.finally(() => dispatch(setIsActiveLoading(false)));

@@ -25,7 +25,9 @@ const AppRouter = ({ setIsSetting }: Props): JSX.Element => {
         <Spinner />
 
         {
-            isAuth ? <RouterPrivate setIsSetting={setIsSetting} /> :  <RouterPublic />
+            isAuth
+                ? <RouterPrivate setIsSetting={setIsSetting} />
+                : <RouterPublic setIsSetting={setIsSetting} />
         }
     </Router>;
 }
