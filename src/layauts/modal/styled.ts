@@ -17,7 +17,7 @@ export const Container = styled.section`
 `;
 
 export const ContainerModal = styled.div<IContainerModal>`
-    border: 4px solid #A7C7E4;
+    /* border: 4px solid #A7C7E4; */
     border-radius: 3px;
     width: ${props => props.width};
     background-color: white;

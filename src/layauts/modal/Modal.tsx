@@ -19,11 +19,12 @@ interface Props {
     textBtn: string;
     isButton?: boolean;
     width?: string;
+    className?: string;
 }
 
 let timeout: string | number | NodeJS.Timeout | undefined;
 
-const Modal = ({ children, open, closeModal, classess='', textBtn, isButton=true, width='100%' }: Props): JSX.Element => {
+const Modal = ({ children, open, closeModal, classess='', textBtn, isButton=true, width='100%', className='' }: Props): JSX.Element => {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -95,6 +96,7 @@ const Modal = ({ children, open, closeModal, classess='', textBtn, isButton=true
                         isScrollY={isScrollY}
                         ref={containerRef}
                         width={width}
+                        className={className}
                     >
                         <div className='d-flex justify-content-end mb-4'>
                             <BiXCircle

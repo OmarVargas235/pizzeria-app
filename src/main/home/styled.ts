@@ -55,7 +55,6 @@ export const Card = styled.div`
 export const ContainerImg = styled.div`
     width: 150px;
     height: 150px;
-    border: 1px solid #827E81;
     border-radius: 4px;
     overflow: hidden;
 `;

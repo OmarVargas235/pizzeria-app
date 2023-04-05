@@ -35,7 +35,7 @@ const ResetPasswordPage = ({ handleSubmit, handleChange, onSubmit, form, setForm
     return <Container
         className="w-100 px-sm-2 px-md-4 d-flex flex-column align-items-center justify-content-center"
     >
-        <div className="w-100 text-right">
+        <div className="w-100 text-right mb-5">
             <BsArrowLeftShort 
                 size={40}
                 className="pointer"
@@ -43,17 +43,19 @@ const ResetPasswordPage = ({ handleSubmit, handleChange, onSubmit, form, setForm
             />
         </div>
 
-        <FadeImage
-            placeholder={imgLoading}
-            img={imgLogo}
-            alt="imgLogo"
-            className="img"
-        />
+        <div className='container-img-reset-password'>
+            <FadeImage
+                placeholder={imgLoading}
+                img={imgLogo}
+                alt="imgLogo"
+                className="img-reset-password"
+            />
+        </div>
 
         <Form
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
-            className="w-100 w-sm-100 w-lg-75 w-xxl-50 p-4"
+            className="w-100 w-sm-100 w-lg-75 w-xxl-50 px-4 py-0 p-sm-4 mt-5"
         >
             <TextField
                 type='email'

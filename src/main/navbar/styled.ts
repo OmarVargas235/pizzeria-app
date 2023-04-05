@@ -10,7 +10,7 @@ export const Container = styled.section`
 	overflow: hidden;
 `;
 
-export const ContainerMenu = styled.div<{ isOpen: boolean; }>`
+export const ContainerMenu = styled.nav<{ isOpen: boolean; }>`
 	position: relative;
 	right: -100%;
     height: 100%;
@@ -47,10 +47,10 @@ export const ContainerMenu = styled.div<{ isOpen: boolean; }>`
 export const ContainerImg = styled.div`
     width: 50px;
     height: 50px;
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius: 50%;
     overflow: hidden;
-    padding: 1px;
+
 `;
 
 const stylesGlobals = (w: string, h: string, p: string, background: string ="", border: string ="", t: string =""): string => (`
@@ -114,11 +114,11 @@ export const BtnToggleStyles = styled.div`
 	}
 `;
 
-export const Option = styled.div`
+export const Option = styled.div<{ isDark: boolean; }>`
 	cursor: pointer;
 	transition: background-color .2s ease-in-out;
 
 	&:hover {
-		background-color: rgba(0, 0, 0, .3);
+		background-color: ${({ isDark }) => isDark ? 'rgba(254, 254, 254, .3)' : 'rgba(0, 0, 0, .3)'};
 	}
 `;

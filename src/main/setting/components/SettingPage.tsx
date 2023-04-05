@@ -36,16 +36,17 @@ interface Props {
     setForm: (v: Model) => void;
     user: User;
     imagePreview: string | ArrayBuffer | null;
+    isDark: boolean;
 }
 
 const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
 
-const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user, imagePreview }: Props): JSX.Element => {
+const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user, imagePreview, isDark }: Props): JSX.Element => {
 
     const history = useNavigate();
 
     return <>
-        <Container className='pb-4'>
+        <Container className='pb-4' isDark={isDark}>
             <div className="w-100 p-2">
                 <BsArrowLeftShort 
                     size={40}
@@ -97,7 +98,7 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
             open={isOpenModal}
             textBtn=''
             isButton={false}
-            classess='modal'
+            className='container-modal'
         >   
             {
                 imagePreview === null || imagePreview === '' ? <></>

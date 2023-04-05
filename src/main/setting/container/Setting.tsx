@@ -10,6 +10,7 @@ import { useForm } from '../../../hooks/hookForm/useForm';
 
 // 4.- interfaces
 import { IInitState, setUser } from '../../../redux/reducers/reducerUser';
+import { IInitState as IInitStateTheme } from '../../../redux/reducers/reducerTheme';
 import { RootState } from '../../../redux/store';
 
 // 5.- services
@@ -46,6 +47,7 @@ const Setting = (): JSX.Element => {
     const dispatch = useDispatch();
 
     const { user } = useSelector<RootState, IInitState>(state => state.user);
+    const { isDark } = useSelector<RootState, IInitStateTheme>(state => state.theme);
 
     const { handleSubmit, handleChange, handleChangeFile, setValuesDefault, imagePreview, setImagePreview } = useForm<Model, keyof {}>();
 
@@ -108,6 +110,7 @@ const Setting = (): JSX.Element => {
         setForm={setForm}
         user={user}
         imagePreview={imagePreview}
+        isDark={isDark}
     />;
 }
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
-    background-color: white;
+export const Container = styled.section<{ isDark: boolean; }>`
+    background-color: ${props => props.isDark ? '#232229' : 'white'};
     width: 320px;
 
     @media (max-width: 576px) {
