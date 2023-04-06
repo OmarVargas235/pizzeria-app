@@ -11,9 +11,6 @@ import { Text } from '../Text';
 // 4.- iconos
 import { RiArrowUpSFill } from 'react-icons/ri';
 
-// 5.- theme
-import { theme } from '../../theme/theme';
-
 export interface IOption {
     label: string;
     value: number | string;
@@ -43,10 +40,10 @@ const Arrows = ({ currentValue, isSearch=false }: { currentValue: string; isSear
         }
 
         <div className='d-flex flex-column ml-2' id='closeSelect'>
-            <RiArrowUpSFill size={12} style={{ color: theme.text.darkgray }} id='closeSelect' />
+            <RiArrowUpSFill size={12} style={{ color: '#242424' }} id='closeSelect' />
             <RiArrowUpSFill
                 size={12}
-                style={{ transform: 'rotateZ(180deg)', color: theme.text.darkgray }}
+                style={{ transform: 'rotateZ(180deg)', color: '#242424' }}
                 id='closeSelect'
             />
         </div>

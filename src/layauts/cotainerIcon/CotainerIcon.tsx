@@ -1,7 +1,6 @@
 import { ContainerIcons } from './styled';
 
 import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
-import { theme } from '../../theme/theme';
 
 interface IProps {
     icon: JSX.Element;
@@ -18,11 +17,11 @@ const CotainerIcon = ({ icon, isCheck=false }: IProps): JSX.Element => (
             {
                 isCheck ? <AiFillCheckCircle
                     size={45}
-                    color={theme.icons.check}
+                    color='#3FA96B'
                     className='position-absolute closeCircle'
                 /> : <AiFillCloseCircle
                     size={45}
-                    color={theme.icons.error}
+                    color='#EB5757'
                     className='position-absolute closeCircle'
                 />
             }

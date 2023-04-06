@@ -8,8 +8,6 @@ import { Text } from './Text';
 // 3.- iconos
 import { BsArrowRightShort } from "react-icons/bs";
 
-import { theme } from '../theme/theme';
-
 interface Props {
     img?: string | null;
     title: string;
@@ -48,7 +46,6 @@ const Card = ({ img=null, title, texts, path, data, handleClick=()=>{} }: Props)
         <div className='col-8 p-1'>
             <Text
                 size='14px'
-                color={theme.primary}
                 weight='bold'
             >{title}</Text>
             

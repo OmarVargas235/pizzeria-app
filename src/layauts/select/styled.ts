@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div<{ isError: boolean; }>`
-    border: ${props => props.isError ? `2px solid ${props.theme.error}` : `1px solid  ${props.theme.colors.color2}`};
+    border: ${props => props.isError ? `2px solid #BA1A1A` : `1px solid  #DDDDDD`};
     border-radius: 4px;
     height: 47px;
 `;
@@ -17,7 +17,7 @@ export const Current = styled.div`
 
 export const ContainerOptions = styled.div`
     border: 1px solid #96989D;
-    background-color: ${props => props.theme.white};
+    background-color: white;
     top: 110%;
     left: 0;
     z-index: 1;
