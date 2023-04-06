@@ -13,6 +13,8 @@ interface IToken {
 
 export type Event = 'onAutoLogin' | 'onAutoLogout' | 'onNoAccessToken' | '';
 
+const ednpoint = '/auth';
+
 class Auth {
 	private typeEvent: Event = '';
 
@@ -32,7 +34,7 @@ class Auth {
 
 		return await new Promise((resolve) => {
 			axios
-				.post('/auth', {
+				.post(ednpoint, {
 					email,
 					password,
 				})
@@ -132,6 +134,63 @@ class Auth {
 		}
 
 		return true;
+	};
+
+	public sendEmail = async (email: string): Promise<Response<string>> => {
+
+		return await new Promise((resolve) => {
+			axios
+				.post(`${ednpoint}/send-email`, { email })
+				.then(({ data:resp }: AxiosResponse) => {
+
+					const { status, data, message } = resp as Response<string>;
+
+					resolve({ data, message, status });
+				})
+				.catch(({ response }: AxiosError) => {
+
+					const error = response !== undefined ? generateError(response) : generateError(null);
+					resolve(error);
+				});
+		});
+	};
+
+	public resetPassword = async (body: { tokenURL: string; password: string; }): Promise<Response<string>> => {
+
+		return await new Promise((resolve) => {
+			axios
+				.put(`${ednpoint}/reset-password`, body)
+				.then(({ data:resp }: AxiosResponse) => {
+
+					const { status, data, message } = resp as Response<string>;
+
+					resolve({ data, message, status });
+				})
+				.catch(({ response }: AxiosError) => {
+
+					const error = response !== undefined ? generateError(response) : generateError(null);
+					resolve(error);
+				});
+		});
+	};
+
+	public validateTokenURL = async (token: string): Promise<Response<null>> => {
+
+		return await new Promise((resolve) => {
+			axios
+				.post(`${ednpoint}/validate-tokenURL`, { tokenURL: token })
+				.then(({ data:resp }: AxiosResponse) => {
+
+					const { status, data, message } = resp as Response<null>;
+
+					resolve({ data, message, status });
+				})
+				.catch(({ response }: AxiosError) => {
+
+					const error = response !== undefined ? generateError(response) : generateError(null);
+					resolve(error);
+				});
+		});
 	};
 }
 

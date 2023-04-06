@@ -11,7 +11,7 @@ export const generateError = (resp: AxiosResponse | null): Response<null>  => {
 
     const statusCode = resp.status as Status;
 
-    if (statusCode === 401 || statusCode === 403) {
+    if (statusCode === 401) {
 
         const error = new Error(JSON.stringify({ data: null, message: 'Lo sentimos, la sesión ha expirado', status: 401 }));
         return JSON.parse(error.message);

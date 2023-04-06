@@ -5,7 +5,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 // 2.- components
 import Login from '../main/login';
 import Register from '../main/register';
-import ResetPassword from '../main/reset-password/container/ResetPassword';
+import ResetPassword from '../main/reset-password';
+import FormResetPassword from '../main/form-reset-password';
 
 interface Props {
     setIsSetting: (v: boolean) => void;
@@ -19,6 +20,7 @@ const RouterPublic = ({ setIsSetting }: Props): JSX.Element => {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/reset-password/:token' element={<FormResetPassword />} />
 
         <Route
             path="*"

@@ -57,7 +57,7 @@ const Register = (): JSX.Element => {
         if (!isValidateEmail) return alert({ dispatch, isAlertSuccess: false, message: 'Correo invalido' });
 
         if (newModel.password !== newModel.repeatPassword)
-            return alert({ dispatch, isAlertSuccess: false, message: 'Las contraseñas deben de seriguales' });
+            return alert({ dispatch, isAlertSuccess: false, message: 'Las contraseñas deben ser iguales' });
         
         dispatch(setIsActiveLoading(true));
         const result = await dataUser.register(newModel);

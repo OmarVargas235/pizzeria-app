@@ -36,7 +36,7 @@ const Alert = (): JSX.Element => {
 
     const { setIsAuth } = useContext(AuthContext);
 
-    const { isActive, messageAlert, isAlertSuccess } = useSelector<RootState, IInitState>(state => state.alert);
+    const { isActive, messageAlert, isAlertSuccess, isAlertWarning } = useSelector<RootState, IInitState>(state => state.alert);
 
     const [isClose, setIsclose] = useState(false);
 
@@ -86,7 +86,7 @@ const Alert = (): JSX.Element => {
                                     size={45}
                                     color='#3FA96B'
                                 />
-                                : messageAlert === expireSesion
+                                : messageAlert === expireSesion || isAlertWarning
                                     ? <AiFillWarning
                                         size={45}
                                         color='#ffc107'
