@@ -1,17 +1,32 @@
 import styled from "styled-components";
 import { mediaQueryListView } from "../../helpers/utils";
 
-export const Container = styled.div`
+export const Container = styled.div``;
+
+export const Perspective = styled.aside`
+    perspective: 1000px;
     
+    .container-animation, p {
+        transition: transform .3s ease-in-out;
+    }
+
+    &:hover {
+        .container-animation, p {
+            transform: translateZ(60px);
+        }
+    }
 `;
 
 export const ContainerCard = styled.div`
     width: 300px;
+    height: 350px;
     border-radius: 15px;
     -webkit-box-shadow: 0px -1px 45px -3px rgba(0,0,0,0.58);
     -moz-box-shadow: 0px -1px 45px -3px rgba(0,0,0,0.58);
     box-shadow: 0px -1px 45px -3px rgba(0,0,0,0.58);
     background-color: white;
+    transform-style: preserve-3d;
+    transition: transform .1s ease-in;
 `;
 
 export const ContainerImg = styled.div`
@@ -20,6 +35,7 @@ export const ContainerImg = styled.div`
     border-radius: 50%;
     background-color: #FFD970;
     position: relative;
+    transform-style: preserve-3d;
     
     .container-img {
         width: 100px;

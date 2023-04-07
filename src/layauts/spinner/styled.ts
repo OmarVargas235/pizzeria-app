@@ -29,7 +29,7 @@ export const Container = styled.div`
         width: 8px;
         height: 13px;
         border-radius: 50%;
-        background-color: #0558A7;
+        background-color: #FFD970;
     }
 
     .ml-loader div:nth-child(1) {
