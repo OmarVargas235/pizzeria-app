@@ -26,7 +26,7 @@ const DetailPage = ({ detail }: Props): JSX.Element => {
                 <BsArrowLeftShort 
                     size={40}
                     className="pointer"
-                    onClick={() => history('home')}
+                    onClick={() => history('/home')}
                 />
             </div>
 

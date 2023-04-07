@@ -51,7 +51,7 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
                 <BsArrowLeftShort 
                     size={40}
                     className="pointer"
-                    onClick={() => history('login')}
+                    onClick={() => history('/login')}
                 />
             </div>
 

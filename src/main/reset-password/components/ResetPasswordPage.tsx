@@ -39,7 +39,7 @@ const ResetPasswordPage = ({ handleSubmit, handleChange, onSubmit, form, setForm
             <BsArrowLeftShort 
                 size={40}
                 className="pointer"
-                onClick={() => history('login')}
+                onClick={() => history('/login')}
             />
         </div>
 

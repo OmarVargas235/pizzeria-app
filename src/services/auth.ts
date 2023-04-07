@@ -84,6 +84,8 @@ class Auth {
 				})
 				.catch(({ response }: AxiosError) => {
 
+					this.setSession(null);
+
 					const error = response !== undefined ? generateError(response) : generateError(null);
 					resolve(error);
 				});

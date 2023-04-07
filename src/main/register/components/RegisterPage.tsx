@@ -33,7 +33,7 @@ const RegisterPage = ({ handleSubmit, handleChange, onSubmit, form, setForm, err
             <BsArrowLeftShort 
                 size={40}
                 className="pointer"
-                onClick={() => history('login')}
+                onClick={() => history('/login')}
             />
         </div>
 
