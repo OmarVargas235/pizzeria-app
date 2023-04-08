@@ -39,8 +39,6 @@ interface Props {
     isDark: boolean;
 }
 
-const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
-
 const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user, imagePreview, isDark }: Props): JSX.Element => {
 
     const history = useNavigate();
@@ -67,7 +65,7 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
                     </Avatar>
                     : <FadeImage
                         placeholder={imgLoading}
-                        img={`${VITE_BACKEND_URL}/${user.img}`}
+                        img={user.img}
                         alt="profile"
                         classNameContainer='image-profile'
                     />
@@ -98,7 +96,6 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
             open={isOpenModal}
             textBtn=''
             isButton={false}
-            className='container-modal'
         >   
             {
                 imagePreview === null || imagePreview === '' ? <></>

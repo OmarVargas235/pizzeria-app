@@ -32,8 +32,6 @@ interface Props {
     isDark: boolean;
 }
 
-const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
-
 const NavbarPage = ({ isOpen, handleClick, closeNavbar, redirectSetting, closeSesion, isDark }: Props): JSX.Element => {
 
     const { user } = useSelector<RootState, IInitState>(state => state.user);
@@ -62,7 +60,7 @@ const NavbarPage = ({ isOpen, handleClick, closeNavbar, redirectSetting, closeSe
                     : <ContainerImg className='d-flex justify-content-center align-items-center'>
                         <FadeImage
                             placeholder={imgLoading}
-                            img={`${VITE_BACKEND_URL}/${user.img}`}
+                            img={user.img}
                             alt="imgPizza"
                         />
                     </ContainerImg>

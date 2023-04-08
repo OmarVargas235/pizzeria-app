@@ -17,8 +17,6 @@ interface Props {
     handleClick: () => void;
 }
 
-const VITE_BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
-
 const HeaderPage = ({ handleClick }: Props): JSX.Element => {
 
     const { user } = useSelector<RootState, IInitState>(state => state.user);
@@ -29,7 +27,7 @@ const HeaderPage = ({ handleClick }: Props): JSX.Element => {
             ? <ContainerImgProfile onClick={handleClick}>
                 <FadeImage
                     placeholder={imgLoading}
-                    img={`${VITE_BACKEND_URL}/${user.img}`}
+                    img={user.img}
                     alt="imgPizza"
                     classNameContainer="pointer"
                 />
