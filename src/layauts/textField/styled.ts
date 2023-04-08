@@ -52,7 +52,7 @@ export const ContainerTextField = styled.div`
 		display: block;
 		font-size: 14px;
 		font-weight: bold;
-		color: #656E93;
+		color: ${props => props.theme.label};
 	}
 `;
 

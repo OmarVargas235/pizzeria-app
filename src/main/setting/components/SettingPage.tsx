@@ -36,15 +36,14 @@ interface Props {
     setForm: (v: Model) => void;
     user: User;
     imagePreview: string | ArrayBuffer | null;
-    isDark: boolean;
 }
 
-const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user, imagePreview, isDark }: Props): JSX.Element => {
+const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFile, handleSubmit, onSubmit, form, setForm, user, imagePreview }: Props): JSX.Element => {
 
     const history = useNavigate();
 
     return <>
-        <Container className='pb-4' isDark={isDark}>
+        <Container className='pb-4'>
             <div className="w-100 p-2">
                 <BsArrowLeftShort 
                     size={40}
@@ -86,7 +85,7 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
             >{user.name} {user.lastName}</Text>
 
             <Text
-                color='#5A585E'
+                color='#827E81'
                 className='text-center'
             >{user.email}</Text>
         </Container>
@@ -149,7 +148,6 @@ const SettingPage = ({ isOpenModal, setIsOpenModal, handleChange, handleChangeFi
                 <div className='d-flex justify-content-center'>
                     <Button
                         classes='mr-2'
-                        color='#FFD970'
                         type='submit'
                     >Aceptar</Button>
                     

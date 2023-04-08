@@ -74,7 +74,6 @@ const ResetPasswordPage = ({ handleSubmit, handleChange, onSubmit, form, setForm
                 <Button
                     type="submit"
                     fullWidth={true}
-                    color="rgb(255, 217, 112)"
                     classes="btn"
                 >Solicitar nueva contraseña</Button>
             </div>

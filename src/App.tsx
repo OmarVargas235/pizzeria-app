@@ -1,6 +1,6 @@
 // 1.- librerias
 import { Suspense, lazy, useState, useEffect, useContext } from "react";
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
 
@@ -16,7 +16,10 @@ import { RootState } from './redux/store';
 // 3.- context
 import { AuthContext } from './auth/AuthProvider';
 
-// 4.- components
+// 4.- theme
+import { themeLight, themeDark } from './theme/theme';
+
+// 5.- components
 import Spinner from "./layauts/spinner/Spinner";
 const FadeImage = lazy(async () => await import("./layauts/fadeImage/FadeImage"));
 const AppRouter = lazy(async () => await import("./routers/AppRouter"));
@@ -74,11 +77,11 @@ const ColumnLeft = styled.article`
 
 const ColumnRight = styled.article<{ isSetting: boolean; isDark: boolean; isAuth: boolean; }>`
     width: 100%;
-    background-color: ${props => props.isSetting ? '' : 'white'};
+    background-color: ${props => props.isSetting ? '' : props.theme.bg.bg3};
 
     @media (max-width: 576px) {
         position: absolute;
-        background-color: rgba(254, 254, 254, .9);
+        background-color: ${props => props.theme.bg.bg2};
         top: 25%;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
@@ -87,27 +90,9 @@ const ColumnRight = styled.article<{ isSetting: boolean; isDark: boolean; isAuth
         padding-top: 170px;
     }
 
-    ${({ isDark, isSetting, isAuth }) => (isDark && isAuth) ? (`
-        background-color: ${isSetting ? '' : '#303030'};
-        
-        nav {
-            background-color: #303030;
-        }
-
+    ${({ isDark, isSetting }) => (isDark) ? (`
         p, svg {
             color: white !important;
-        }
-
-        .theme-dark {
-            color: #232229 !important;
-        }
-
-        .container-modal {
-            background-color: #232229;
-        }
-
-        .label {
-            color: white;
         }
     `) : ''};
 `;
@@ -134,27 +119,29 @@ function App(): JSX.Element {
 
         <GlobalStyle />
 
-        <Container className="row">
-            <ColumnLeft className="col-12 col-sm-6 d-flex align-items-center justify-content-center">
-                <FadeImage
-                    placeholder={imgLoading}
-                    img={imgPizza}
-                    alt="imgPizza"
-                    className="pizza"
-                />
-            </ColumnLeft>
-
-            <ColumnRight
-                className="col-12 col-sm-6 d-flex flex-column align-items-center justify-content-center pb-3 pt-sm-3"
-                isSetting={isSetting}
-                isDark={isDark}
-                isAuth={isAuth}
-            >
-                <AppRouter
-                    setIsSetting={setIsSetting}
-                />
-            </ColumnRight>
-        </Container>
+        <ThemeProvider theme={isDark ? themeDark : themeLight}>
+            <Container className="row">
+                <ColumnLeft className="col-12 col-sm-6 d-flex align-items-center justify-content-center">
+                    <FadeImage
+                        placeholder={imgLoading}
+                        img={imgPizza}
+                        alt="imgPizza"
+                        className="pizza"
+                    />
+                </ColumnLeft>
+                
+                <ColumnRight
+                    className="col-12 col-sm-6 d-flex flex-column align-items-center justify-content-center pb-3 pt-sm-3"
+                    isSetting={isSetting}
+                    isDark={isDark}
+                    isAuth={isAuth}
+                >
+                    <AppRouter
+                        setIsSetting={setIsSetting}
+                    />
+                </ColumnRight>
+            </Container>
+        </ThemeProvider>
     </Suspense>;
 }
 

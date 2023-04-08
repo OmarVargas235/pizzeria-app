@@ -115,7 +115,6 @@ const RegisterPage = ({ handleSubmit, handleChange, onSubmit, form, setForm, err
                 <Button
                     type="submit"
                     fullWidth={true}
-                    color="rgb(255, 217, 112)"
                     classes="btn"
                 >Crear Cuenta</Button>
             </div>

@@ -9,7 +9,6 @@ import NavbarPage from "../components/NavbarPage";
 // 3.- redux
 import { RootState } from '../../../redux/reducers';
 import { IInitState, setDesactiveNavbar } from '../../../redux/reducers/reducerOpenNavbar';
-import { IInitState as IInitStateTheme } from '../../../redux/reducers/reducerTheme';
 
 // 4.- services
 import { auth } from '../../../services/auth';
@@ -25,7 +24,6 @@ const Detail = (): JSX.Element => {
 
     const dispatch = useDispatch();
     const { isOpen } = useSelector<RootState, IInitState>(state => state.isOpenNavbar);
-    const { isDark } = useSelector<RootState, IInitStateTheme>(state => state.theme);
 
     const { setIsAuth } = useContext(AuthContext);
 
@@ -72,7 +70,6 @@ const Detail = (): JSX.Element => {
                     closeNavbar={closeNavbar}
                     redirectSetting={redirectSetting}
                     closeSesion={closeSesion}
-                    isDark={isDark}
                 />
                 : null
         }

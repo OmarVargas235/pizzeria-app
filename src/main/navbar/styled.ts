@@ -6,7 +6,7 @@ export const Container = styled.section`
     z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .4);
+    background-color: rgba(0, 0, 0, .6);
 	overflow: hidden;
 `;
 
@@ -15,7 +15,7 @@ export const ContainerMenu = styled.nav<{ isOpen: boolean; }>`
 	right: -100%;
     height: 100%;
     width: 50%;
-    background-color: rgba(254, 254, 254, .9);
+    background-color: ${props => props.theme.bg.bg2};
 	animation ${props => props.isOpen ? 'intoNavbar' : 'outNavbar'} .6s cubic-bezier(.8,-.5,.2,1.4) forwards;
 
 	@keyframes intoNavbar {
@@ -47,7 +47,7 @@ export const ContainerMenu = styled.nav<{ isOpen: boolean; }>`
 export const ContainerImg = styled.div`
     width: 50px;
     height: 50px;
-    border: 2px solid black;
+    border: 2px solid ${props => props.theme.border};
     border-radius: 50%;
     overflow: hidden;
 
@@ -114,11 +114,11 @@ export const BtnToggleStyles = styled.div`
 	}
 `;
 
-export const Option = styled.div<{ isDark: boolean; }>`
+export const Option = styled.div`
 	cursor: pointer;
 	transition: background-color .2s ease-in-out;
 
 	&:hover {
-		background-color: ${({ isDark }) => isDark ? 'rgba(254, 254, 254, .3)' : 'rgba(0, 0, 0, .3)'};
+		background-color: ${({ theme }) => theme.bg.bg1};
 	}
 `;

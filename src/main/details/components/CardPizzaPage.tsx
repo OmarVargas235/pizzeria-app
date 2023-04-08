@@ -35,7 +35,7 @@ const CardPizzaPage = ({ data }: Props): JSX.Element => {
             <div
                 className="w-75 d-flex justify-content-center align-items-center"
             >
-                <Text className="theme-dark">{data.description}</Text>
+                <Text>{data.description}</Text>
             </div>
         </div>
     </ContainerCardPizza>;

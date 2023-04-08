@@ -55,20 +55,20 @@ const CardPage = ({ pizzeria, handleMouseMove, rotate, resetCoords, perspectiveR
                 <Text
                     weight="bold"
                     size="22px"
-                    className="text-center mt-5 mb-2 theme-dark"
+                    className="text-center mt-5 mb-2"
                     style={{ lineHeight: '30px' }}
                 >{pizzeria.title}</Text>
-                <Text color="#999295" className="mb-1 theme-dark">{pizzeria.direction}</Text>
+                <Text color="#827E81" className="mb-1">{pizzeria.direction}</Text>
             </ContainerImg>
 
             <Text
-                color="#999295"
-                className="mt-2 theme-dark text-center"
+                color="#827E81"
+                className="mt-2 text-center"
             >{pizzeria.description}</Text>
 
             <div className="mt-3 container-animation">
-                <FaFacebookSquare size={25} className="mr-2 theme-dark" />
-                <FaInstagram size={25} className="theme-dark" />
+                <FaFacebookSquare size={25} className="mr-2" />
+                <FaInstagram size={25} />
             </div>
         </ContainerCard>
     </Perspective>;

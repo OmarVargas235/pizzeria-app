@@ -62,7 +62,7 @@ export const ContainerImg = styled.div`
 export const ContainerImgProfile = styled.div`
     width: 50px;
     height: 50px;
-    border: 2px solid black;
+    border: 2px solid ${props => props.theme.border};
     border-radius: 50%;
     overflow: hidden;
 `;

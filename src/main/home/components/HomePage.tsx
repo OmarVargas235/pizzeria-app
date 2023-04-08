@@ -34,7 +34,7 @@ const HomePage = ({ stores, search, handleChange }: Props): JSX.Element => {
             weight="bold"
         >Tiendas</Text>
 
-        <Text className="mt-2 mb-3" color="#767276">Escoje tu pizzería favorita</Text>
+        <Text className="mt-2 mb-3" color="#827E81">Escoje tu pizzería favorita</Text>
 
         <TextField
             name="pizzeira"

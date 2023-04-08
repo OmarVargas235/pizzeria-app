@@ -18,7 +18,10 @@ const Spinner = ({ isLoading=false }: Props): JSX.Element => {
 
     return <>
         {
-            ( isLoading || Boolean(isActive) ) ? <Container className='position-fixed w-100 min-h-100 d-flex justify-content-center align-items-center'>
+            ( isLoading || Boolean(isActive) )
+            ? <Container
+                className='position-fixed w-100 min-h-100 d-flex justify-content-center align-items-center'
+            >
                 <div className="ml-loader">
                     <div></div>
                     <div></div>

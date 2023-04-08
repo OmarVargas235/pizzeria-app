@@ -82,7 +82,6 @@ const FormResetPasswordPage = ({ handleSubmit, handleChange, onSubmit, form, set
                 <Button
                     type="submit"
                     fullWidth={true}
-                    color="rgb(255, 217, 112)"
                     classes="btn"
                 >Cambiar Contraseña</Button>
             </div>

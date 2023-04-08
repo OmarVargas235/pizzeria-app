@@ -29,10 +29,9 @@ interface Props {
     closeNavbar: () => void;
     redirectSetting: () => void;
     closeSesion: () => void;
-    isDark: boolean;
 }
 
-const NavbarPage = ({ isOpen, handleClick, closeNavbar, redirectSetting, closeSesion, isDark }: Props): JSX.Element => {
+const NavbarPage = ({ isOpen, handleClick, closeNavbar, redirectSetting, closeSesion }: Props): JSX.Element => {
 
     const { user } = useSelector<RootState, IInitState>(state => state.user);
 
@@ -67,12 +66,11 @@ const NavbarPage = ({ isOpen, handleClick, closeNavbar, redirectSetting, closeSe
                 }
             </div>
 
-            <Text className='my-4 mx-3' color='#656265'>Bienvenido {user.name} {user.lastName}</Text>
+            <Text className='my-4 mx-3' color='#827E81'>Bienvenido {user.name} {user.lastName}</Text>
 
             <Option
                 className='d-flex align-items-center justify-content-evenly px-3 py-2'
                 onClick={closeSesion}
-                isDark={isDark}
             >
                 <HiArrowRightOnRectangle size={25} className='mr-3' />
                 <Text weight='bold'>Cerrar Sesión</Text>
@@ -81,7 +79,6 @@ const NavbarPage = ({ isOpen, handleClick, closeNavbar, redirectSetting, closeSe
             <Option
                 className='d-flex align-items-center my-4 px-3 py-2'
                 onClick={redirectSetting}
-                isDark={isDark}
             >
                 <BsGearFill size={25} className='mr-3' />
                 <Text weight='bold'>Cuneta</Text>

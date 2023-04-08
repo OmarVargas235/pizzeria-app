@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.section<{ isDark: boolean; }>`
-    background-color: ${props => props.isDark ? '#232229' : 'white'};
+export const Container = styled.section`
+    background-color: ${props => props.theme.bg.bg3};
     width: 320px;
 
     @media (max-width: 576px) {
@@ -13,7 +13,7 @@ export const ContainerImage = styled.div`
     .image-profile {
         width: 100px;
         height: 100px;
-        border: 2px solid black;
+        border: 2px solid ${props => props.theme.border};
         border-radius: 50%;
         overflow: hidden;
     }

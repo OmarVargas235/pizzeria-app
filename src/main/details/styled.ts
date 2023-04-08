@@ -24,7 +24,7 @@ export const ContainerCard = styled.div`
     -webkit-box-shadow: 0px -1px 45px -3px rgba(0,0,0,0.58);
     -moz-box-shadow: 0px -1px 45px -3px rgba(0,0,0,0.58);
     box-shadow: 0px -1px 45px -3px rgba(0,0,0,0.58);
-    background-color: white;
+    background-color: ${props => props.theme.bg.bg3};
     transform-style: preserve-3d;
     transition: transform .1s ease-in;
 `;
@@ -33,7 +33,7 @@ export const ContainerImg = styled.div`
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    background-color: #FFD970;
+    background-color: ${props => props.theme.primary};
     position: relative;
     transform-style: preserve-3d;
     
@@ -63,7 +63,7 @@ export const ContainerCardPizza = styled.div`
         box-shadow: 1px 0px 9px -2px rgba(0,0,0,0.3);
         border-radius: 4px;
         height: 80px;
-        background-color: #FFD970;
+        background-color: ${props => props.theme.primary};
     }
 
     @media (max-width: 576px) {

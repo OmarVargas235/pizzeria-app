@@ -87,7 +87,6 @@ const LoginPage = ({ handleChange, handleSubmit, onSubmit, form, setForm, errors
                 <Button
                     type="submit"
                     fullWidth={true}
-                    color="#FFD970"
                     classes="btn"
                 >Iniciar  Sesión</Button>
             </div>

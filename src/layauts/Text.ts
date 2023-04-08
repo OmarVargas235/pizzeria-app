@@ -8,7 +8,7 @@ interface IText {
 }
 
 export const Text = styled.p<IText>`
-	color: ${props => props.color ?? '#232229'};
+	color: ${props => props.color ?? props.theme.secondary};
 	font-size: ${props => props.size ?? '16px'};
 	font-weight: ${props => props.weight ?? 'normal'};
 	margin: 0;
