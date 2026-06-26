@@ -1,4 +1,4 @@
-// 1.- libreries
+// 1.- libraries
 import { useState } from "react";
 import { Outlet } from "@tanstack/react-router";
 

@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 // 2.- utils
 import { classNames } from "@shared/utils";
 
-type InputProps<T extends FieldValues = FieldValues> = {
+type InputProps<T extends FieldValues> = {
     name?: Path<T>;
     register?: UseFormRegister<T>;
     value?: string;
@@ -20,7 +20,7 @@ type InputProps<T extends FieldValues = FieldValues> = {
     error?: string | undefined;
 };
 
-export default function Input<T extends FieldValues = FieldValues>({
+export default function Input<T extends FieldValues>({
     name,
     register,
     value,

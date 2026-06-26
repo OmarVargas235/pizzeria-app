@@ -1,4 +1,4 @@
-// 1.- libreries
+// 1.- libraries
 import { Outlet, useLocation } from "@tanstack/react-router";
 
 // 2.- components
