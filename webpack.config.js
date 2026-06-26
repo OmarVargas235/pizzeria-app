@@ -3,13 +3,29 @@ import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import webpack from "webpack";
+import dotenv from "dotenv";
+import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const isProd = process.env.NODE_ENV === "production";
+const envPath = path.resolve(__dirname, isProd ? ".env.production.local" : ".env.development");
+let fileEnv = {};
+if (fs.existsSync(envPath)) {
+    const dotenvResult = dotenv.config({ path: envPath });
+    fileEnv = dotenvResult.parsed || {};
+}
+const allEnv = { ...fileEnv, ...process.env };
+const envKeys = Object.keys(allEnv)
+    .filter((key) => key.startsWith("PUBLIC_"))
+    .reduce((acc, key) => {
+        acc[`process.env.${key}`] = JSON.stringify(allEnv[key]);
+        return acc;
+    }, {});
 
 export default {
     entry: "./src/index.tsx",
-
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
@@ -17,23 +33,21 @@ export default {
         clean: true,
         publicPath: "/",
     },
-
     mode: "development",
     devtool: "eval-source-map",
-
     devServer: {
         port: 3000,
         open: true,
         hot: true,
         historyApiFallback: true,
     },
-
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
             "@assets": path.resolve(__dirname, "src/assets"),
             "@shared": path.resolve(__dirname, "src/shared"),
             "@features": path.resolve(__dirname, "src/features"),
+            "@config": path.resolve(__dirname, "src/config"),
         },
         fallback: {
             crypto: false,
@@ -41,7 +55,6 @@ export default {
             fs: false,
         },
     },
-
     module: {
         rules: [
             {
@@ -72,10 +85,9 @@ export default {
             },
         ],
     },
-
     plugins: [
         new CleanWebpackPlugin(),
-        // new webpack.DefinePlugin({}),
+        new webpack.DefinePlugin(envKeys),
         new CopyWebpackPlugin({
             patterns: [
                 {

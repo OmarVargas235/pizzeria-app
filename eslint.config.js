@@ -6,12 +6,13 @@ import unusedImports from "eslint-plugin-unused-imports";
 import tseslint from "typescript-eslint";
 import prettierPlugin from "eslint-plugin-prettier";
 import prettierConfig from "eslint-config-prettier";
+import globals from "globals";
 
 export default [
     js.configs.recommended,
     ...tseslint.configs.recommended,
     {
-        files: ["**/*.{ts,tsx}"],
+        files: ["**/*.{ts,tsx,js}"],
         languageOptions: {
             parser: tseslint.parser,
             parserOptions: {
@@ -20,6 +21,10 @@ export default [
                 ecmaFeatures: {
                     jsx: true,
                 },
+            },
+            globals: {
+                ...globals.browser,
+                ...globals.node,
             },
         },
         plugins: {

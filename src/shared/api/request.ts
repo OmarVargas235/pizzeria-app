@@ -1,6 +1,7 @@
 import { RequestConfig, RequestError } from "./types";
+import { ENV } from "@config/env";
 
-const API_BASE = "";
+const API_BASE = ENV.API_BASE_URL;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
     typeof value === "object" && value !== null;
 
