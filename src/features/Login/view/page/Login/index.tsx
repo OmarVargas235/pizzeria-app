@@ -44,6 +44,7 @@ const Login = (): JSX.Element => {
                         error={errors.email?.message}
                     />
                     <Input<FormValues>
+                        type="password"
                         name="password"
                         register={register}
                         placeholder="Contraseña"

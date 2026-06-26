@@ -29,6 +29,7 @@ export const useLogin = () => {
             return loginRequest(body);
         },
         onSuccess: (data) => {
+            // console.log(data.accessToken);
             setToken(data.accessToken);
             showSnackbar({
                 message: "Sesion iniciada con exito",
@@ -39,11 +40,11 @@ export const useLogin = () => {
         },
         onError: () => {
             // console.log("LOGIN ERROR:", error);
-            showSnackbar({
-                message: "Ha ocurrido un error",
-                title: "",
-                variant: "error",
-            });
+            // showSnackbar({
+            //     message: "Ha ocurrido un error",
+            //     title: "",
+            //     variant: "error",
+            // });
         },
         onSettled: () => setLoading(false),
     });
