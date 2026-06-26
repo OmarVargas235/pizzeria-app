@@ -1,14 +1,14 @@
 // 1.- libraries
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@shared/query/queryClient";
 
 // 2.- resources
 import "./shared/styles/index.css";
 import App from "./App";
 
 const rootElement = document.getElementById("root");
-const queryClient = new QueryClient();
 
 if (!rootElement) {
     throw new Error("No se encontró el elemento root en el DOM");
