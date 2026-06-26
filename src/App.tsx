@@ -11,11 +11,16 @@ import Snackbar from "@shared/components/atoms/Snackbar";
 // 4.- store
 import { useUIStore } from "@shared/stores/ui";
 
+// 5.- context
+import { AuthProvider } from "@shared/auth/index";
+
 const App: React.FC = () => {
     const { loading, snackbar, theme } = useUIStore();
     return (
         <>
-            <RouterProvider router={router} />
+            <AuthProvider>
+                <RouterProvider router={router} />
+            </AuthProvider>
             {loading && <Spinner theme={theme} />}
             {snackbar.open && (
                 <Snackbar

@@ -4,7 +4,6 @@ export interface RequestConfig {
     endpoint: string;
     method: HttpMethod;
     body?: unknown;
-    token?: string;
     signal?: AbortSignal;
     api?: string;
     headers?: HeadersInit;

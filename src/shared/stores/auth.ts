@@ -1,3 +1,4 @@
+// 1.- libraries
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -7,9 +8,9 @@ import { AuthStore } from "../types/auth.store";
 export const useAuthStore = create<AuthStore>()(
     persist(
         (set) => ({
-            token: "",
-            setToken: (value) => set({ token: value }),
-            logout: () => set({ token: "" }),
+            session: null,
+            setSession: (value) => set({ session: value }),
+            logout: () => set({ session: null }),
         }),
         {
             name: "auth-storage",

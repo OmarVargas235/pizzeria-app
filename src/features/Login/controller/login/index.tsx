@@ -11,12 +11,12 @@ import { loginRequest } from "../../model/login/service";
 
 // 3.- store
 import { useUIStore } from "@shared/stores/ui";
-import { useAuthStore } from "@shared/stores/auth";
+// import { useAuthStore } from "@shared/stores/auth";
 
 export const useLogin = () => {
     const navigate = useNavigate();
     const { setLoading, showSnackbar } = useUIStore();
-    const { setToken } = useAuthStore();
+    // const { setToken } = useAuthStore();
 
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
@@ -28,9 +28,9 @@ export const useLogin = () => {
             const body = buildLoginBody(data);
             return loginRequest(body);
         },
-        onSuccess: (data) => {
+        onSuccess: () => {
             // console.log(data.accessToken);
-            setToken(data.accessToken);
+            // setToken(data.accessToken);
             showSnackbar({
                 message: "Sesion iniciada con exito",
                 title: "",

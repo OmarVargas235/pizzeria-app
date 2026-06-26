@@ -1,5 +1,6 @@
-import { RequestConfig, RequestError } from "./types";
 import { ENV } from "@config/env";
+import { sessionStorage } from "@shared/auth/storage/sessionStorage";
+import { RequestConfig, RequestError } from "./types";
 
 const API_BASE = ENV.API_BASE_URL;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -16,19 +17,19 @@ const request = async <T>({
     endpoint,
     method,
     body,
-    token,
     signal,
     api,
     headers,
 }: RequestConfig): Promise<T> => {
     try {
+        const accessToken = sessionStorage.getAccessToken();
         const requestHeaders: Record<string, string> = {
             Accept: "application/json",
             "Content-Type": "application/json",
             ...(headers as Record<string, string>),
         };
-        if (token) {
-            requestHeaders.Authorization = `Bearer ${token}`;
+        if (accessToken) {
+            requestHeaders.Authorization = `Bearer ${accessToken}`;
         }
         const options: RequestInit = {
             method: method,

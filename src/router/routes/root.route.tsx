@@ -6,10 +6,10 @@ export const rootRoute = createRootRoute({
     component: () => <Outlet />,
     notFoundComponent: () => <NotFound />,
     loader: () => {
-        const { token } = useAuthStore.getState();
+        const { session } = useAuthStore.getState();
         const isRoot = window.location.pathname === "/";
         if (!isRoot) return;
-        if (token) {
+        if (session.accessToken) {
             throw redirect({ to: "/home" });
         }
         throw redirect({ to: "/login" });
