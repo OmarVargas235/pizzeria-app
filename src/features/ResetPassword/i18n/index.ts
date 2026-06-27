@@ -1,0 +1,1 @@
+export { resetPasswordLocale } from "./es";

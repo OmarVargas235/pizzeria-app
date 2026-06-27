@@ -11,6 +11,10 @@ import { forgotPasswordRequest } from "../../model/forgotPassword/service";
 // 3.- store
 import { useUIStore } from "@shared/stores/ui";
 
+// 4.- i18n
+import { getResponseMessage } from "@shared/i18n";
+import { forgotPasswordLocale } from "../../i18n";
+
 export const useForgotPassword = () => {
     const { setLoading, showSnackbar } = useUIStore();
 
@@ -26,15 +30,14 @@ export const useForgotPassword = () => {
         },
         onSuccess: () => {
             showSnackbar({
-                message: "Correo enviado",
+                message: forgotPasswordLocale.messages.success,
                 title: "",
                 variant: "success",
             });
         },
-        onError: () => {
-            // console.log("LOGIN ERROR:", error);
+        onError: (error) => {
             showSnackbar({
-                message: "Ha ocurrido un error",
+                message: getResponseMessage(error.message),
                 title: "",
                 variant: "error",
             });
