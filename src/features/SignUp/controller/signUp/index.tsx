@@ -12,6 +12,10 @@ import { signUpRequest } from "../../model/signUp/service";
 // 3.- store
 import { useUIStore } from "@shared/stores/ui";
 
+// 4.- i18n
+import { registerLocale } from "../../i18n";
+import { getResponseMessage } from "@shared/i18n";
+
 export const useSignUp = () => {
     const navigate = useNavigate();
     const { setLoading, showSnackbar } = useUIStore();
@@ -28,19 +32,18 @@ export const useSignUp = () => {
         },
         onSuccess: () => {
             showSnackbar({
-                message: "Usuario creado con éxito",
+                message: registerLocale.messages.success,
                 title: "",
                 variant: "success",
             });
             navigate({ to: "/login" });
         },
-        onError: () => {
-            // console.log("LOGIN ERROR:", error);
-            // showSnackbar({
-            //     message: "Ha ocurrido un error",
-            //     title: "",
-            //     variant: "error",
-            // });
+        onError: (error) => {
+            showSnackbar({
+                message: getResponseMessage(error.message),
+                title: "",
+                variant: "error",
+            });
         },
         onSettled: () => setLoading(false),
     });
