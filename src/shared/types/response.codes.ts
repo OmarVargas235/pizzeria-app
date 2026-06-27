@@ -1,0 +1,6 @@
+export const RESPONSE_CODES = {
+    INVALID_CREDENTIALS: "INVALID_CREDENTIALS",
+    EMAIL_ALREADY_EXISTS: "EMAIL_ALREADY_EXISTS",
+} as const;
+
+export type ResponseCode = (typeof RESPONSE_CODES)[keyof typeof RESPONSE_CODES];

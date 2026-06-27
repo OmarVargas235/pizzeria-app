@@ -10,7 +10,7 @@ import Button from "@shared/components/atoms/Button";
 import { useLogin } from "../../../controller/login";
 
 // 4.- model
-import { FormValues } from "../../../model/login/types";
+import { type LoginFormValues } from "../../../model/login/schema";
 
 // 5.- assets
 import Logo from "@assets/img/logo.png";
@@ -33,7 +33,7 @@ const Login = (): JSX.Element => {
                     A las mejores pizzas del país
                 </p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <Input<FormValues>
+                    <Input<LoginFormValues>
                         name="email"
                         register={register}
                         placeholder="Usuario (email)"
@@ -43,7 +43,7 @@ const Login = (): JSX.Element => {
                         containerClassName="mt-5 w-72"
                         error={errors.email?.message}
                     />
-                    <Input<FormValues>
+                    <Input<LoginFormValues>
                         type="password"
                         name="password"
                         register={register}

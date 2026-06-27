@@ -1,4 +1,7 @@
-import { Session } from "./session";
+export interface Session {
+    accessToken: string;
+    refreshToken: string;
+}
 
 export type AuthStore = {
     session: Session | null;
