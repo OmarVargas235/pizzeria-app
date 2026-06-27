@@ -11,6 +11,7 @@ import { privateRoute, privateOutletRoute } from "./routes/private.route";
 import LoginFeature from "@features/Login";
 import SignUpFeature from "@features/SignUp";
 import ForgotPasswordFeature from "@features/ForgotPassword";
+import ResetPasswordFeature from "@features/ResetPassword";
 import HomeFeature from "@features/Home";
 import ProfileFeature from "@features/Profile";
 import PizzaDetail from "@features/PizzaDetail";
@@ -33,6 +34,12 @@ const forgotPasswordRoute = createRoute({
     component: ForgotPasswordFeature,
 });
 
+const resetPasswordRoute = createRoute({
+    getParentRoute: () => publicRoute,
+    path: "/reset-password",
+    component: ResetPasswordFeature,
+});
+
 const homeRoute = createRoute({
     getParentRoute: () => privateRoute,
     path: "/home",
@@ -53,7 +60,7 @@ const profileRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([
     appLayoutRoute.addChildren([
-        publicRoute.addChildren([loginRoute, signUpRoute, forgotPasswordRoute]),
+        publicRoute.addChildren([loginRoute, signUpRoute, forgotPasswordRoute, resetPasswordRoute]),
         privateRoute.addChildren([homeRoute, pizzaDetailRoute]),
         privateOutletRoute.addChildren([profileRoute]),
     ]),

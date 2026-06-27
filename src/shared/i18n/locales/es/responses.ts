@@ -7,4 +7,6 @@ export const responses: ResponsesLocale = {
     RESOURCE_CONFLICT:
         "La operación no pudo completarse porque el recurso entra en conflicto con el estado actual.",
     VALIDATION_ERROR: "Uno o más campos contienen información no válida.",
+    TOKEN_EXPIRED: "El enlace de recuperación ha expirado. Solicita uno nuevo para continuar.",
+    INVALID_TOKEN: "El enlace no es válido o ha sido modificado. Solicita uno nuevo.",
 };

@@ -1,0 +1,1 @@
+export { forgotPasswordLocale } from "./es";
