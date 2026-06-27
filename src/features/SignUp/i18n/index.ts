@@ -1,0 +1,1 @@
+export { registerLocale } from "./es";

@@ -5,7 +5,7 @@ import Button from "@shared/components/atoms/Button";
 import GoBack from "@shared/components/atoms/GoBack";
 
 import { useSignUp } from "../../../controller/signUp";
-import { FormValues } from "../../../model/signUp/types";
+import { type SignUpFormValues } from "../../../model/signUp/schema";
 
 const SignUp = (): JSX.Element => {
     const { form, onSubmit } = useSignUp();
@@ -37,28 +37,28 @@ const SignUp = (): JSX.Element => {
                     Crea tu cuenta para continuar
                 </p>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-                    <Input<FormValues>
+                    <Input<SignUpFormValues>
                         name="name"
                         register={register}
                         placeholder="Nombre"
                         containerClassName="mt-4 w-full"
                         error={errors.name?.message}
                     />
-                    <Input<FormValues>
+                    <Input<SignUpFormValues>
                         name="lastName"
                         register={register}
                         placeholder="Apellido"
                         containerClassName="mt-4 w-full"
                         error={errors.lastName?.message}
                     />
-                    <Input<FormValues>
+                    <Input<SignUpFormValues>
                         name="email"
                         register={register}
                         placeholder="Email"
                         containerClassName="mt-4 w-full"
                         error={errors.email?.message}
                     />
-                    <Input<FormValues>
+                    <Input<SignUpFormValues>
                         name="password"
                         register={register}
                         placeholder="Contraseña"
@@ -66,7 +66,7 @@ const SignUp = (): JSX.Element => {
                         containerClassName="mt-4 w-full"
                         error={errors.password?.message}
                     />
-                    <Input<FormValues>
+                    <Input<SignUpFormValues>
                         name="repeatPassword"
                         register={register}
                         placeholder="Repetir contraseña"
