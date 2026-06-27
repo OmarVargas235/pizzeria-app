@@ -1,7 +1,7 @@
 // 1.- libraries
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 
 // 2.- model
@@ -9,14 +9,20 @@ import { loginSchema, LoginFormValues } from "../../model/login/schema";
 import { buildLoginBody } from "../../model/login/buildBody";
 import { loginRequest } from "../../model/login/service";
 
-// 3.- store
+// 3.- shared
 import { useUIStore } from "@shared/stores/ui";
-// import { useAuthStore } from "@shared/stores/auth";
+import { useAuthStore } from "@shared/stores/auth";
+import { profileQuery } from "@shared/auth/queries/profile";
+
+// 4.- i18n
+import { getResponseMessage } from "@shared/i18n";
+import { loginLocale } from "../../i18n";
 
 export const useLogin = () => {
     const navigate = useNavigate();
     const { setLoading, showSnackbar } = useUIStore();
-    // const { setToken } = useAuthStore();
+    const queryClient = useQueryClient();
+    const { setSession } = useAuthStore();
 
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
@@ -28,23 +34,22 @@ export const useLogin = () => {
             const body = buildLoginBody(data);
             return loginRequest(body);
         },
-        onSuccess: () => {
-            // console.log(data.accessToken);
-            // setToken(data.accessToken);
+        onSuccess: async (data) => {
+            setSession({ ...data.data });
+            await queryClient.ensureQueryData(profileQuery);
             showSnackbar({
-                message: "Sesion iniciada con exito",
+                message: loginLocale.messages.success,
                 title: "",
                 variant: "success",
             });
             navigate({ to: "/home" });
         },
-        onError: () => {
-            // console.log("LOGIN ERROR:", error);
-            // showSnackbar({
-            //     message: "Ha ocurrido un error",
-            //     title: "",
-            //     variant: "error",
-            // });
+        onError: (error) => {
+            showSnackbar({
+                message: getResponseMessage(error.message),
+                title: "",
+                variant: "error",
+            });
         },
         onSettled: () => setLoading(false),
     });
@@ -53,5 +58,6 @@ export const useLogin = () => {
         setLoading(true);
         mutation.mutate(data);
     };
+
     return { onSubmit, form, navigate };
 };

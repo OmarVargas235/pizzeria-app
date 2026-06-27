@@ -1,1 +1,0 @@
-export type ResponseCode = "INVALID_CREDENTIALS" | "EMAIL_ALREADY_EXISTS";

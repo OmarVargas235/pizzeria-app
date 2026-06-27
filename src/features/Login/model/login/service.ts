@@ -1,8 +1,6 @@
 import { post } from "@shared/api";
-import { LoginFormValues } from "./schema";
-import { ResponsesSuccess } from "../../model/login/types";
+import { LoginResponse, LoginRequest } from "./contracts";
 
-export const loginRequest = async (body: LoginFormValues): Promise<ResponsesSuccess> => {
-    // console.log(body);
+export const loginRequest = async (body: LoginRequest): Promise<LoginResponse> => {
     return post("/auth/login", body);
 };

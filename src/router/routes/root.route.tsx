@@ -9,7 +9,7 @@ export const rootRoute = createRootRoute({
         const { session } = useAuthStore.getState();
         const isRoot = window.location.pathname === "/";
         if (!isRoot) return;
-        if (session.accessToken) {
+        if (session?.accessToken) {
             throw redirect({ to: "/home" });
         }
         throw redirect({ to: "/login" });
