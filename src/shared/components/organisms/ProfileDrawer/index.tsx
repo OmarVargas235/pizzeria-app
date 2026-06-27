@@ -19,6 +19,9 @@ import { classNames } from "@shared/utils";
 // 5.- store
 import { useUIStore } from "@shared/stores/ui";
 
+// 6.- auth
+import { useLogout } from "@shared/auth";
+
 type ProfileDrawerProps = {
     open: boolean;
     onClose: () => void;
@@ -26,11 +29,22 @@ type ProfileDrawerProps = {
 
 const ProfileDrawer = ({ open, onClose }: ProfileDrawerProps) => {
     const navigate = useNavigate();
-    const { theme, toggleTheme } = useUIStore();
+    const { theme, toggleTheme, setLoading, showSnackbar } = useUIStore();
 
     const [checked, setChecked] = useState(theme === "dark");
     const [mounted, setMounted] = useState(open);
     const [animated, setAnimated] = useState(false);
+
+    const { logout } = useLogout({
+        onSuccess: () => {
+            setLoading(false);
+            showSnackbar({
+                message: "Sesión cerrada correctamente.",
+                title: "",
+                variant: "success",
+            });
+        },
+    });
 
     useEffect(() => {
         let timer;
@@ -77,7 +91,13 @@ const ProfileDrawer = ({ open, onClose }: ProfileDrawerProps) => {
                         <UserCircleIcon className="w-5 h-5 dark:group-hover:text-lavender-400" />
                         <span className="dark:group-hover:text-lavender-400">Cuenta</span>
                     </button>
-                    <button className="flex items-center gap-3 p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-[#2A2A32] hover:text-slate-100 transition group">
+                    <button
+                        className="flex items-center gap-3 p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-[#2A2A32] hover:text-slate-100 transition group"
+                        onClick={() => {
+                            logout();
+                            setLoading(true);
+                        }}
+                    >
                         <ArrowLeftStartOnRectangleIcon className="w-5 h-5 dark:group-hover:text-lavender-400" />
                         <span className="dark:group-hover:text-lavender-400">Cerrar sesión</span>
                     </button>
