@@ -6,12 +6,19 @@ import { useRouter } from "@tanstack/react-router";
 import Avatar from "@shared/components/atoms/Avatar";
 import EditProfileModal from "../../organisms/EditProfileModal";
 
-// 2.- icons
+// 3.- icons
 import { ArrowLeftIcon, PencilIcon } from "@heroicons/react/24/outline";
+
+// 4.- auth
+import { useProfile } from "@shared/auth";
 
 const Profile = () => {
     const router = useRouter();
     const [isEditOpen, setIsEditOpen] = useState(false);
+
+    const { data } = useProfile();
+    const profile = data!.data;
+    const { firstName, lastName, email, avatarUrl } = profile;
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
@@ -24,7 +31,7 @@ const Profile = () => {
                     <ArrowLeftIcon className="h-6 w-6" />
                 </button>
                 <div className="relative mx-auto w-fit">
-                    <Avatar size="xl" />
+                    <Avatar size="xl" src={avatarUrl} />
                     <button
                         type="button"
                         className="absolute bottom-1 -left-2 rounded-full p-1.5 text-white bg-amber-400 dark:bg-lavender-500 hover:bg-amber-500 dark:hover:bg-lavender-600 shadow-md transition"
@@ -35,11 +42,9 @@ const Profile = () => {
                 </div>
                 <div className="mt-6 text-center">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-100">
-                        Juan Pérez
+                        {firstName} {lastName}
                     </h2>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
-                        juan.perez@email.com
-                    </p>
+                    <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">{email}</p>
                 </div>
             </div>
             <EditProfileModal open={isEditOpen} onClose={() => setIsEditOpen(false)} />

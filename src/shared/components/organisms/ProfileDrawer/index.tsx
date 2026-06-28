@@ -20,7 +20,7 @@ import { classNames } from "@shared/utils";
 import { useUIStore } from "@shared/stores/ui";
 
 // 6.- auth
-import { useLogout } from "@shared/auth";
+import { useLogout, useProfile } from "@shared/auth";
 
 type ProfileDrawerProps = {
     open: boolean;
@@ -34,6 +34,9 @@ const ProfileDrawer = ({ open, onClose }: ProfileDrawerProps) => {
     const [checked, setChecked] = useState(theme === "dark");
     const [mounted, setMounted] = useState(open);
     const [animated, setAnimated] = useState(false);
+
+    const { data } = useProfile();
+    const { avatarUrl, firstName, lastName } = data!.data;
 
     const { logout } = useLogout({
         onSuccess: () => {
@@ -84,8 +87,10 @@ const ProfileDrawer = ({ open, onClose }: ProfileDrawerProps) => {
                     <XMarkIcon className="w-5 h-5" />
                 </button>
                 <div className="flex flex-col items-center">
-                    <Avatar size="lg" />
-                    <h3 className="mt-4 font-semibold dark:text-slate-100">Hola, Cristian</h3>
+                    <Avatar size="lg" src={avatarUrl} />
+                    <h3 className="mt-4 font-semibold dark:text-slate-100">
+                        Hola, {firstName} {lastName}
+                    </h3>
                     <p className="text-sm text-gray-500 dark:text-slate-400">
                         Bienvenido nuevamente
                     </p>

@@ -39,7 +39,7 @@ const Snackbar = ({ title, message, variant = "success" }: SnackbarProps) => {
     const Icon = config.icon;
 
     return (
-        <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5 fixed top-0 left-1/2 -translate-x-1/2">
+        <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5 fixed top-0 left-1/2 -translate-x-1/2 z-50">
             <div className="p-4">
                 <div className="flex items-start">
                     <div className="shrink-0">

@@ -9,4 +9,5 @@ export const responses: ResponsesLocale = {
     VALIDATION_ERROR: "Uno o más campos contienen información no válida.",
     TOKEN_EXPIRED: "El enlace de recuperación ha expirado. Solicita uno nuevo para continuar.",
     INVALID_TOKEN: "El enlace no es válido o ha sido modificado. Solicita uno nuevo.",
+    VALIDATION_FAILED: "Algunos datos son inválidos.",
 };
