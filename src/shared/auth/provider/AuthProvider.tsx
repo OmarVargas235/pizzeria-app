@@ -3,7 +3,7 @@ import { useState, useEffect, type ReactNode } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 // 2.- session
-import { restoreSession } from "../session/restoreSession";
+import { initializeSession } from "../session/initializeSession";
 
 type Props = {
     children: ReactNode;
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }: Props) => {
 
     useEffect(() => {
         const initialize = async () => {
-            await restoreSession(queryClient);
+            await initializeSession(queryClient);
             setIsInitializing(false);
         };
         void initialize();

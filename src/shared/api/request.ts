@@ -1,17 +1,11 @@
 import { ENV } from "@config/env";
-import { sessionStorage } from "@shared/auth/storage/sessionStorage";
 import { RequestConfig, RequestError } from "./types";
+import { buildRequest } from "./buildRequest";
+import { executeRequest } from "./executeRequest";
+import { parseResponse } from "./parseResponse";
+import { refreshSession } from "@shared/auth/model/refresh/refreshSession";
 
 const API_BASE = ENV.API_BASE_URL;
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-    typeof value === "object" && value !== null;
-
-const getErrorMessage = (data: unknown): string | undefined => {
-    if (isRecord(data) && typeof data.message === "string") {
-        return data.message;
-    }
-    return undefined;
-};
 
 const request = async <T>({
     endpoint,
@@ -20,51 +14,29 @@ const request = async <T>({
     signal,
     api,
     headers,
+    skipAuthRefresh,
 }: RequestConfig): Promise<T> => {
+    const url = `${api ?? API_BASE}${endpoint}`;
+    const performRequest = async (): Promise<T> => {
+        const options = buildRequest({
+            endpoint,
+            method,
+            ...(api ? { api } : {}),
+            body,
+            ...(headers ? { headers } : {}),
+            signal,
+        });
+        const response = await executeRequest(url, options);
+        return parseResponse<T>(response);
+    };
     try {
-        const accessToken = sessionStorage.getAccessToken();
-        const requestHeaders: Record<string, string> = {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            ...(headers as Record<string, string>),
-        };
-        if (accessToken) {
-            requestHeaders.Authorization = `Bearer ${accessToken}`;
+        return await performRequest();
+    } catch (error) {
+        const requestError = error as RequestError;
+        if (requestError.status === 401 && !skipAuthRefresh) {
+            await refreshSession();
+            return performRequest();
         }
-        const options: RequestInit = {
-            method: method,
-            headers: requestHeaders,
-            ...(signal ? { signal } : {}),
-        };
-        const hasBody = body !== undefined && ["POST", "PUT", "PATCH", "DELETE"].includes(method);
-        if (hasBody) {
-            options.body = JSON.stringify(body);
-        }
-        const response = await fetch(`${api ?? API_BASE}${endpoint}`, options);
-        const contentType = response.headers.get("content-type") ?? "";
-        const isJson = contentType.includes("application/json");
-        let data: unknown = null;
-        if (isJson) {
-            data = await response.json().catch(() => null);
-        }
-        if (!response.ok) {
-            const error = new Error(
-                getErrorMessage(data) ?? response.statusText ?? "Request error",
-            ) as RequestError;
-            error.status = response.status;
-            error.data = data;
-            throw error;
-        }
-        if (isJson) {
-            return data as T;
-        }
-        return { status: response.status } as T;
-    } catch (err) {
-        if (err instanceof Error) {
-            throw err;
-        }
-        const error = new Error("Unknown request error") as RequestError;
-        error.data = err;
         throw error;
     }
 };

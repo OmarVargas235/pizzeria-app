@@ -37,13 +37,20 @@ const ProfileDrawer = ({ open, onClose }: ProfileDrawerProps) => {
 
     const { logout } = useLogout({
         onSuccess: () => {
-            setLoading(false);
             showSnackbar({
                 message: "Sesión cerrada correctamente.",
                 title: "",
                 variant: "success",
             });
         },
+        onError: () => {
+            showSnackbar({
+                message: "Ha ocurrido un error",
+                title: "",
+                variant: "success",
+            });
+        },
+        onSettled: () => setLoading(false),
     });
 
     useEffect(() => {
