@@ -1,3 +1,5 @@
+import { Session } from "@shared/types/auth.store";
+
 export interface LoginRequest {
     email: string;
     password: string;
@@ -5,8 +7,5 @@ export interface LoginRequest {
 
 export interface LoginResponse {
     message: string;
-    data: {
-        accessToken: string;
-        refreshToken: string;
-    };
+    data: Session;
 }
