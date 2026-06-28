@@ -1,0 +1,1 @@
+export { profileLocale } from "./es";

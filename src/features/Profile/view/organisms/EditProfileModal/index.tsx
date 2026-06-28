@@ -14,6 +14,9 @@ import { EditProfileValues } from "../../../model/editProfile/schema";
 // 5.- utils
 import { classNames } from "@shared/utils";
 
+// 4.- auth
+import { useProfile } from "@shared/auth";
+
 type EditProfileModalProps = {
     open: boolean;
     onClose: () => void;
@@ -26,6 +29,10 @@ const EditProfileModal = ({ open, onClose }: EditProfileModalProps) => {
         handleSubmit,
         formState: { errors },
     } = form;
+
+    const { data } = useProfile();
+    const profile = data!.data;
+    const { avatarUrl } = profile;
 
     if (!mounted) return null;
 
@@ -51,7 +58,7 @@ const EditProfileModal = ({ open, onClose }: EditProfileModalProps) => {
                     </p>
                 </div>
                 <div className="flex justify-center mb-6">
-                    <Avatar size="xl" />
+                    <Avatar size="xl" src={avatarUrl} />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     <div className="mx-auto w-full max-w-xs space-y-5">
@@ -60,6 +67,12 @@ const EditProfileModal = ({ open, onClose }: EditProfileModalProps) => {
                             register={register}
                             placeholder="Nombre"
                             error={errors.name?.message}
+                        />
+                        <Input<EditProfileValues>
+                            name="lastName"
+                            register={register}
+                            placeholder="Apellido"
+                            error={errors.lastName?.message}
                         />
                         <div className="flex gap-3">
                             <Button

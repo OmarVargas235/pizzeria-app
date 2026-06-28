@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const editProfileSchema = z.object({
     name: z.string().trim().optional(),
+    lastName: z.string().trim().optional(),
     image: z
         .custom<FileList>((val) => val instanceof FileList)
         .optional()

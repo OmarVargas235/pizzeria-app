@@ -2,16 +2,21 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 
 // 2.- model
 import { editProfileSchema, EditProfileValues } from "../../model/editProfile/schema";
 import { buildBody } from "../../model/editProfile/buildBody";
-import { loginRequest } from "../../model/editProfile/service";
+import { editProfileRequest } from "../../model/editProfile/service";
+import { EditProfileResponse } from "../..//model/editProfile/contracts";
 
 // 3.- store
 import { useUIStore } from "@shared/stores/ui";
+
+// 4.- i18n
+import { getResponseMessage } from "@shared/i18n";
+import { profileLocale } from "../../i18n";
 
 type EditProfileProps = {
     onClose: () => void;
@@ -20,6 +25,7 @@ type EditProfileProps = {
 
 export const useEditProfile = ({ open, onClose }: EditProfileProps) => {
     const { setLoading, showSnackbar } = useUIStore();
+    const queryClient = useQueryClient();
 
     const [mounted, setMounted] = useState(open);
     const [animated, setAnimated] = useState(false);
@@ -31,21 +37,30 @@ export const useEditProfile = ({ open, onClose }: EditProfileProps) => {
     const mutation = useMutation({
         mutationFn: async (data: EditProfileValues) => {
             const body = buildBody(data);
-            return loginRequest(body);
+            return editProfileRequest(body);
         },
-        onSuccess: () => {
-            // console.log(data);
+        onSuccess: ({ data }) => {
+            queryClient.setQueryData<EditProfileResponse>(["profile"], (old) => {
+                if (!old) return old;
+                return {
+                    ...old,
+                    data: {
+                        ...old.data,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                    },
+                };
+            });
             showSnackbar({
-                message: "Sesion iniciada con exito",
+                message: profileLocale.messages.success,
                 title: "",
                 variant: "success",
             });
             onClose();
         },
-        onError: () => {
-            // console.log("LOGIN ERROR:", error);
+        onError: (error) => {
             showSnackbar({
-                message: "Ha ocurrido un error",
+                message: getResponseMessage(error.message),
                 title: "",
                 variant: "error",
             });
