@@ -7,8 +7,7 @@ import { z } from "zod";
 
 // 2.- model
 import { editProfileSchema, EditProfileValues } from "../../model/editProfile/schema";
-import { buildBody } from "../../model/editProfile/buildBody";
-import { editProfileRequest } from "../../model/editProfile/service";
+import { updateProfile } from "../../model/editProfile/updateProfile";
 import { EditProfileResponse } from "../..//model/editProfile/contracts";
 
 // 3.- store
@@ -29,25 +28,27 @@ export const useEditProfile = ({ open, onClose }: EditProfileProps) => {
 
     const [mounted, setMounted] = useState(open);
     const [animated, setAnimated] = useState(false);
+    const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
     const form = useForm<z.input<typeof editProfileSchema>>({
         resolver: zodResolver(editProfileSchema),
     });
 
     const mutation = useMutation({
-        mutationFn: async (data: EditProfileValues) => {
-            const body = buildBody(data);
-            return editProfileRequest(body);
-        },
-        onSuccess: ({ data }) => {
+        mutationFn: (data: EditProfileValues) =>
+            updateProfile({
+                firstName: data.name,
+                lastName: data.lastName,
+                avatar: avatarFile,
+            }),
+        onSuccess: (updatedProfile) => {
             queryClient.setQueryData<EditProfileResponse>(["profile"], (old) => {
                 if (!old) return old;
                 return {
                     ...old,
                     data: {
                         ...old.data,
-                        firstName: data.firstName,
-                        lastName: data.lastName,
+                        ...updatedProfile,
                     },
                 };
             });
@@ -56,6 +57,8 @@ export const useEditProfile = ({ open, onClose }: EditProfileProps) => {
                 title: "",
                 variant: "success",
             });
+            setAvatarFile(null);
+            form.reset();
             onClose();
         },
         onError: (error) => {
@@ -85,5 +88,9 @@ export const useEditProfile = ({ open, onClose }: EditProfileProps) => {
         mutation.mutate(data);
     };
 
-    return { onSubmit, form, mounted, animated };
+    const onChange = (file: File | null) => {
+        setAvatarFile(file);
+    };
+
+    return { onSubmit, onChange, form, mounted, animated };
 };

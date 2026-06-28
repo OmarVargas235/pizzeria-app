@@ -6,3 +6,7 @@ export const editProfileRequest = async (
 ): Promise<EditProfileResponse> => {
     return patch("/profile/me", body);
 };
+
+export const uploadRequest = async (body: FormData): Promise<EditProfileResponse> => {
+    return patch("/profile/avatar", body);
+};
