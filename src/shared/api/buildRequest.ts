@@ -3,9 +3,10 @@ import { RequestConfig } from "./types";
 
 export const buildRequest = ({ method, body, signal, headers }: RequestConfig): RequestInit => {
     const accessToken = sessionStorage.getAccessToken();
+    const isFormData = body instanceof FormData;
     const requestHeaders: Record<string, string> = {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        ...(isFormData ? {} : { "Content-Type": "application/json" }),
         ...(headers as Record<string, string>),
     };
     if (accessToken) {
@@ -18,7 +19,7 @@ export const buildRequest = ({ method, body, signal, headers }: RequestConfig): 
     };
     const hasBody = body !== undefined && ["POST", "PUT", "PATCH", "DELETE"].includes(method);
     if (hasBody) {
-        options.body = JSON.stringify(body);
+        options.body = isFormData ? body : JSON.stringify(body);
     }
     return options;
 };

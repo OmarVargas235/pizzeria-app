@@ -1,7 +1,7 @@
 // 1.- libraries
 
 // 2.- components
-import Avatar from "@shared/components/atoms/Avatar";
+import AvatarUploader from "@shared/components/molecules/AvatarUploader";
 import Input from "@shared/components/atoms/Input";
 import Button from "@shared/components/atoms/Button";
 
@@ -23,7 +23,7 @@ type EditProfileModalProps = {
 };
 
 const EditProfileModal = ({ open, onClose }: EditProfileModalProps) => {
-    const { form, onSubmit, animated, mounted } = useEditProfile({ onClose, open });
+    const { form, onSubmit, animated, mounted, onChange } = useEditProfile({ onClose, open });
     const {
         register,
         handleSubmit,
@@ -58,7 +58,7 @@ const EditProfileModal = ({ open, onClose }: EditProfileModalProps) => {
                     </p>
                 </div>
                 <div className="flex justify-center mb-6">
-                    <Avatar size="xl" src={avatarUrl} />
+                    <AvatarUploader src={avatarUrl} onChange={onChange} />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     <div className="mx-auto w-full max-w-xs space-y-5">
