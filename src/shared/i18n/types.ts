@@ -6,10 +6,13 @@ export interface CommonLocale {
         cancel: string;
         delete: string;
         edit: string;
+        retry: string;
     };
     messages: {
         defaultError: string;
         networkError: string;
+        queryErrorTitle: string;
+        queryErrorDescription: string;
     };
 }
 
