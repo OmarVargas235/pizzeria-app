@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 
 // 2.- components
 import Input from "@shared/components/atoms/Input";
+import Image from "@shared/components/atoms/Image";
 import QueryBoundary from "@shared/components/organisms/QueryBoundary";
 import PizzeriasSkeleton from "../../atoms/PizzeriasSkeleton";
 
@@ -59,10 +60,11 @@ const Home = () => {
                                 }}
                             >
                                 <div className="h-32 rounded-lg bg-white dark:bg-[#2A2A32] border border-gray-200 dark:border-[#3A3A45] flex items-center justify-center text-gray-500 dark:text-slate-200 mb-1.5 cursor-pointer transition dark:hover:border-cyan-400/40 dark:hover:bg-[#2E2E38]">
-                                    <img
+                                    <Image
                                         src={`${ENV.API_BASE_URL}${store.imageUrl}`}
                                         alt={store.name}
                                         className="w-full h-full object-cover"
+                                        objectFit="cover"
                                     />
                                 </div>
                                 <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">

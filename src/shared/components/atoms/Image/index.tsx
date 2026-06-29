@@ -1,7 +1,7 @@
 // 1.- libraries
 import { JSX, useState } from "react";
 
-// 2.- interfaces
+// 2.- types
 import { ImageProps } from "./types";
 
 const Image = ({
@@ -16,11 +16,14 @@ const Image = ({
     onClick,
     objectFit = "cover",
 }: ImageProps): JSX.Element => {
-    const [loaded, setLoaded] = useState<boolean>(priority);
+    const [loaded, setLoaded] = useState(false);
+    const [error, setError] = useState(false);
+
+    const finalSrc = error ? "https://placehold.co/600x400?text=No+Image" : src;
 
     return (
         <img
-            src={src}
+            src={finalSrc}
             alt={alt}
             width={width}
             height={height}
@@ -28,14 +31,15 @@ const Image = ({
             fetchPriority={priority ? "high" : "auto"}
             decoding="async"
             onLoad={() => setLoaded(true)}
+            onError={() => setError(true)}
             onClick={onClick}
             data-testid={id ? `image-${id}` : undefined}
             className={className}
             style={{
                 objectFit,
                 display: "block",
-                filter: loaded ? "none" : "blur(6px)",
-                // transform: loaded ? "scale(1)" : "scale(1.02)",
+                filter: loaded ? "none" : "blur(8px) brightness(0.95)",
+                transform: loaded ? "scale(1)" : "scale(1.02)",
                 transition: "filter 300ms ease, transform 300ms ease",
                 willChange: loaded ? "auto" : "transform",
                 ...style,
