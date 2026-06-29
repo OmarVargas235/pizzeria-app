@@ -39,7 +39,6 @@ const Image = ({
                 objectFit,
                 display: "block",
                 filter: loaded ? "none" : "blur(8px) brightness(0.95)",
-                transform: loaded ? "scale(1)" : "scale(1.02)",
                 transition: "filter 300ms ease, transform 300ms ease",
                 willChange: loaded ? "auto" : "transform",
                 ...style,
