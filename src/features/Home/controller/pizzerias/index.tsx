@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 // 2.- model
-import { pizzeriasQuery } from "../..//model/query";
+import { pizzeriasQuery } from "../../model/query";
 
 export const usePizzerias = () => {
     const [search, setSearch] = useState("");
